@@ -1,0 +1,14 @@
+<% provide(:title,"Login") %>
+
+
+<!-- フラッシュ変数のメッセージを表示（ログインエラー時のみ） -->
+<p><font color=red><%= flash[:alert] %></font></p>
+
+<%= form_tag login_path,class: "form-container" do %>
+  <div class="form-title"><h2>Login Form</h2></div>
+  <div class="form-title">Username</div>
+  <%= text_field_tag :name, params[:name] ,class: "form-field"%> <br />
+  <div class="form-title">Password</div>
+  <%= password_field_tag :pass, params[:pass],class: "form-field" %><br />
+  <%= submit_tag "Login" ,class: "submit-button" %>
+<% end %>

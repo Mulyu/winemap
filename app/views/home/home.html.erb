@@ -1,0 +1,12 @@
+<% provide(:title,'Home') %>
+
+<h1>
+	this is test home page!
+</h1>
+<p><%= @aa  %>
+</p>
+<% if current_user == nil %>
+	<%= link_to "log in", login_path %>
+<% else %>
+	<%= link_to "log out", login_path , confirm: "log out?" ,method: :delete %>
+<% end %>
