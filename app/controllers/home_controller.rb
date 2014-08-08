@@ -8,9 +8,7 @@ require 'rexml/document'
 class HomeController < ApplicationController
 	
 	def home
-		
-		
-	end	
+	end
 	
 	def map
 	end
