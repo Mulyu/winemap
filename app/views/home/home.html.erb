@@ -1,10 +1,8 @@
-<% provide(:title,'Home') %>
+<% provide :title,'Home' %>
 
 <h1>
 	this is test home page!
 </h1>
-<p><%= @aa  %>
-</p>
 <% if current_user == nil %>
 	<%= link_to "log in", login_path %>
 <% else %>
