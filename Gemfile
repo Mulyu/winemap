@@ -4,8 +4,12 @@ ruby '2.1.2'
 gem 'rails'
 
 group :development do
-  gem 'sqlite3'
+  # gem 'sqlite3'
+  gem 'mysql2'
   gem 'rspec-rails'
+  # debug
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 gem 'uglifier', '>= 1.3.0'
