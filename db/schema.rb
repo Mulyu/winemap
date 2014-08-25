@@ -11,36 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823014602) do
+ActiveRecord::Schema.define(version: 20140825010423) do
 
   create_table "countries", force: true do |t|
-    t.string   "name",           limit: 30
-    t.integer  "ranking"
-    t.string   "svg_id",         limit: 5
-    t.integer  "worldregion_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name",           limit: 30
+    t.integer "ranking"
+    t.string  "svg_id",         limit: 5
+    t.integer "worldregion_id"
   end
 
   create_table "localregions", force: true do |t|
-    t.string   "name",       limit: 30
-    t.integer  "ranking"
-    t.integer  "country_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name",       limit: 30
+    t.integer "ranking"
+    t.integer "country_id"
   end
 
   create_table "situations", force: true do |t|
-    t.string   "name",       limit: 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name", limit: 30
   end
 
   create_table "situationswines", id: false, force: true do |t|
-    t.integer  "wine_id"
-    t.integer  "situation_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "wine_id"
+    t.integer "situation_id"
   end
 
   create_table "users", force: true do |t|
@@ -73,23 +65,17 @@ ActiveRecord::Schema.define(version: 20140823014602) do
   end
 
   create_table "winetypes", force: true do |t|
-    t.string   "name",       limit: 10
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name", limit: 10
   end
 
   create_table "winevarieties", force: true do |t|
-    t.string   "name",       limit: 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name", limit: 30
   end
 
   create_table "worldregions", force: true do |t|
-    t.string   "name",       limit: 10
-    t.decimal  "center_x",              precision: 8, scale: 5
-    t.decimal  "center_y",              precision: 8, scale: 5
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name",     limit: 10
+    t.decimal "center_x",            precision: 8, scale: 5
+    t.decimal "center_y",            precision: 8, scale: 5
   end
 
 end
