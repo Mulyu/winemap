@@ -1,0 +1,77 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.number_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.number_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :prefecture %><br>
+    <%= f.text_field :prefecture %>
+  </div>
+  <div class="field">
+    <%= f.label :home_prefecture_id %><br>
+    <%= f.text_field :home_prefecture_id %>
+  </div>
+  <div class="field">
+    <%= f.label :job %><br>
+    <%= f.text_field :job %>
+  </div>
+  <div class="field">
+    <%= f.label :married %><br>
+    <%= f.text_field :married %>
+  </div>
+  <div class="field">
+    <%= f.label :introduction %><br>
+    <%= f.text_field :introduction %>
+  </div>
+  <div class="field">
+    <%= f.label :winelevel %><br>
+    <%= f.text_field :winelevel %>
+  </div>
+  <div class="field">
+    <%= f.label :winenum %><br>
+    <%= f.number_field :winenum %>
+  </div>
+  <div class="field">
+    <%= f.label :follow %><br>
+    <%= f.number_field :follow %>
+  </div>
+  <div class="field">
+    <%= f.label :follower %><br>
+    <%= f.number_field :follower %>
+  </div>
+  <div class="field">
+    <%= f.label :ranking %><br>
+    <%= f.number_field :ranking %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

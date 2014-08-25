@@ -1,0 +1,85 @@
+<%= form_for(@wine) do |f| %>
+  <% if @wine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
+
+      <ul>
+      <% @wine.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :country_id %><br>
+    <%= f.text_field :country_id %>
+  </div>
+  <div class="field">
+    <%= f.label :localregions_id %><br>
+    <%= f.text_field :localregions_id %>
+  </div>
+  <div class="field">
+    <%= f.label :svg_x %><br>
+    <%= f.text_field :svg_x %>
+  </div>
+  <div class="field">
+    <%= f.label :svg_y %><br>
+    <%= f.text_field :svg_y %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_field :body %>
+  </div>
+  <div class="field">
+    <%= f.label :sweetness %><br>
+    <%= f.text_field :sweetness %>
+  </div>
+  <div class="field">
+    <%= f.label :sourness %><br>
+    <%= f.text_field :sourness %>
+  </div>
+  <div class="field">
+    <%= f.label :winetype_id %><br>
+    <%= f.text_field :winetype_id %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.text_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :winevariety_id %><br>
+    <%= f.text_field :winevariety_id %>
+  </div>
+  <div class="field">
+    <%= f.label :photopath %><br>
+    <%= f.text_field :photopath %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br>
+    <%= f.text_field :score %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :winery %><br>
+    <%= f.text_field :winery %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :winelevel %><br>
+    <%= f.text_field :winelevel %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

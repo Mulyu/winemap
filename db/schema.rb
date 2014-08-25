@@ -11,13 +11,93 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717084116) do
+ActiveRecord::Schema.define(version: 20140825011448) do
+
+  create_table "countries", force: true do |t|
+    t.string  "name",           limit: 30
+    t.integer "ranking"
+    t.string  "svg_id",         limit: 5
+    t.integer "worldregion_id"
+  end
+
+  create_table "localregions", force: true do |t|
+    t.string  "name",       limit: 30
+    t.integer "ranking"
+    t.integer "country_id"
+  end
+
+  create_table "prefectures", force: true do |t|
+    t.string "name", limit: 5, null: false
+  end
+
+  create_table "situations", force: true do |t|
+    t.string "name", limit: 30
+  end
+
+  create_table "situationswines", id: false, force: true do |t|
+    t.integer "wine_id"
+    t.integer "situation_id"
+  end
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "password_digest"
+    t.string   "name",               limit: 15,  null: false
+    t.string   "email",                          null: false
+    t.string   "password",           limit: 127, null: false
+    t.integer  "age"
+    t.integer  "gender"
+    t.integer  "prefecture_id"
+    t.integer  "home_prefecture_id"
+    t.string   "job",                limit: 30
+    t.boolean  "married"
+    t.string   "introduction"
+    t.float    "winelevel",          limit: 24,  null: false
+    t.integer  "winenum",                        null: false
+    t.integer  "follow",                         null: false
+    t.integer  "follower",                       null: false
+    t.integer  "ranking",                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "usersusers", id: false, force: true do |t|
+    t.integer "from_user_id"
+    t.integer "to_user_id"
+  end
+
+  create_table "wines", force: true do |t|
+    t.string   "name",           limit: 100,                         null: false
+    t.integer  "country_id"
+    t.integer  "localregion_id"
+    t.decimal  "svg_x",                      precision: 8, scale: 5, null: false
+    t.decimal  "svg_y",                      precision: 8, scale: 5, null: false
+    t.integer  "body"
+    t.integer  "sweetness"
+    t.integer  "sourness"
+    t.integer  "winetype_id"
+    t.integer  "year"
+    t.integer  "winevariety_id"
+    t.string   "photopath",      limit: 30
+    t.integer  "score"
+    t.integer  "price"
+    t.string   "winery",         limit: 30
+    t.integer  "user_id"
+    t.float    "winelevel",      limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "winetypes", force: true do |t|
+    t.string "name", limit: 10
+  end
+
+  create_table "winevarieties", force: true do |t|
+    t.string "name", limit: 30
+  end
+
+  create_table "worldregions", force: true do |t|
+    t.string  "name",     limit: 10
+    t.decimal "center_x",            precision: 8, scale: 5
+    t.decimal "center_y",            precision: 8, scale: 5
   end
 
 end
