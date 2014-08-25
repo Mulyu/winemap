@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	
-	has_secure_password
-
+  belongs_to :prefecture
+  has_many  :wines
+  has_many  :usersusers
 end

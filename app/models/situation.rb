@@ -1,4 +1,3 @@
 class Situation < ActiveRecord::Base
-	has_many :situationwine
-	
+	has_many :situationwines
 end
