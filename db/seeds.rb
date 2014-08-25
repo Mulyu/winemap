@@ -27,13 +27,13 @@ CSV.foreach('db/seed_csv/countries.csv') do |row|
 end
 
 # localregions
-# CSV.foreach('db/seed_csv/localregions.csv') do |row|
-#   Localregion.create(
-#     name: row[0],
-#     ranking: row[1],
-#     country_id: row[2]
-#     )
-# end
+CSV.foreach('db/seed_csv/localregions.csv') do |row|
+  Localregion.create(
+    name: row[0],
+    ranking: row[1],
+    country_id: row[2]
+    )
+end
 
 # winetypes
 CSV.foreach('db/seed_csv/winetypes.csv') do |row|
@@ -50,12 +50,12 @@ CSV.foreach('db/seed_csv/winevarieties.csv') do |row|
 end
 
 # situationswines
-# CSV.foreach('db/seed_csv/situationswines.csv') do |row|
-#   SituationsWine.create(
-#     wine_id: row[0],
-#     situation_id: row[1]
-#     )
-# end
+CSV.foreach('db/seed_csv/situationswines.csv') do |row|
+  Situationswine.create(
+    wine_id: row[0],
+    situation_id: row[1]
+    )
+end
 
 # situations
 CSV.foreach('db/seed_csv/situations.csv') do |row|
