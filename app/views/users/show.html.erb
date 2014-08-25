@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @user.age %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @user.gender %>
+</p>
+
+<p>
+  <strong>Prefecture:</strong>
+  <%= @user.prefecture %>
+</p>
+
+<p>
+  <strong>Home prefecture:</strong>
+  <%= @user.home_prefecture %>
+</p>
+
+<p>
+  <strong>Job:</strong>
+  <%= @user.job %>
+</p>
+
+<p>
+  <strong>Married:</strong>
+  <%= @user.married %>
+</p>
+
+<p>
+  <strong>Introduction:</strong>
+  <%= @user.introduction %>
+</p>
+
+<p>
+  <strong>Winelevel:</strong>
+  <%= @user.winelevel %>
+</p>
+
+<p>
+  <strong>Winenum:</strong>
+  <%= @user.winenum %>
+</p>
+
+<p>
+  <strong>Follow:</strong>
+  <%= @user.follow %>
+</p>
+
+<p>
+  <strong>Follower:</strong>
+  <%= @user.follower %>
+</p>
+
+<p>
+  <strong>Ranking:</strong>
+  <%= @user.ranking %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

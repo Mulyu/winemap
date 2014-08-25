@@ -1,3 +1,3 @@
 class Winetype < ActiveRecord::Base
-	has_many :wine
+	has_many :wines
 end

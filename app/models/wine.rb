@@ -3,6 +3,8 @@ class Wine < ActiveRecord::Base
 	belongs_to :localregion 
 	belongs_to :winetype 
 	belongs_to :winevariety 
-	has_many :situationswine
+	belongs_to :user
+  has_many :situationswines
+
 end
 
