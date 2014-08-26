@@ -26,10 +26,28 @@ class WinesController < ApplicationController
   def create
     @wine = Wine.new(wine_params)
 
-    ### パラメータから計算
+    ### 入力データを正規化
     # Google Geocoding APIから正しい住所と緯度経度を取得
-    params[:country_or_region]
+    response = GoogleGeo.request(params[:country_or_region])
 
+    ## ステータスコードによって(OK以外は)再入力させる？
+
+    # 住所情報配列
+    array_addresses = response['results'][0]['address_components']
+    # 緯度経度情報ハッシュ
+    hash_location = response['results'][0]['geometry']['location']
+
+    ### 住所情報から一致するcountry_idを検索
+
+    ### localregionが記述されている場合はすでにDBに含まれているか
+    # 含まれている場合はlocalregion_idをセット
+
+    # 含まれていない場合は追加
+
+    ### 緯度経度情報からSVGデータの座標を計算
+
+
+    # とりあえず決め打ち
     @wine.country_id = 1
     @wine.localregion_id = 1
     @wine.svg_x = 100.12345
@@ -40,7 +58,7 @@ class WinesController < ApplicationController
     @wine.user_id = 1
     @wine.winelevel = 1.5
 
-    raise
+    # raise # debug
 
     respond_to do |format|
       if @wine.save
