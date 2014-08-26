@@ -26,6 +26,22 @@ class WinesController < ApplicationController
   def create
     @wine = Wine.new(wine_params)
 
+    ### パラメータから計算
+    # Google Geocoding APIから正しい住所と緯度経度を取得
+    params[:country_or_region]
+
+    @wine.country_id = 1
+    @wine.localregion_id = 1
+    @wine.svg_x = 100.12345
+    @wine.svg_y = 100.12345
+
+    ### usersテーブルから取得
+    # ログイン機能を実装するまでとりあえず決め打ち
+    @wine.user_id = 1
+    @wine.winelevel = 1.5
+
+    raise
+
     respond_to do |format|
       if @wine.save
         format.html { redirect_to @wine, notice: 'Wine was successfully created.' }
