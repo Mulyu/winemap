@@ -1,5 +1,5 @@
 class Wine < ActiveRecord::Base
-	belongs_to :country 
+	belongs_to :country
 	belongs_to :localregion 
 	belongs_to :winetype 
 	belongs_to :winevariety 
