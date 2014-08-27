@@ -2,8 +2,8 @@
 
 function layoutWine(tagId, areaSize, wines){
   console.log("---- Layout Start ----");
-
-  //console.log(wines);
+  
+  var element = document.getElementById(tagId);
 
   var format = d3.format(",d"),
   color = d3.scale.category10();
@@ -13,11 +13,17 @@ function layoutWine(tagId, areaSize, wines){
     .size([areaSize, areaSize])
     .padding(20);
 
-  var svg = d3.select(tagId)
+  var area = d3.select("#"+tagId);
+
+  console.log(element);
+
+  var svg=area.append("g")
+    .attr("id",tagId+"_wineArea")
     .attr("width", areaSize)
     .attr("height", areaSize)
-    .attr("class", "bubble")
-    .attr("transform","translate(0,50)");
+    .attr("class", "bubble");
+
+  var areaId="#"+tagId+"_wineArea";
 
   var classes=[];
   wines.forEach(function(e,index){
@@ -50,8 +56,8 @@ function layoutWine(tagId, areaSize, wines){
       .text(function(d) { return d.className; });
   */
 
-  $(tagId).html(
-    $(tagId+"> g").sort(function(a,b){
+  $(areaId).html(
+    $(areaId+"> g").sort(function(a,b){
       return parseInt($(a).attr("y"),10) - parseInt($(b).attr("y"), 10);
     })
   );

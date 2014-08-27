@@ -3,14 +3,25 @@
 window.onload=function(){
   console.log("---- start ----");
 
+  var windowX=window.innerWidth;
+  var windowY=window.innerHeight;
+
   d3.select("#visArea")
-     .attr("width", 500)
-     .attr("height", 600);
+     .attr("width", windowX)
+     .attr("height", windowY);
 
-  layoutWine("#wineArea", 500, getWineData());
+  var svg = d3.select("#mapArea")
+              .attr("transform","translate(100,0)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
 
-  dropWine("#wineArea");
+  //layoutWine("fr", 500, getWineData());
+
+  //dropWine("#fr");
 };
+
+function renderMap(){
+
+
+}
 
 function getWineData(){
   var wines=[];
@@ -74,3 +85,22 @@ function makeWineData(){
 
   return wines;
 }
+
+var timer = false;
+$(window).resize(function() {
+    if (timer !== false) {
+        clearTimeout(timer);
+    }
+    timer = setTimeout(function() {
+        var windowX=window.innerWidth;
+        var windowY=window.innerHeight;
+
+        d3.select("#visArea")
+           .attr("width", windowX)
+           .attr("height", windowY);
+
+        var svg = d3.select("#mapArea")
+                    .attr("transform","translate(100,0)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
+
+    }, 200);
+});
