@@ -1,3 +1,11 @@
 <h1>Listing wines</h1>
 
 <%= link_to 'New Wine', new_wine_path %>
+
+<div id="vis" class="area">
+	<svg id="visArea">
+		<g id="wineArea" data-wineData="<%= @array_wines.to_json %>"></g>
+	</svg>
+</div>
+
+<%= csrf_meta_tags %>

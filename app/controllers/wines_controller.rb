@@ -5,13 +5,18 @@ class WinesController < ApplicationController
   # GET /wines.json
   def index
 
-    wines = Wine.includes(:winetype , :winevariety ,:user , :localregion , country: :worldregion ).all
+    wines = Wine.includes(:winetype , :winevariety ,:user , :localregion , country: :worldregion ).take(10000)
     
     #array mapping
     @array_wines = wines.map{ |wine|
 
-      { name: wine.name , country_name: wine.country.name , svg_x: wine.svg_x ,svg_y: wine.svg_y ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevariety_name: wine.winevariety.name , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_name: wine.country.worldregion.name ,worldregion_center_x: wine.country.worldregion.center_x , worldregion_center_y: wine.country.worldregion.center_y}  
+      { winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_x: wine.svg_x ,svg_y: wine.svg_y ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevariety_name: wine.winevariety.name , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_name: wine.country.worldregion.name ,worldregion_center_x: wine.country.worldregion.center_x , worldregion_center_y: wine.country.worldregion.center_y}  
     
+    }
+
+    @array_wines2 = ""
+    wines.map{ |wine|
+      #@array_wines2+=wine.name+","+wine.score+","+wine.winetype.name+";"
     }
   end
 
