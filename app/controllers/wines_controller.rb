@@ -28,8 +28,6 @@ class WinesController < ApplicationController
 
     normalize_wine_data
 
-    raise # debug
-
     respond_to do |format|
       if @wine.save
         format.html { redirect_to @wine, notice: 'Wine was successfully created.' }
@@ -78,7 +76,6 @@ class WinesController < ApplicationController
 
     def normalize_wine_data
       ### ユーザーの入力ワインデータを正規化
-
       # Google Geocoding APIから正しい住所と緯度経度を取得
       response = GoogleGeo.request(params[:country_or_region])
 
@@ -116,10 +113,17 @@ class WinesController < ApplicationController
       @wine.svg_x = 100.12345
       @wine.svg_y = 100.12345
 
+      ### 画像を保存
+      photo = params[:wine][:photo]
+      photo_path = "winephoto/#{Wine.maximum(:id)+1}#{File.extname(photo.original_filename)}"
+      File.open("public/#{photo_path}", 'wb') { |f| f.write(photo.read) }
+      @wine.photopath = photo_path
+
       ### usersテーブルから取得
       # ログイン機能を実装するまでとりあえず決め打ち
       @wine.user_id = 1
       @wine.winelevel = 1.5
 
-  end
+    end
+
 end

@@ -55,6 +55,10 @@
     <%= f.label :winery %><br>
     <%= f.text_field :winery %>
   </div>
+  <div class="field">
+    <%= f.label :photo %><br>
+    <%= f.file_field :photo, accept: 'image/*' %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
