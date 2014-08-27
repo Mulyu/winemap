@@ -71,14 +71,14 @@ class WinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wine_params
-      params.require(:wine).permit(:name, :body, :sweetness, :sourness, :winetype_id, :year, :winevariety_id, :score, :price, :winery)
+      params.require(:wine).permit(:name, :country_or_region, :body, :sweetness, :sourness, :winetype_id, :year, :winevariety_id, :score, :price, :winery)
     end
 
     def normalize_wine_data
       ### ユーザーの入力ワインデータを正規化
 
       # Google Geocoding APIから正しい住所と緯度経度を取得
-      response = GoogleGeo.request(params[:country_or_region])
+      response = GoogleGeo.request(params[:wine][:country_or_region])
 
       # country_or_regionの入力がない場合は飛ばす
       if response['status'] == 'OK'
