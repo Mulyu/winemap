@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
   resource :login
 
-  root 'home#home'
+  root 'wines#index'
 
-  match '/map', to: 'home#map',via: 'get'
-  
 end
