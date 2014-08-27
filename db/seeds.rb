@@ -50,12 +50,12 @@ CSV.foreach('db/seed_csv/winevarieties.csv') do |row|
 end
 
 # situationswines
-CSV.foreach('db/seed_csv/situationswines.csv') do |row|
-  Situationswine.create(
-    wine_id: row[0],
-    situation_id: row[1]
-    )
-end
+#CSV.foreach('db/seed_csv/situationswines.csv') do |row|
+#  situations_winses=Situationswine.create(
+#    wine_id: row[0],
+#    situation_id: row[1]
+#    )
+#end
 
 # situations
 CSV.foreach('db/seed_csv/situations.csv') do |row|
