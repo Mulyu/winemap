@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827061852) do
+ActiveRecord::Schema.define(version: 20140827074501) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30
@@ -87,11 +87,9 @@ ActiveRecord::Schema.define(version: 20140827061852) do
     t.datetime "updated_at"
   end
 
-  create_table "wineswinevarieties", id: false, force: true do |t|
-    t.integer  "wine_id"
-    t.integer  "winevariety_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "wines_winevarieties", id: false, force: true do |t|
+    t.integer "wine_id"
+    t.integer "winevariety_id"
   end
 
   create_table "winetypes", force: true do |t|
