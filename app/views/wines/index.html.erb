@@ -1,5 +1,6 @@
 
 <%= link_to 'New Wine', new_wine_path %>
+<%= link_to 'Show Wine', wines_path %>
 
 <%= csrf_meta_tags %>
 
@@ -10563,6 +10564,17 @@
      sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccccccccscccccccscccccccccccccccccccccccccccccccsccccccccssccccccc" />
 		</g>
 
-		<g id="wineArea" class="renderArea" data-wineData="<%= @array_wines.to_json %>"></g>
+		<g id="wineArea" class="renderArea">
+			<g id="europe" transform="translate(1380,270)"/>
+			<g id="africa" transform="translate(1330,570)"/>
+			<g id="asia" transform="translate(2050,500)"/>
+			<g id="oceania" transform="translate(2200,900)"/>
+			<g id="middle_east" transform="translate(1780,500)"/>
+			<g id="north_america" transform="translate(400,300)"/>
+			<g id="south_and_central_america" transform="translate(730,770)"/>
+		</g>
 	</svg>
+</div>
+<div id="forWineData">
+	<div id="wineData" data-wineData="<%= @array_wines.to_json %>" />
 </div>
