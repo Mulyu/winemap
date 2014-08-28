@@ -86,6 +86,11 @@ ActiveRecord::Schema.define(version: 20140825011448) do
     t.datetime "updated_at"
   end
 
+  create_table "wines_winevarieties", id: false, force: true do |t|
+    t.integer "wine_id"
+    t.integer "winevariety_id"
+  end
+
   create_table "winetypes", force: true do |t|
     t.string "name", limit: 10
   end
