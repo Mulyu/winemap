@@ -100,7 +100,10 @@ CSV.foreach('db/seed_csv/users.csv') do |row|
     winenum: row[11],
     follow: row[12],
     follower: row[13],
-    ranking: row[14]
+    ranking: row[14],
+    
+    # for validation error 
+    country_or_region: 1
     )
 end
 
