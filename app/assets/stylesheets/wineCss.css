@@ -11,10 +11,15 @@ body{
 }
 
 
+#fr{
+  fill: red;
+}
 
-#mapArea path{
+
+#mapArea path:not(.winePath){
   stroke:   gray;
   stroke-width:   2px;
+  fill:     none;
 }
 
 #visArea{
@@ -24,27 +29,52 @@ body{
 }
 
 
-.winePath{
+path.winePath{
 	stroke:			black;
 	stroke-width:	2px;
+  opacity:    0.9;
 }
 
-.type1{
+text.winePath{
+  fill:       white;
+  font-size:  30px;
+  text-shadow: 2px 2px 2px black;
+  display:    none;
+  pointer-events: none;
+}
+
+path.winePath:hover + text.winePath{
+  display:    block;
+}
+
+path.type1{ /* 赤 */
   fill:   #FF5F5C;
 }
 
-.type2{
+path.type2{ /* 白 */
   fill:		#D6FFEA;
 }
 
-.type3{
+path.type3{ /* ロゼ */
   fill:   #FFADD3;
 }
 
-.type4{
-  fill:   white;
+path.type4{ /* スパークリング */
+  fill:   #F2FFA3;
 }
 
-.type5{
-  fill:   pink;
+path.type5{ /* デザート */
+  fill:   #FFA200;
+}
+
+.regionCircle{
+  fill: none;
+  stroke: white;
+  stroke-width:  10px;
+}
+
+.regionText{
+  fill: white;
+  font-size:  30px;
+  text-shadow: 2px 2px 2px black;
 }

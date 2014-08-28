@@ -1,29 +1,26 @@
 
 
 function layoutWine(tagId, areaSize, wines){
-  console.log("---- Layout Start ----");
-  
-  var element = document.getElementById(tagId);
+  console.log("---- Layout Start : "+tagId+" ----");
 
-  var format = d3.format(",d"),
-  color = d3.scale.category10();
+  if(areaSize!=0)
+   createRegionCircle(tagId, areaSize);
+
+  var format = d3.format(",d");
 
   var bubble = d3.layout.pack()
     .sort(null)
     .size([areaSize, areaSize])
-    .padding(20);
+    .padding(50);
 
-  var area = d3.select("#"+tagId);
-
-  console.log(element);
-
-  var svg=area.append("g")
+  var svg=d3.select("#"+tagId).append("g")
     .attr("id",tagId+"_wineArea")
     .attr("width", areaSize)
     .attr("height", areaSize)
-    .attr("class", "bubble");
+    .attr("class", "bubble")
+    .attr("transform","translate(-"+areaSize/2+",-"+(areaSize/2-50)+")scale(1,0.6)");
 
-  var areaId="#"+tagId+"_wineArea";
+
 
   var classes=[];
   wines.forEach(function(e,index){
@@ -36,42 +33,65 @@ function layoutWine(tagId, areaSize, wines){
       .attr("id",function(d){return d.className;})
       .attr("class","wine")
       .filter(function(d) {return !d.children;})
-      .attr("transform", function(d){return "translate("+d.x+","+(d.y-areaSize*1.5)+")";})
-      .attr("x", function(d){return d.x;})
-      .attr("y", function(d){return d.y;})
-      .attr("scale", function(d){return d.r/40;});
+      .attr("transform", function(d){return "translate("+(d.x)+","+(d.y-areaSize*20)+")";})
+      .attr("y", function(d){return d.y;});
 
   node.append("title")
       .text(function(d) { return d.className; });
 
   node.append("path")
-      .attr("d","m-7,-198.5l20,0l0,60c2,50.66667 24.5,49.33334 27.5,110l0,130l-80,0l0,-130c1.66666,-59 30.83334,-59 32.5,-110l0,-60z")
-      .attr("transform", function(d){return "scale("+d.r/40+","+d.r/40+")";})
+      .attr("d","m-5,-302.5l20,0l0,60c2,50.66667 24.5,49.33334 27.5,110l0,130l-80,0l0,-130c1.66666,-59 30.83334,-59 32.5,-110l0,-60z")
+      .attr("transform", function(d){return "scale("+wineSize/120*(d.value+0.2)+","+wineSize/120*(d.value+0.2)*1.6+")";})
       .attr("class",function(d) {return d.packageName;});
 
-/*
   node.append("text")
-      .attr("dy", ".3em")
+      .attr("dy", "2em")
       .style("text-anchor", "middle")
-      .text(function(d) { return d.className; });
-  */
+      .text(function(d) { return d.className; })
+      .attr("transform","scale(1,1.6)")
+      .attr("class",function(d) {return d.packageName;});
+
+  wineTagSort(tagId);
+}
+
+
+function createRegionCircle(tagId, areaSize){
+  d3.select("#"+tagId).append("circle")
+    .attr("cx","0")
+    .attr("cy","0")
+    .attr("r", areaSize/1.5)
+    .attr("transform","translate(0,0)scale(1,0.6)")
+    .attr("class","regionCircle");
+
+  d3.select("#"+tagId).append("text")
+    .attr("dx",areaSize/1.5+30)
+    .text(regionNameMap[tagId])
+    .attr("class","regionText");
+}
+
+
+function wineTagSort(tagId){
+  var element = document.getElementById(tagId);
+  var areaId="#"+tagId+"_wineArea";
 
   $(areaId).html(
     $(areaId+"> g").sort(function(a,b){
       return parseInt($(a).attr("y"),10) - parseInt($(b).attr("y"), 10);
     })
   );
-
 }
 
-function dropWine(tagId){
-  svg=d3.select(tagId);
+
+
+
+function dropWine(num){
+  svg=d3.select("#wineArea");
 
   svg.selectAll(".wine")
       .transition()
       .duration(750)
-      .delay(function(d, i) { return i * 5; })
+      .delay(function(d, i) { return i*1000/num; })
       .attr("transform", function(d,i){
-        return "translate("+d.x+","+d.y+")";
+        return "translate("+(d.x)+","+(d.y)+")";
       });
 }
