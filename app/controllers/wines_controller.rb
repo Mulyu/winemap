@@ -6,12 +6,12 @@ class WinesController < ApplicationController
   def index
 
     wines = Wine.includes(:winetype , :winevariety ,:user , :localregion , country: :worldregion ).take(100)
-    
+
     #array mapping
     @array_wines = wines.map{ |wine|
 
-      { winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_x: wine.svg_x ,svg_y: wine.svg_y ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevariety_name: wine.winevariety.name , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_name: wine.country.worldregion.name ,worldregion_center_x: wine.country.worldregion.center_x , worldregion_center_y: wine.country.worldregion.center_y}  
-    
+      { winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_x: wine.svg_x ,svg_y: wine.svg_y ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevariety_name: wine.winevariety.name , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_name: wine.country.worldregion.name ,worldregion_center_x: wine.country.worldregion.center_x , worldregion_center_y: wine.country.worldregion.center_y}
+
     }
 
 
@@ -81,7 +81,7 @@ class WinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wine_params
-      params.require(:wine).permit(:name, :country_or_region, :body, :sweetness, :sourness, :winetype_id, :year, :winevariety_id, :score, :price, :winery)
+      params.require(:wine).permit(:name, :country_or_region, :body, :sweetness, :sourness, :winetype_id, :year, :score, :price, :winery)
     end
 
     def normalize_wine_data
