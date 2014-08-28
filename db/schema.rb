@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825011448) do
+ActiveRecord::Schema.define(version: 20140828025906) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30
     t.integer "ranking"
     t.string  "svg_id",         limit: 5
     t.integer "worldregion_id"
+    t.decimal "center_x",                  precision: 8, scale: 5
+    t.decimal "center_y",                  precision: 8, scale: 5
   end
 
   create_table "localregions", force: true do |t|
@@ -34,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140825011448) do
     t.string "name", limit: 30
   end
 
-  create_table "situationswines", id: false, force: true do |t|
+  create_table "situations_wines", id: false, force: true do |t|
     t.integer "wine_id"
     t.integer "situation_id"
   end
@@ -59,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140825011448) do
     t.datetime "updated_at"
   end
 
-  create_table "usersusers", id: false, force: true do |t|
+  create_table "users_users", id: false, force: true do |t|
     t.integer "from_user_id"
     t.integer "to_user_id"
   end
@@ -67,7 +69,7 @@ ActiveRecord::Schema.define(version: 20140825011448) do
   create_table "wines", force: true do |t|
     t.string   "name",           limit: 100,                         null: false
     t.integer  "country_id"
-    t.integer  "localregion_id"
+    t.integer  "localregion_id",                                     null: false
     t.decimal  "svg_x",                      precision: 8, scale: 5, null: false
     t.decimal  "svg_y",                      precision: 8, scale: 5, null: false
     t.integer  "body"
@@ -75,7 +77,6 @@ ActiveRecord::Schema.define(version: 20140825011448) do
     t.integer  "sourness"
     t.integer  "winetype_id"
     t.integer  "year"
-    t.integer  "winevariety_id"
     t.string   "photopath",      limit: 30
     t.integer  "score"
     t.integer  "price"
@@ -84,6 +85,11 @@ ActiveRecord::Schema.define(version: 20140825011448) do
     t.float    "winelevel",      limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "wines_winevarieties", id: false, force: true do |t|
+    t.integer "wine_id"
+    t.integer "winevariety_id"
   end
 
   create_table "winetypes", force: true do |t|
@@ -95,9 +101,9 @@ ActiveRecord::Schema.define(version: 20140825011448) do
   end
 
   create_table "worldregions", force: true do |t|
-    t.string  "name",     limit: 10
-    t.decimal "center_x",            precision: 8, scale: 5
-    t.decimal "center_y",            precision: 8, scale: 5
+    t.string "name",     limit: 10
+    t.float  "center_x", limit: 24, null: false
+    t.float  "center_y", limit: 24, null: false
   end
 
 end
