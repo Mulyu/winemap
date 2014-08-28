@@ -5,8 +5,7 @@
 
 <div id="vis" class="area">
 	<svg id="visArea">
-		<g id="wineArea" data-wineData="<%= @array_wines.to_json %>"></g>
-		<g id="mapArea" data-mapData="<%= @worldMap %>">
+		<g id="mapArea" class="renderArea" data-mapData="<%= @worldMap %>">
 
   <path
      class="land pe"
@@ -10563,5 +10562,7 @@
      
      sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccccccccscccccccscccccccccccccccccccccccccccccccsccccccccssccccccc" />
 		</g>
+
+		<g id="wineArea" class="renderArea" data-wineData="<%= @array_wines.to_json %>"></g>
 	</svg>
 </div>

@@ -10,81 +10,90 @@ window.onload=function(){
      .attr("width", windowX)
      .attr("height", windowY);
 
-  var svg = d3.select("#mapArea")
-              .attr("transform","translate(100,0)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
+  d3.selectAll(".renderArea")
+      .attr("transform","translate(100,50)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
 
-  //layoutWine("fr", 500, getWineData());
+  getWineData();
 
-  //dropWine("#fr");
+  dropWine("#wineArea");
 };
 
-function renderMap(){
-
+function renderWine(){
 
 }
 
 function getWineData(){
-  var wines=[];
+  var europe_wines=[];
+  var africa_wines=[];
+  var asia_wines=[];
+  var oceania_wines=[];
+  var middle_east_wines=[];
+  var north_america_wines=[];
+  var outh_and_central_america_wines=[];
+
+  var wineArea = d3.select("#wineArea");
+
+  wineArea.append("g")
+    .attr("id","europe")
+    .attr("transform","translate(1380,270)");
+  wineArea.append("g")
+    .attr("id","africa")
+    .attr("transform","translate(1330,570)");
+  wineArea.append("g")
+    .attr("id","asia")
+    .attr("transform","translate(2050,500)");
+  wineArea.append("g")
+    .attr("id","oceania")
+    .attr("transform","translate(2200,900)");
+  wineArea.append("g")
+    .attr("id","middle_east")
+    .attr("transform","translate(1380,270)");
+  wineArea.append("g")
+    .attr("id","north_america")
+    .attr("transform","translate(400,300)");
+  wineArea.append("g")
+    .attr("id","south_and_central_america")
+    .attr("transform","translate(730,770)");
 
   var e = document.getElementById('wineArea');
   var tmpWine = e.getAttribute('data-winedata');
   tmpWine=JSON.parse(tmpWine);
 
   tmpWine.forEach(function(e,index){
-    wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
+    switch(e["worldregion_name"]){
+      case "オセアニア":
+        oceania_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
+        break;
+      case "ヨーロッパ":
+        europe_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
+        break;
+      case "アジア":
+        oceania_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
+        break;
+      case "アフリカ":
+        africa_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
+        break;
+      case "中南米":
+        outh_and_central_america_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
+        break;
+      default:
+        console.log(e["worldregion_name"]);
+        africa_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
+        break;
+    }
   });
+
+  layoutWine("europe",200,europe_wines);
+  layoutWine("africa",200,africa_wines);
+  layoutWine("oceania",200,oceania_wines);
+  layoutWine("south_and_central_america",200,outh_and_central_america_wines);
 
   //console.log("test : wines");
   //console.log(wines);
 
-  return wines;
 }
 
-function makeWineData(){
 
-  wines=[];
-  for(var i=0 ; i<100 ; i++){
-    var wine=[];
-    var feature="";
-    var wineName="";
-    var value="";
-
-    var tmpRand=Math.random();
-
-    if(tmpRand<0.6)
-      feature="red";
-    else if(tmpRand<0.8)
-      feature="white";
-    else
-      feature="rose";
-
-
-
-    tmpRand=Math.random();
-
-    if(tmpRand<0.2)
-      wineName="Oishii";
-    else if(tmpRand<0.4)
-      wineName="Umai";
-    else if(tmpRand<0.6)
-      wineName="Sunngoi";
-    else if(tmpRand<0.8)
-      wineName="Kimotiii";
-    else
-      wineName="Hutuu";
-
-    wineName+=(" Wine "+i);
-
-    value=Math.random()*5;
-
-
-
-    wine={"feature": feature, "name": wineName, "value": value};
-    wines.push(wine);
-  }
-
-  return wines;
-}
 
 var timer = false;
 $(window).resize(function() {
@@ -100,7 +109,7 @@ $(window).resize(function() {
            .attr("height", windowY);
 
         var svg = d3.select("#mapArea")
-                    .attr("transform","translate(100,0)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
+                    .attr("transform","translate(100,50)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
 
     }, 200);
 });

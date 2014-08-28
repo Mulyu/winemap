@@ -5,7 +5,7 @@ class WinesController < ApplicationController
   # GET /wines.json
   def index
 
-    wines = Wine.includes(:winetype , :winevariety ,:user , :localregion , country: :worldregion ).take(100)
+    wines = Wine.includes(:winetype , :winevariety ,:user , :localregion , country: :worldregion ).take(1000)
     
     #array mapping
     @array_wines = wines.map{ |wine|

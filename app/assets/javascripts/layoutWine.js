@@ -15,7 +15,7 @@ function layoutWine(tagId, areaSize, wines){
 
   var area = d3.select("#"+tagId);
 
-  console.log(element);
+  //console.log(element);
 
   var svg=area.append("g")
     .attr("id",tagId+"_wineArea")
@@ -36,9 +36,9 @@ function layoutWine(tagId, areaSize, wines){
       .attr("id",function(d){return d.className;})
       .attr("class","wine")
       .filter(function(d) {return !d.children;})
-      .attr("transform", function(d){return "translate("+d.x+","+(d.y-areaSize*1.5)+")";})
-      .attr("x", function(d){return d.x;})
-      .attr("y", function(d){return d.y;})
+      .attr("transform", function(d){return "translate("+(d.x-areaSize/2)+","+(d.y-areaSize*10)+")";})
+      .attr("x", function(d){return d.x-areaSize/2;})
+      .attr("y", function(d){return d.y-areaSize/2;})
       .attr("scale", function(d){return d.r/40;});
 
   node.append("title")
@@ -49,12 +49,11 @@ function layoutWine(tagId, areaSize, wines){
       .attr("transform", function(d){return "scale("+d.r/40+","+d.r/40+")";})
       .attr("class",function(d) {return d.packageName;});
 
-/*
   node.append("text")
       .attr("dy", ".3em")
       .style("text-anchor", "middle")
-      .text(function(d) { return d.className; });
-  */
+      .text(function(d) { return d.className; })
+      .attr("class",function(d) {return d.packageName;});
 
   $(areaId).html(
     $(areaId+"> g").sort(function(a,b){
@@ -72,6 +71,6 @@ function dropWine(tagId){
       .duration(750)
       .delay(function(d, i) { return i * 5; })
       .attr("transform", function(d,i){
-        return "translate("+d.x+","+d.y+")";
+        return "translate("+(d.x-100)+","+(d.y-100)+")";
       });
 }
