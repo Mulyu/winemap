@@ -7,14 +7,16 @@ class WinesController < ApplicationController
 
     wines = Wine.includes(:winetype , :winevariety ,:user , :localregion , country: :worldregion ).take(100)
 
+    wine = wines[47]
+    raise
     #array mapping
-    @array_wines = wines.map{ |wine|
+    #@array_wines = wines.map{ |wine|
+#
+#    #  { winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_x: wine.svg_x ,svg_y: wine.svg_y ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevariety_name: wine.winevariety.name , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_name: wine.country.worldregion.name ,worldregion_center_x: wine.country.worldregion.center_x , worldregion_center_y: wine.country.worldregion.center_y}
+#
+    #}
 
-      { winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_x: wine.svg_x ,svg_y: wine.svg_y ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevariety_name: wine.winevariety.name , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_name: wine.country.worldregion.name ,worldregion_center_x: wine.country.worldregion.center_x , worldregion_center_y: wine.country.worldregion.center_y}
 
-    }
-
-    
 
   end
 
