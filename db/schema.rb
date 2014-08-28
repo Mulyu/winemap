@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828025906) do
+ActiveRecord::Schema.define(version: 20140828054926) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 20140828025906) do
     t.string   "name",           limit: 100,                         null: false
     t.integer  "country_id"
     t.integer  "localregion_id",                                     null: false
-    t.decimal  "svg_x",                      precision: 8, scale: 5, null: false
-    t.decimal  "svg_y",                      precision: 8, scale: 5, null: false
+    t.decimal  "svg_latitude",               precision: 8, scale: 5, null: false
+    t.decimal  "svg_longitude",              precision: 8, scale: 5, null: false
     t.integer  "body"
     t.integer  "sweetness"
     t.integer  "sourness"
@@ -101,9 +101,7 @@ ActiveRecord::Schema.define(version: 20140828025906) do
   end
 
   create_table "worldregions", force: true do |t|
-    t.string "name",     limit: 10
-    t.float  "center_x", limit: 24, null: false
-    t.float  "center_y", limit: 24, null: false
+    t.string "name", limit: 10
   end
 
 end

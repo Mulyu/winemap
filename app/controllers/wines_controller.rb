@@ -14,6 +14,7 @@ class WinesController < ApplicationController
 
     }
 
+    
 
   end
 
