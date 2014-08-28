@@ -16,36 +16,24 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :country_id %><br>
-    <%= f.text_field :country_id %>
-  </div>
-  <div class="field">
-    <%= f.label :localregion_id %><br>
-    <%= f.text_field :localregion_id %>
-  </div>
-  <div class="field">
-    <%= f.label :svg_x %><br>
-    <%= f.text_field :svg_x %>
-  </div>
-  <div class="field">
-    <%= f.label :svg_y %><br>
-    <%= f.text_field :svg_y %>
+    <%= f.label :country_or_region %><br>
+    <%= f.text_field :country_or_region %>
   </div>
   <div class="field">
     <%= f.label :body %><br>
-    <%= f.text_field :body %>
+    <%= f.range_field :body, min: 0, max: 5 %>
   </div>
   <div class="field">
     <%= f.label :sweetness %><br>
-    <%= f.text_field :sweetness %>
+    <%= f.range_field :sweetness, min: 0, max: 5 %>
   </div>
   <div class="field">
     <%= f.label :sourness %><br>
-    <%= f.text_field :sourness %>
+    <%= f.range_field :sourness, min: 0, max: 5 %>
   </div>
   <div class="field">
     <%= f.label :winetype_id %><br>
-    <%= f.text_field :winetype_id %>
+    <%= f.collection_select :winetype_id, Winetype.all, :id, :name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :year %><br>
@@ -53,15 +41,11 @@
   </div>
   <div class="field">
     <%= f.label :winevariety_id %><br>
-    <%= f.text_field :winevariety_id %>
-  </div>
-  <div class="field">
-    <%= f.label :photopath %><br>
-    <%= f.text_field :photopath %>
+    <%= f.collection_select :winevariety_id, Winevariety.all, :id, :name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :score %><br>
-    <%= f.text_field :score %>
+    <%= f.range_field :score, min: 1, max: 5 %>
   </div>
   <div class="field">
     <%= f.label :price %><br>
@@ -72,12 +56,8 @@
     <%= f.text_field :winery %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :winelevel %><br>
-    <%= f.text_field :winelevel %>
+    <%= f.label :photo %><br>
+    <%= f.file_field :photo, accept: 'image/*' %>
   </div>
   <div class="actions">
     <%= f.submit %>

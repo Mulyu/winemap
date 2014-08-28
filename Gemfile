@@ -33,6 +33,8 @@ gem 'execjs'
 gem 'sprockets'
 gem 'bcrypt'
 
+# japanese in URI
+gem 'addressable', require: 'addressable/uri'
 
 group :test do
   gem 'capybara'
