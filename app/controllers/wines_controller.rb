@@ -81,7 +81,7 @@ class WinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wine_params
-      params.require(:wine).permit(:name, :country_or_region, :body, :sweetness, :sourness, :winetype_id, :year, :score, :price, :winery, :winevariety_ids, :situation_ids)
+      params.require(:wine).permit(:name, :country_or_region, :body, :sweetness, :sourness, :winetype_id, :year, {:winevariety_ids => []}, :score, :price, {:situation_ids => []}, :winery)
     end
 
     def normalize_wine_data
@@ -133,12 +133,11 @@ class WinesController < ApplicationController
       @wine.svg_x = 100.12345
       @wine.svg_y = 100.12345
 
-
       ### 画像を保存してphotopathをセット
       unless params[:wine][:photo].nil?
         photo = params[:wine][:photo]
-        photo_path = "winephoto/#{Wine.maximum(:id)+1}#{File.extname(photo.original_filename)}"
-        File.open("public/#{photo_path}", 'wb') { |f| f.write(photo.read) }
+        photo_path = "/winephoto/#{Wine.maximum(:id)+1}#{File.extname(photo.original_filename)}"
+        File.open("public#{photo_path}", 'wb') { |f| f.write(photo.read) }
         @wine.photopath = photo_path
       end
 
