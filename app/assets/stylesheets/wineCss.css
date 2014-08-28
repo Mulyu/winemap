@@ -1,4 +1,4 @@
-*{
+*:not(input){
   color:   white;
   padding:	0;
   margin:	0;
