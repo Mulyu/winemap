@@ -137,12 +137,8 @@ class WinesController < ApplicationController
       ### 画像を保存してphotopathをセット
       unless params[:wine][:photo].nil?
         photo = params[:wine][:photo]
-<<<<<<< HEAD
         photo_name = @wine.id ? @wine.id : (Wine.maximum(:id) + 1)
         photo_path = "/winephoto/#{photo_name}#{File.extname(photo.original_filename).downcase}"
-=======
-        photo_path = "/winephoto/#{Wine.maximum(:id)+1}#{File.extname(photo.original_filename)}"
->>>>>>> master
         File.open("public#{photo_path}", 'wb') { |f| f.write(photo.read) }
         @wine.photopath = photo_path
       end
