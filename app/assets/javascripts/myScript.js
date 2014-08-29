@@ -23,6 +23,8 @@ window.onload=function(){
 
 
 function renderWine(){
+  var undefine_wines=[];
+  var undefine_wines_size=0;
   var europe_wines=[];
   var europe_wines_size=0;
   var africa_wines=[];
@@ -53,39 +55,45 @@ function renderWine(){
   wineSize=800/Math.sqrt(tmpWine.length);
 
   tmpWine.forEach(function(e,index){
-    switch(e["worldregion_name"]){
-      case "オセアニア":
+    switch(e["worldregion_id"]){
+      case 1:
+        console.log("不明");
+        undefine_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
+        undefine_wines_size+=e["winelevel"];
+        break;
+      case 7:
         oceania_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
         oceania_wines_size+=e["winelevel"];
         break;
-      case "ヨーロッパ":
+      case 4:
         europe_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
         europe_wines_size+=e["winelevel"];
         break;
-      case "アジア":
+      case 3:
         asia_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
         asia_wines_size+=e["winelevel"];
         break;
-      case "アフリカ":
+      case 2:
         africa_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
         africa_wines_size+=e["winelevel"];
         break;
-      case "北アメリカ":
+      case 5:
         north_america_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
         north_america_wines_size+=e["winelevel"];
         break;
-      case "中南米":
+      case 6:
         south_and_central_america_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
         south_and_central_america_wines_size+=e["winelevel"];
         break;
       default:
-        console.log(e["worldregion_name"]);
+        console.log(e["worldregion_id"]);
         africa_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
         africa_wines_size+=e["winelevel"];
         break;
     }
   });
 
+  layoutWine("undefine",Math.sqrt(undefine_wines_size)*wineSize,undefine_wines);
   layoutWine("europe",Math.sqrt(europe_wines_size)*wineSize,europe_wines);
   layoutWine("asia",Math.sqrt(asia_wines_size)*wineSize,asia_wines);
   layoutWine("africa",Math.sqrt(africa_wines_size)*wineSize,africa_wines);
@@ -104,6 +112,7 @@ function regionNameAdd(){
   regionNameMap["oceania"]="オセアニア";
   regionNameMap["south_and_central_america"]="中南米";
   regionNameMap["north_america"]="北米";
+  regionNameMap["undefine"]="不明";
 }
 
 

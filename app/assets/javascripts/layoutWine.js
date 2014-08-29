@@ -56,7 +56,6 @@ function layoutWine(tagId, areaSize, wines){
 
 
 function createRegionCircle(tagId, areaSize){
-  console.log(areaSize);
   d3.select("#"+tagId).append("circle")
     .attr("cx","0")
     .attr("cy","0")
