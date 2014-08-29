@@ -52,8 +52,6 @@ function renderWine(){
 
   wineSize=800/Math.sqrt(tmpWine.length);
 
-console.log(wineSize);
-
   tmpWine.forEach(function(e,index){
     switch(e["worldregion_name"]){
       case "オセアニア":
@@ -72,12 +70,16 @@ console.log(wineSize);
         africa_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
         africa_wines_size+=e["winelevel"];
         break;
+      case "北アメリカ":
+        north_america_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
+        north_america_wines_size+=e["winelevel"];
+        break;
       case "中南米":
         south_and_central_america_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
         south_and_central_america_wines_size+=e["winelevel"];
         break;
       default:
-        //console.log(e["worldregion_name"]);
+        console.log(e["worldregion_name"]);
         africa_wines.push({"feature": "type"+e["winetype_id"], "name": e["name"], "value": e["winelevel"]});
         africa_wines_size+=e["winelevel"];
         break;
