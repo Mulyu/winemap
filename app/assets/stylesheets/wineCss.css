@@ -24,7 +24,7 @@ body{
 
 #visArea{
   position: absolute;
-  top:      0;
+  top:      100;
   left:     0;
 }
 
@@ -77,4 +77,8 @@ path.type5{ /* デザート */
   fill: white;
   font-size:  30px;
   text-shadow: 2px 2px 2px black;
+}
+
+.circle{
+  display:    none;
 }
