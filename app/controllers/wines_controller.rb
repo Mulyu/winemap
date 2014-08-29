@@ -51,6 +51,9 @@ class WinesController < ApplicationController
   # PATCH/PUT /wines/1
   # PATCH/PUT /wines/1.json
   def update
+
+    normalize_wine_data
+
     respond_to do |format|
       if @wine.update(wine_params)
         format.html { redirect_to @wine, notice: 'Wine was successfully updated.' }
@@ -122,10 +125,9 @@ class WinesController < ApplicationController
         hash_location = response['results'][0]['geometry']['location']
 
       else
-        # レスポンスが無い場合は不明とする？
+        # レスポンスが無い場合は不明とする
         @wine.country_id = 1
         @wine.localregion_id = 1
-
       end
 
       # とりあえず決め打ち
@@ -135,7 +137,12 @@ class WinesController < ApplicationController
       ### 画像を保存してphotopathをセット
       unless params[:wine][:photo].nil?
         photo = params[:wine][:photo]
+<<<<<<< HEAD
+        photo_name = @wine.id ? @wine.id : (Wine.maximum(:id) + 1)
+        photo_path = "/winephoto/#{photo_name}#{File.extname(photo.original_filename).downcase}"
+=======
         photo_path = "/winephoto/#{Wine.maximum(:id)+1}#{File.extname(photo.original_filename)}"
+>>>>>>> master
         File.open("public#{photo_path}", 'wb') { |f| f.write(photo.read) }
         @wine.photopath = photo_path
       end
