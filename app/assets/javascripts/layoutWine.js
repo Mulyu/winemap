@@ -3,8 +3,7 @@
 function layoutWine(tagId, areaSize, wines){
   console.log("---- Layout Start : "+tagId+" ----");
 
-  if(areaSize>0)
-   createRegionCircle(tagId, areaSize);
+  createRegionCircle(tagId, areaSize);
 
   var format = d3.format(",d");
 
@@ -18,7 +17,7 @@ function layoutWine(tagId, areaSize, wines){
     .attr("width", areaSize)
     .attr("height", areaSize)
     .attr("class", "bubble")
-    .attr("transform","translate("+(-areaSize/2)+","+(-areaSize/3)+")scale(1,0.6)");
+    .attr("transform","translate("+(-areaSize/2)+","+(-areaSize/4)+")scale(1,0.6)");
 
 
 
@@ -40,6 +39,8 @@ function layoutWine(tagId, areaSize, wines){
       .text(function(d) { return d.className; });
 
   node.append("path")
+      .attr("onclick",function(d){
+        return "location.href='wines/"+wineData[d.className]["wine_id"]+"'";})
       .attr("d","m-5,-302.5l20,0l0,60c2,50.66667 24.5,49.33334 27.5,110l0,130l-80,0l0,-130c1.66666,-59 30.83334,-59 32.5,-110l0,-60z")
       .attr("transform", function(d){return "scale("+wineSize/120*(d.value+0.2)+","+wineSize/120*(d.value+0.2)*1.6+")";})
       .attr("class",function(d) {return d.packageName;});
@@ -47,7 +48,7 @@ function layoutWine(tagId, areaSize, wines){
   node.append("text")
       .attr("dy", "2em")
       .style("text-anchor", "middle")
-      .text(function(d) { return d.className; })
+      .text(function(d) { return wineData[d.className]["name"]; })
       .attr("transform","scale(1,1.6)")
       .attr("class",function(d) {return d.packageName;});
 
