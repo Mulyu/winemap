@@ -1,11 +1,12 @@
 # coding: utf-8
 
- #Country.create name: 'japan' , ranking: 10 , svg_id: 1 , worldregion_id: 3
- #Worldregion.create name: 'east asia' , center_x: 10.0 , center_y: 10.0
-
 require "csv"
 
 ### 初期データ投入
+
+
+# seed stocktable
+`mysql --local-infile=1  -u root -p winemap_dev < db/stocktable.sql `
 
 # worldregions
 Worldregion.create(name: '不明')
