@@ -89,7 +89,6 @@ CSV.foreach('db/seed_csv/wines.csv') do |row|
     winelevel: row[15],
 
     # for validation error
-    country_or_region: 1,
     input_region: "testregion"
 
     )
