@@ -5,15 +5,14 @@ class WinesController < ApplicationController
   # GET /wines.json
   def index
 
-    wines = Wine.includes(:winetype , :winevariety ,:user , :localregion , country: :worldregion ).take(100)
-    
+    wines = Wine.includes(:winetype , :winevarieties ,:user , :localregion , country: :worldregion ).take(100)
+
     #array mapping
     @array_wines = wines.map{ |wine|
 
-      { winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_x: wine.svg_x ,svg_y: wine.svg_y ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevariety_name: wine.winevariety.name , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_name: wine.country.worldregion.name ,worldregion_center_x: wine.country.worldregion.center_x , worldregion_center_y: wine.country.worldregion.center_y}  
-    
-    }
+      { winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_latitude: wine.svg_latitude ,svg_longitude: wine.svg_longitude ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevarieties: wine.winevarieties , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_name: wine.country.worldregion.name }
 
+    }
 
   end
 
@@ -52,6 +51,9 @@ class WinesController < ApplicationController
   # PATCH/PUT /wines/1
   # PATCH/PUT /wines/1.json
   def update
+
+    normalize_wine_data
+
     respond_to do |format|
       if @wine.update(wine_params)
         format.html { redirect_to @wine, notice: 'Wine was successfully updated.' }
@@ -81,7 +83,7 @@ class WinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wine_params
-      params.require(:wine).permit(:name, :country_or_region, :body, :sweetness, :sourness, :winetype_id, :year, :winevariety_id, :score, :price, :winery)
+      params.require(:wine).permit(:name, :country_or_region, :body, :sweetness, :sourness, :winetype_id, :year, {:winevariety_ids => []}, :score, :price, {:situation_ids => []}, :winery)
     end
 
     def normalize_wine_data
@@ -123,22 +125,21 @@ class WinesController < ApplicationController
         hash_location = response['results'][0]['geometry']['location']
 
       else
-        # レスポンスが無い場合は不明とする？
+        # レスポンスが無い場合は不明とする
         @wine.country_id = 1
         @wine.localregion_id = 1
-
       end
 
       # とりあえず決め打ち
       @wine.svg_x = 100.12345
       @wine.svg_y = 100.12345
 
-
       ### 画像を保存してphotopathをセット
       unless params[:wine][:photo].nil?
         photo = params[:wine][:photo]
-        photo_path = "winephoto/#{Wine.maximum(:id)+1}#{File.extname(photo.original_filename)}"
-        File.open("public/#{photo_path}", 'wb') { |f| f.write(photo.read) }
+        photo_name = @wine.id ? @wine.id : (Wine.maximum(:id) + 1)
+        photo_path = "/winephoto/#{photo_name}#{File.extname(photo.original_filename).downcase}"
+        File.open("public#{photo_path}", 'wb') { |f| f.write(photo.read) }
         @wine.photopath = photo_path
       end
 

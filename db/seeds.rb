@@ -11,8 +11,6 @@ require "csv"
 CSV.foreach('db/seed_csv/worldregions.csv') do |row|
   Worldregion.create(
     name: row[0],
-    center_x: row[1],
-    center_y: row[2]
     )
 end
 
@@ -22,7 +20,9 @@ CSV.foreach('db/seed_csv/countries.csv') do |row|
     name: row[0],
     ranking: row[1],
     svg_id: row[2],
-    worldregion_id: row[3]
+    center_x: row[3],
+    center_y: row[4],
+    worldregion_id: row[5]
     )
 end
 
@@ -70,19 +70,23 @@ CSV.foreach('db/seed_csv/wines.csv') do |row|
     name: row[0],
     country_id: row[1],
     localregion_id: row[2],
-    svg_x: row[3],
-    svg_y: row[4],
+    svg_latitude: row[3],
+    svg_longitude: row[4],
     body: row[5],
     sweetness: row[6],
     sourness: row[7],
     winetype_id: row[8],
     year: row[9],
-    photopath: row[11],
-    score: row[12],
-    price: row[13],
-    winery: row[14],
-    user_id: row[15],
-    winelevel: row[16]
+    photopath: row[10],
+    score: row[11],
+    price: row[12],
+    winery: row[13],
+    user_id: row[14],
+    winelevel: row[15],
+
+    # for validation error 
+    country_or_region: 1
+    
     )
 end
 
@@ -103,7 +107,8 @@ CSV.foreach('db/seed_csv/users.csv') do |row|
     winenum: row[11],
     follow: row[12],
     follower: row[13],
-    ranking: row[14]
+    ranking: row[14],
+    
     )
 end
 
@@ -113,6 +118,7 @@ CSV.foreach('db/seed_csv/prefectures.csv') do |row|
     name: row[0]
     )
 end
+
 
 # usersusers
 # CSV.foreach('db/seed_csv/usersusers.csv') do |row|

@@ -40,8 +40,10 @@
     <%= f.text_field :year %>
   </div>
   <div class="field">
-    <%= f.label :winevariety_id %><br>
-    <%= f.collection_select :winevariety_id, Winevariety.all, :id, :name, :include_blank => true %>
+    <%= f.label :winevariety %><br>
+    <%= collection_check_boxes(:wine, :winevariety_ids, Winevariety.all, :id, :name) do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :score %><br>
@@ -50,6 +52,12 @@
   <div class="field">
     <%= f.label :price %><br>
     <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :situation %><br>
+    <%= collection_check_boxes(:wine, :situation_ids, Situation.all, :id, :name) do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :winery %><br>
