@@ -10,7 +10,7 @@ function layoutWine(tagId, areaSize, wines){
   var bubble = d3.layout.pack()
     .sort(null)
     .size([areaSize, areaSize])
-    .padding(50);
+    .padding(200);
 
   var svg=d3.select("#"+tagId).append("g")
     .attr("id",tagId+"_wineArea")
@@ -42,7 +42,7 @@ function layoutWine(tagId, areaSize, wines){
       .attr("onclick",function(d){
         return "location.href='wines/"+wineData[d.className]["wine_id"]+"'";})
       .attr("d","m-5,-302.5l20,0l0,60c2,50.66667 24.5,49.33334 27.5,110l0,130l-80,0l0,-130c1.66666,-59 30.83334,-59 32.5,-110l0,-60z")
-      .attr("transform", function(d){return "scale("+wineSize/120*(d.value+0.2)+","+wineSize/120*(d.value+0.2)*1.6+")";})
+      .attr("transform", function(d){return "scale("+wineSize/200*(d.value+0.2)+","+wineSize/200*(d.value+0.2)*1.6+")";})
       .attr("class",function(d) {return d.packageName;});
 
   node.append("text")

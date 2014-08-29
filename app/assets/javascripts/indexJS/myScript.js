@@ -54,42 +54,42 @@ function renderWine(){
     return 0;
   });
 
-  wineSize=800/Math.sqrt(wineData.length);
+  wineSize=400/Math.sqrt(wineData.length);
 
   wineData.forEach(function(e,index){
     switch(e["worldregion_id"]){
       case 1:
-        undefine_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["winelevel"]});
-        undefine_wines_size+=e["winelevel"];
+        undefine_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
+        undefine_wines_size+=e["score"];
         break;
       case 7:
-        oceania_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["winelevel"]});
-        oceania_wines_size+=e["winelevel"];
+        oceania_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
+        oceania_wines_size+=e["score"];
         break;
       case 4:
-        europe_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["winelevel"]});
-        europe_wines_size+=e["winelevel"];
+        europe_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
+        europe_wines_size+=e["score"];
         break;
       case 3:
-        asia_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["winelevel"]});
-        asia_wines_size+=e["winelevel"];
+        asia_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
+        asia_wines_size+=e["score"];
         break;
       case 2:
-        africa_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["winelevel"]});
-        africa_wines_size+=e["winelevel"];
+        africa_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
+        africa_wines_size+=e["score"];
         break;
       case 5:
-        north_america_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["winelevel"]});
-        north_america_wines_size+=e["winelevel"];
+        north_america_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
+        north_america_wines_size+=e["score"];
         break;
       case 6:
-        south_and_central_america_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["winelevel"]});
-        south_and_central_america_wines_size+=e["winelevel"];
+        south_and_central_america_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
+        south_and_central_america_wines_size+=e["score"];
         break;
       default:
         console.log(e["worldregion_id"]);
-        africa_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["winelevel"]});
-        africa_wines_size+=e["winelevel"];
+        africa_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
+        africa_wines_size+=e["score"];
         break;
     }
   });
