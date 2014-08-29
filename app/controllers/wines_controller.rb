@@ -83,14 +83,14 @@ class WinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wine_params
-      params.require(:wine).permit(:name, :country_or_region, :body, :sweetness, :sourness, :winetype_id, :year, {:winevariety_ids => []}, :score, :price, {:situation_ids => []}, :winery)
+      params.require(:wine).permit(:name, :input_region, :body, :sweetness, :sourness, :winetype_id, :year, {:winevariety_ids => []}, :score, :price, {:situation_ids => []}, :winery)
     end
 
     def normalize_wine_data
       ### ユーザーの入力ワインデータを正規化
 
       # Google Geocoding APIから正しい住所と緯度経度を取得
-      response = GoogleGeo.request(params[:wine][:country_or_region])
+      response = GoogleGeo.request(params[:wine][:input_region])
 
       ### country_id, localregion_idをセット
       if response['status'] == 'OK'
@@ -131,8 +131,8 @@ class WinesController < ApplicationController
       end
 
       # とりあえず決め打ち
-      @wine.svg_x = 100.12345
-      @wine.svg_y = 100.12345
+      @wine.svg_latitude = 100.12345
+      @wine.svg_longitude = 100.12345
 
       ### 画像を保存してphotopathをセット
       unless params[:wine][:photo].nil?
