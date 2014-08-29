@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828054926) do
+ActiveRecord::Schema.define(version: 20140829041314) do
 
   create_table "countries", force: true do |t|
-    t.string  "name",           limit: 30
-    t.integer "ranking"
-    t.string  "svg_id",         limit: 5
-    t.integer "worldregion_id"
-    t.decimal "center_x",                  precision: 8, scale: 5
-    t.decimal "center_y",                  precision: 8, scale: 5
+    t.string  "name",           limit: 30,                         null: false
+    t.integer "ranking",                                           null: false
+    t.string  "svg_id",         limit: 5,                          null: false
+    t.decimal "center_x",                  precision: 8, scale: 5, null: false
+    t.decimal "center_y",                  precision: 8, scale: 5, null: false
+    t.integer "worldregion_id",                                    null: false
   end
 
   create_table "localregions", force: true do |t|
@@ -33,12 +33,12 @@ ActiveRecord::Schema.define(version: 20140828054926) do
   end
 
   create_table "situations", force: true do |t|
-    t.string "name", limit: 30
+    t.string "name", limit: 30, null: false
   end
 
   create_table "situations_wines", id: false, force: true do |t|
-    t.integer "wine_id"
-    t.integer "situation_id"
+    t.integer "wine_id",      null: false
+    t.integer "situation_id", null: false
   end
 
   create_table "users", force: true do |t|
@@ -47,8 +47,6 @@ ActiveRecord::Schema.define(version: 20140828054926) do
     t.string   "password",           limit: 127, null: false
     t.integer  "age"
     t.integer  "gender"
-    t.integer  "prefecture_id"
-    t.integer  "home_prefecture_id"
     t.string   "job",                limit: 30
     t.boolean  "married"
     t.string   "introduction"
@@ -59,37 +57,40 @@ ActiveRecord::Schema.define(version: 20140828054926) do
     t.integer  "ranking",                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "prefecture_id",                  null: false
+    t.integer  "home_prefecture_id",             null: false
   end
 
   create_table "users_users", id: false, force: true do |t|
-    t.integer "from_user_id"
-    t.integer "to_user_id"
+    t.integer "from_user_id", null: false
+    t.integer "to_user_id",   null: false
   end
 
   create_table "wines", force: true do |t|
     t.string   "name",           limit: 100,                         null: false
-    t.integer  "country_id"
     t.integer  "localregion_id",                                     null: false
     t.decimal  "svg_latitude",               precision: 8, scale: 5, null: false
     t.decimal  "svg_longitude",              precision: 8, scale: 5, null: false
     t.integer  "body"
     t.integer  "sweetness"
     t.integer  "sourness"
-    t.integer  "winetype_id"
     t.integer  "year"
     t.string   "photopath",      limit: 30
     t.integer  "score"
     t.integer  "price"
     t.string   "winery",         limit: 30
-    t.integer  "user_id"
-    t.float    "winelevel",      limit: 24
+    t.float    "winelevel",      limit: 24,                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id",                                         null: false
+    t.integer  "winetype_id",                                        null: false
+    t.integer  "user_id",                                            null: false
+    t.string   "input_region",   limit: 30,                          null: false
   end
 
   create_table "wines_winevarieties", id: false, force: true do |t|
-    t.integer "wine_id"
-    t.integer "winevariety_id"
+    t.integer "wine_id",        null: false
+    t.integer "winevariety_id", null: false
   end
 
   create_table "winetypes", force: true do |t|
@@ -97,11 +98,11 @@ ActiveRecord::Schema.define(version: 20140828054926) do
   end
 
   create_table "winevarieties", force: true do |t|
-    t.string "name", limit: 30
+    t.string "name", limit: 30, null: false
   end
 
   create_table "worldregions", force: true do |t|
-    t.string "name", limit: 10
+    t.string "name", limit: 10, null: false
   end
 
 end

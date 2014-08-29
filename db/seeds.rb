@@ -8,6 +8,7 @@ require "csv"
 ### 初期データ投入
 
 # worldregions
+Worldregion.create(name: '不明')
 CSV.foreach('db/seed_csv/worldregions.csv') do |row|
   Worldregion.create(
     name: row[0],
@@ -15,6 +16,7 @@ CSV.foreach('db/seed_csv/worldregions.csv') do |row|
 end
 
 # countries
+Country.create(name: '不明', ranking: 0, svg_id: 'ukn', center_x: 100.12345, center_y: 100.12345, worldregion_id: 1)
 CSV.foreach('db/seed_csv/countries.csv') do |row|
   Country.create(
     name: row[0],
@@ -27,6 +29,7 @@ CSV.foreach('db/seed_csv/countries.csv') do |row|
 end
 
 # localregions
+Localregion.create(name: '不明', ranking: 0, country_id: 1)
 CSV.foreach('db/seed_csv/localregions.csv') do |row|
   Localregion.create(
     name: row[0],
@@ -84,9 +87,10 @@ CSV.foreach('db/seed_csv/wines.csv') do |row|
     user_id: row[14],
     winelevel: row[15],
 
-    # for validation error 
-    country_or_region: 1
-    
+    # for validation error
+    country_or_region: 1,
+    input_region: "testregion"
+
     )
 end
 
@@ -108,7 +112,7 @@ CSV.foreach('db/seed_csv/users.csv') do |row|
     follow: row[12],
     follower: row[13],
     ranking: row[14],
-    
+
     )
 end
 
