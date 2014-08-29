@@ -3,7 +3,7 @@
 function layoutWine(tagId, areaSize, wines){
   console.log("---- Layout Start : "+tagId+" ----");
 
-  if(areaSize!=0)
+  if(areaSize>0)
    createRegionCircle(tagId, areaSize);
 
   var format = d3.format(",d");
@@ -18,7 +18,7 @@ function layoutWine(tagId, areaSize, wines){
     .attr("width", areaSize)
     .attr("height", areaSize)
     .attr("class", "bubble")
-    .attr("transform","translate(-"+areaSize/2+",-"+(areaSize/2-50)+")scale(1,0.6)");
+    .attr("transform","translate("+(-areaSize/2)+","+(-areaSize/3)+")scale(1,0.6)");
 
 
 
@@ -56,11 +56,12 @@ function layoutWine(tagId, areaSize, wines){
 
 
 function createRegionCircle(tagId, areaSize){
+  console.log(areaSize);
   d3.select("#"+tagId).append("circle")
     .attr("cx","0")
     .attr("cy","0")
     .attr("r", areaSize/1.5)
-    .attr("transform","translate(0,0)scale(1,0.6)")
+    .attr("transform","scale(1,0.6)")
     .attr("class","regionCircle");
 
   d3.select("#"+tagId).append("text")
