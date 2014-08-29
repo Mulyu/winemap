@@ -7,22 +7,12 @@
 
 <p>
   <strong>Country:</strong>
-  <%= @wine.country_id %>
+  <%= @wine.country.name %>
 </p>
 
 <p>
   <strong>Localregions:</strong>
-  <%= @wine.localregion_id %>
-</p>
-
-<p>
-  <strong>Svg x:</strong>
-  <%= @wine.svg_x %>
-</p>
-
-<p>
-  <strong>Svg y:</strong>
-  <%= @wine.svg_y %>
+  <%= @wine.localregion.name %>
 </p>
 
 <p>
@@ -42,7 +32,7 @@
 
 <p>
   <strong>Winetype:</strong>
-  <%= @wine.winetype_id %>
+  <%= @wine.winetype.name %>
 </p>
 
 <p>
@@ -50,14 +40,11 @@
   <%= @wine.year %>
 </p>
 
-<!-- <p>
-  <strong>Winevariety:</strong>
-  <%= @wine.winevariety_id %>
-</p> -->
-
 <p>
-  <strong>Photopath:</strong>
-  <%= @wine.photopath %>
+  <strong>WineVariety:</strong>
+  <% @wine.winevarieties.each do |winevariety| %>
+    <%= winevariety.name %>
+  <% end %>
 </p>
 
 <p>
@@ -71,18 +58,20 @@
 </p>
 
 <p>
+  <strong>Situation:</strong>
+  <% @wine.situations.each do |situation| %>
+    <%= situation.name %>
+  <% end %>
+</p>
+
+<p>
   <strong>Winery:</strong>
   <%= @wine.winery %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @wine.user_id %>
-</p>
-
-<p>
-  <strong>Winelevel:</strong>
-  <%= @wine.winelevel %>
+  <strong>Photo:</strong>
+  <%= image_tag @wine.photopath unless @wine.photopath.nil? %>
 </p>
 
 <%= link_to 'Edit', edit_wine_path(@wine) %> |
