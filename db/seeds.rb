@@ -119,6 +119,7 @@ CSV.foreach('db/seed_csv/prefectures.csv') do |row|
     )
 end
 
+
 # usersusers
 # CSV.foreach('db/seed_csv/usersusers.csv') do |row|
 #   UsersUser.create(
