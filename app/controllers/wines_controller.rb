@@ -123,16 +123,16 @@ class WinesController < ApplicationController
         ### 緯度経度情報からSVGデータの座標を計算
         # 緯度経度情報ハッシュ
         hash_location = response['results'][0]['geometry']['location']
+        @wine.svg_latitude = hash_location['lat']
+        @wine.svg_longitude = hash_location['lng']
 
       else
         # レスポンスが無い場合は不明とする
         @wine.country_id = 1
         @wine.localregion_id = 1
+        @wine.svg_latitude = 100.12345
+        @wine.svg_longitude = 100.12345
       end
-
-      # とりあえず決め打ち
-      @wine.svg_latitude = 100.12345
-      @wine.svg_longitude = 100.12345
 
       ### 画像を保存してphotopathをセット
       unless params[:wine][:photo].nil?
