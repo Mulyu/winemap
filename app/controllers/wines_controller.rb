@@ -93,7 +93,7 @@ class WinesController < ApplicationController
       response = GoogleGeo.request(params[:wine][:input_region])
 
       ### country_id, localregion_idをセット
-      if response['status'] == 'OK'
+      if response['status'] == 'OK' && response['results'][0]['address_components'].find_index { |address| address['types'][0] == 'country' }
         # 住所のレスポンスがある場合は取得する
 
         # 住所情報配列
