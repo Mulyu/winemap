@@ -6,9 +6,7 @@ class Wine < ActiveRecord::Base
   has_and_belongs_to_many :winevarieties
   has_and_belongs_to_many :situations
 
-  attr_accessor :country_or_region
-
-  validates :name, :country_or_region,
+  validates :name, :input_region,
     presence: true,
     length: { maximum: 100 }
   validates :body, :sweetness, :sourness,
