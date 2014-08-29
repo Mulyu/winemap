@@ -10,7 +10,7 @@ class WinesController < ApplicationController
     #array mapping
     @array_wines = wines.map{ |wine|
 
-      { winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_latitude: wine.svg_latitude ,svg_longitude: wine.svg_longitude ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevarieties: wine.winevarieties , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_name: wine.country.worldregion.name }
+      { winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_latitude: wine.svg_latitude ,svg_longitude: wine.svg_longitude ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevarieties: wine.winevarieties , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_id: wine.country.worldregion_id }
 
     }
 
