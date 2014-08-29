@@ -18,7 +18,7 @@ class Wine < ActiveRecord::Base
   validates :score,
     inclusion: { in: 1..5 }
   validates :price,
-    numericality: { only_integer: true, greater_than_or_equal_to: 0, allow_blank: true }
+    numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 2147483647, allow_blank: true }
   validates :winery,
     length: { maximum: 30 }
 
