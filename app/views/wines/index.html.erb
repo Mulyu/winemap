@@ -1,8 +1,7 @@
 
-<%= csrf_meta_tags %>
-<%= javascript_include_tag "indexJS/myScript" %>
-<%= javascript_include_tag "indexJS/layoutWine" %>
 <%= stylesheet_link_tag "indexCSS/wineCss" %>
+<%= csrf_meta_tags %>
+<%= javascript_include_tag "indexJS/layoutWine" %>
 
 <div id="vis" class="area">
 	<svg id="visArea">
@@ -10579,3 +10578,5 @@
 <div id="forWineData">
 	<div id="wineData" data-wineData="<%= @array_wines.to_json %>" />
 </div>
+
+<%= javascript_include_tag "indexJS/myScript" %>
