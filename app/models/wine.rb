@@ -3,8 +3,8 @@ class Wine < ActiveRecord::Base
 	belongs_to :localregion
 	belongs_to :winetype
   belongs_to :user
-  has_and_belongs_to_many :winevarieties
-  has_and_belongs_to_many :situations
+  has_and_belongs_to_many :winevarieties , dependent: :delete_all
+  has_and_belongs_to_many :situations , dependent: :delete_all
 
   validates :name, :input_region,
     presence: true,
@@ -23,4 +23,3 @@ class Wine < ActiveRecord::Base
     length: { maximum: 30 }
 
 end
-
