@@ -75,4 +75,5 @@
 </p>
 
 <%= link_to 'Edit', edit_wine_path(@wine) %> |
+<%= link_to 'Delete', @wine , method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Back', wines_path %>

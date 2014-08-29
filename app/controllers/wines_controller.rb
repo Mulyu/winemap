@@ -10,7 +10,7 @@ class WinesController < ApplicationController
     #array mapping
     @array_wines = wines.map{ |wine|
 
-      { winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_latitude: wine.svg_latitude ,svg_longitude: wine.svg_longitude ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevarieties: wine.winevarieties , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_id: wine.country.worldregion_id }
+      { wine_id: wine.id, winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_latitude: wine.svg_latitude ,svg_longitude: wine.svg_longitude ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevarieties: wine.winevarieties , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_id: wine.country.worldregion_id }
 
     }
 
@@ -83,14 +83,14 @@ class WinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wine_params
-      params.require(:wine).permit(:name, :country_or_region, :body, :sweetness, :sourness, :winetype_id, :year, {:winevariety_ids => []}, :score, :price, {:situation_ids => []}, :winery)
+      params.require(:wine).permit(:name, :input_region, :body, :sweetness, :sourness, :winetype_id, :year, {:winevariety_ids => []}, :score, :price, {:situation_ids => []}, :winery)
     end
 
     def normalize_wine_data
       ### ユーザーの入力ワインデータを正規化
 
       # Google Geocoding APIから正しい住所と緯度経度を取得
-      response = GoogleGeo.request(params[:wine][:country_or_region])
+      response = GoogleGeo.request(params[:wine][:input_region])
 
       ### country_id, localregion_idをセット
       if response['status'] == 'OK'
@@ -123,16 +123,16 @@ class WinesController < ApplicationController
         ### 緯度経度情報からSVGデータの座標を計算
         # 緯度経度情報ハッシュ
         hash_location = response['results'][0]['geometry']['location']
+        @wine.svg_latitude = hash_location['lat']
+        @wine.svg_longitude = hash_location['lng']
 
       else
         # レスポンスが無い場合は不明とする
         @wine.country_id = 1
         @wine.localregion_id = 1
+        @wine.svg_latitude = 100.12345
+        @wine.svg_longitude = 100.12345
       end
-
-      # とりあえず決め打ち
-      @wine.svg_x = 100.12345
-      @wine.svg_y = 100.12345
 
       ### 画像を保存してphotopathをセット
       unless params[:wine][:photo].nil?
