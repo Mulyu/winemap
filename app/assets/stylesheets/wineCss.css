@@ -78,3 +78,7 @@ path.type5{ /* デザート */
   font-size:  30px;
   text-shadow: 2px 2px 2px black;
 }
+
+.circle{
+  display:    none;
+}
