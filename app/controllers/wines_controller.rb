@@ -118,7 +118,7 @@ class WinesController < ApplicationController
       end
 
       ### 画像を保存してphotopathをセット
-      @wine.photopath = upload_photo
+      @wine.photopath = upload_photo if params[:wine][:photo].present?
 
       ### usersテーブルから取得
       # ログイン機能を実装するまでとりあえず決め打ち
@@ -157,11 +157,8 @@ class WinesController < ApplicationController
     end
 
     def upload_photo
-      photo = params[:wine][:photo]
-      # 画像が無い場合はnilを返す
-      return unless photo.present?
-
       # 画像を保存
+      photo = params[:wine][:photo]
       photo_name = @wine.id ? @wine.id : (Wine.maximum(:id).next)
       photo_path = "/winephoto/#{photo_name}#{File.extname(photo.original_filename).downcase}"
       File.open("public#{photo_path}", 'wb') { |f| f.write(photo.read) }
