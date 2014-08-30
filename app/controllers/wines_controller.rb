@@ -1,6 +1,9 @@
 class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
 
+  UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
+  UNKNOWN_SVG_LAT_OR_LNG = 100.12345
+
   # GET /wines
   # GET /wines.json
   def index
@@ -92,62 +95,77 @@ class WinesController < ApplicationController
       # Google Geocoding APIから正しい住所と緯度経度を取得
       response = GoogleGeo.request(params[:wine][:input_region])
 
-      ### country_id, localregion_idをセット
-      if response['status'] == 'OK' && response['results'][0]['address_components'].find_index { |address| address['types'][0] == 'country' }
-        # 住所のレスポンスがある場合は取得する
+      ### 住所情報から必要な情報をセット
+      if response['status'] == 'OK' && response['results'][0]['address_components'].any? { |address| address['types'][0] == 'country' }
+        # 住所のレスポンスにCountryが含まれている場合
 
         # 住所情報配列
         array_addresses = response['results'][0]['address_components']
 
-        # 国コードから一致するcountry_idを設定
-        country_code = array_addresses[array_addresses.find_index { |address| address['types'][0] == 'country' }]['short_name'].downcase
-        @wine.country_id = Country.where('svg_id = ?', country_code).first.id
+        @wine.country_id = find_country(array_addresses)
+        @wine.localregion_id = select_localregion_id(array_addresses)
 
-        localregion_index = array_addresses.find_index { |address| address['types'][0] == 'administrative_area_level_1' }
-        localregion_name = localregion_index ? array_addresses[localregion_index]['long_name'] : nil
-
-        # localregionがDBの情報と一致するか
-        if localregion_index
-          agreed_localregion = Localregion.find_by(name: localregion_name)
-          if agreed_localregion
-            # 一致する場合はそのidをセット
-            @wine.localregion_id = agreed_localregion.id
-          else
-            # 一致しない場合はDBへ追加後idをセット
-            new_localregion = Localregion.new(name: localregion_name, ranking: 9_999_999, country_id: @wine.country_id)
-            new_localregion.save
-            @wine.localregion_id = new_localregion.id
-          end
-        end
-
-        ### 緯度経度情報からSVGデータの座標を計算
         # 緯度経度情報ハッシュ
         hash_location = response['results'][0]['geometry']['location']
+
         @wine.svg_latitude = hash_location['lat']
         @wine.svg_longitude = hash_location['lng']
 
       else
-        # レスポンスが無い場合は不明とする
-        @wine.country_id = 1
-        @wine.localregion_id = 1
-        @wine.svg_latitude = 100.12345
-        @wine.svg_longitude = 100.12345
+        # レスポンスが無い、もしくはCountryが含まれていない場合は不明とする
+        @wine.country_id = @wine.localregion_id = UNKNOWN_COUNTRY_OR_LOCALREGION_ID
+        @wine.svg_latitude = @wine.svg_longitude = UNKNOWN_SVG_LAT_OR_LNG
       end
 
       ### 画像を保存してphotopathをセット
-      unless params[:wine][:photo].nil?
-        photo = params[:wine][:photo]
-        photo_name = @wine.id ? @wine.id : (Wine.maximum(:id) + 1)
-        photo_path = "/winephoto/#{photo_name}#{File.extname(photo.original_filename).downcase}"
-        File.open("public#{photo_path}", 'wb') { |f| f.write(photo.read) }
-        @wine.photopath = photo_path
-      end
+      @wine.photopath = upload_photo
 
       ### usersテーブルから取得
       # ログイン機能を実装するまでとりあえず決め打ち
       @wine.user_id = 1
       @wine.winelevel = 1.5
 
+    end
+
+    def find_country(array_addresses)
+      # 国コードを使って一致するcountry_idを返す
+      country_index = array_addresses.find_index { |address| address['types'][0] == 'country' }
+      country_code = array_addresses[country_index]['short_name'].downcase
+      Country.where('svg_id = ?', country_code).first.id
+    end
+
+    def select_localregion_id(array_addresses)
+      localregion_index = array_addresses.find_index { |address| address['types'][0] == 'administrative_area_level_1' }
+      localregion_name = localregion_index ? array_addresses[localregion_index]['long_name'] : nil
+
+      unless localregion_name.present?
+        # localregionが無い場合は不明とする
+        return UNKNOWN_COUNTRY_OR_LOCALREGION_ID
+      end
+
+      # localregionがすでにDBに存在するか
+      localregion_db = Localregion.find_by(name: localregion_name)
+      unless localregion_db.present?
+        # 存在しない場合はDBへ新しく追加してidを返す
+        new_localregion = Localregion.new(name: localregion_name, ranking: 9_999_999, country_id: @wine.country_id)
+        new_localregion.save
+        return new_localregion.id
+      end
+
+      # 存在する場合は一致したidを返す
+      localregion_db.id
+    end
+
+    def upload_photo
+      photo = params[:wine][:photo]
+      # 画像が無い場合はnilを返す
+      return unless photo.present?
+
+      # 画像を保存
+      photo_name = @wine.id ? @wine.id : (Wine.maximum(:id).next)
+      photo_path = "/winephoto/#{photo_name}#{File.extname(photo.original_filename).downcase}"
+      File.open("public#{photo_path}", 'wb') { |f| f.write(photo.read) }
+      photo_path
     end
 
 end
