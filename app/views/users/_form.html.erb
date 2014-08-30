@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
   </div>
   <div class="field">
     <%= f.label :password %><br>
-    <%= f.text_field :password %>
+    <%= f.password_field :password_digest %>
   </div>
   <div class="field">
     <%= f.label :age %><br>
@@ -29,15 +29,16 @@
   </div>
   <div class="field">
     <%= f.label :gender %><br>
-    <%= f.number_field :gender %>
+    男:<%= f.radio_button :gender, 1, {:checked=>true} %>
+    女:<%= f.radio_button :gender, 2 %>
   </div>
   <div class="field">
     <%= f.label :prefecture %><br>
-    <%= f.text_field :prefecture %>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :home_prefecture_id %><br>
-    <%= f.text_field :home_prefecture_id %>
+    <%= f.collection_select :home_prefecture_id, Prefecture.all, :id, :name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :job %><br>
@@ -45,31 +46,11 @@
   </div>
   <div class="field">
     <%= f.label :married %><br>
-    <%= f.text_field :married %>
+    <%= f.check_box :married, {}, 'y', 'n' %>
   </div>
   <div class="field">
     <%= f.label :introduction %><br>
-    <%= f.text_field :introduction %>
-  </div>
-  <div class="field">
-    <%= f.label :winelevel %><br>
-    <%= f.text_field :winelevel %>
-  </div>
-  <div class="field">
-    <%= f.label :winenum %><br>
-    <%= f.number_field :winenum %>
-  </div>
-  <div class="field">
-    <%= f.label :follow %><br>
-    <%= f.number_field :follow %>
-  </div>
-  <div class="field">
-    <%= f.label :follower %><br>
-    <%= f.number_field :follower %>
-  </div>
-  <div class="field">
-    <%= f.label :ranking %><br>
-    <%= f.number_field :ranking %>
+    <%= f.text_area :introduction %>
   </div>
   <div class="actions">
     <%= f.submit %>
