@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many  :wines
   has_and_belongs_to_many  :users , dependent: :delete_all
 
+  before_save { |user| user.email = email.downcase }
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name,
@@ -13,7 +15,8 @@ class User < ActiveRecord::Base
   validates :email,
     presence: true,
     length: { maximum: 255 },
-    format: { with: VALID_EMAIL_REGEX }
+    format: { with: VALID_EMAIL_REGEX },
+    uniqueness: { case_sensitive: false }
   validates :age,
     numericality: { only_integer: true, greater_than_or_equal_to: 20, less_than_or_equal_to: 120, allow_blank: true }
   validates :job,
