@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :winetype_id %><br>
-    <%= f.collection_select :winetype_id, Winetype.all, :id, :name, :include_blank => true %>
+    <%= f.collection_select :winetype_id, @winetypes, :id, :name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :year %><br>
@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <%= f.label :winevariety %><br>
-    <%= collection_check_boxes(:wine, :winevariety_ids, Winevariety.all, :id, :name) do |b| %>
+    <%= collection_check_boxes(:wine, :winevariety_ids, @winevarieties, :id, :name) do |b| %>
       <%= b.label { b.check_box + b.text } %>
     <% end %>
   </div>
@@ -55,7 +55,7 @@
   </div>
   <div class="field">
     <%= f.label :situation %><br>
-    <%= collection_check_boxes(:wine, :situation_ids, Situation.all, :id, :name) do |b| %>
+    <%= collection_check_boxes(:wine, :situation_ids, @situations, :id, :name) do |b| %>
       <%= b.label { b.check_box + b.text } %>
     <% end %>
   </div>
