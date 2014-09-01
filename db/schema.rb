@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901015612) do
+ActiveRecord::Schema.define(version: 20140901020559) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -33,7 +33,8 @@ ActiveRecord::Schema.define(version: 20140901015612) do
   end
 
   create_table "prefectures", force: true do |t|
-    t.string "name", limit: 5, null: false
+    t.string  "name",                 limit: 5, null: false
+    t.integer "prefectureregions_id",           null: false
   end
 
   create_table "situations", force: true do |t|
