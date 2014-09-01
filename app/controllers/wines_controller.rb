@@ -1,6 +1,6 @@
 class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
-  before_action :get_winetypes, :get_winevarieties, :get_situations, only: [:new, :edit]
+  before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit]
 
   UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
   UNKNOWN_SVG_LAT_OR_LNG = 100.12345
@@ -85,15 +85,15 @@ class WinesController < ApplicationController
       @wine = Wine.find(params[:id])
     end
 
-    def get_winetypes
+    def set_winetypes
       @winetypes = Winetype.all
     end
 
-    def get_winevarieties
+    def set_winevarieties
       @winevarieties = Winevariety.all
     end
 
-    def get_situations
+    def set_situations
       @situations = Situation.all
     end
 
