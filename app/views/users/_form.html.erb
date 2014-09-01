@@ -38,11 +38,11 @@
   </div>
   <div class="field">
     <%= f.label :prefecture_id %><br>
-    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, :include_blank => true %>
+    <%= f.grouped_collection_select :prefecture_id, @prefectureregions, :prefectures, :name, :id, :name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :home_prefecture_id %><br>
-    <%= f.collection_select :home_prefecture_id, Prefecture.all, :id, :name, :include_blank => true %>
+    <%= f.grouped_collection_select :home_prefecture_id, @prefectureregions, :prefectures, :name, :id, :name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :job %><br>

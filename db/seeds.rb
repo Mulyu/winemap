@@ -119,10 +119,17 @@ end
 # prefectures
 CSV.foreach('db/seed_csv/prefectures.csv') do |row|
   Prefecture.create(
-    name: row[0]
+    name: row[0],
+    prefectureregion_id: row[1]
     )
 end
 
+# prefectures
+CSV.foreach('db/seed_csv/prefectureregions.csv') do |row|
+  Prefectureregion.create(
+    name: row[0]
+    )
+end
 
 # Follows
 CSV.foreach('db/seed_csv/follows.csv') do |row|
