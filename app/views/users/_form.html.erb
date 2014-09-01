@@ -50,7 +50,7 @@
   </div>
   <div class="field">
     <%= f.label :married %><br>
-    <%= f.check_box :married%>
+    <%= f.select :married, { '既婚' => 1, '未婚' => 2 }, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :introduction %><br>

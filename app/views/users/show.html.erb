@@ -37,7 +37,12 @@
 
 <p>
   <strong>Married:</strong>
-  <%= @user.married %>
+  <% case @user.married %>
+  <% when 1 then %>
+    既婚
+  <% when 2 then %>
+    未婚
+  <% end %>
 </p>
 
 <p>
