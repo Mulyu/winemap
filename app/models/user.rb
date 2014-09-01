@@ -29,8 +29,6 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false }
   validates :password,
     length: { minimum: 6 , maximum: 127 , allow_blank: true }
-  validates :age,
-    numericality: { only_integer: true, greater_than_or_equal_to: 20, less_than_or_equal_to: 120, allow_blank: true }
   validates :job,
     length: { maximum: 30 }
   validates :introduction,

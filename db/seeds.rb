@@ -100,7 +100,6 @@ CSV.foreach('db/seed_csv/users.csv') do |row|
     name: row[0],
     email: row[1],
     password: row[2],
-    age: row[3],
     gender: row[4],
     prefecture_id: row[5],
     home_prefecture_id: row[6],
@@ -112,6 +111,8 @@ CSV.foreach('db/seed_csv/users.csv') do |row|
     follow: row[12],
     follower: row[13],
     ranking: row[14],
+
+    birth: '1990-01-01'
 
     )
 end
