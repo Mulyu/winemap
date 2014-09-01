@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :get_prefectureregions, only: [:new, :edit]
+  before_action :set_prefectureregions, only: [:new, :edit]
 
   # GET /users
   # GET /users.json
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def get_prefectureregions
+    def set_prefectureregions
       @prefectureregions = Prefectureregion.all
     end
 
