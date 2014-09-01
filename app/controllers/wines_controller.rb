@@ -1,5 +1,6 @@
 class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
+  before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit]
 
   UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
   UNKNOWN_SVG_LAT_OR_LNG = 100.12345
@@ -82,6 +83,18 @@ class WinesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_wine
       @wine = Wine.find(params[:id])
+    end
+
+    def set_winetypes
+      @winetypes = Winetype.all
+    end
+
+    def set_winevarieties
+      @winevarieties = Winevariety.all
+    end
+
+    def set_situations
+      @situations = Situation.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

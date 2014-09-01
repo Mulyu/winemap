@@ -22,12 +22,12 @@
 
 <p>
   <strong>Prefecture:</strong>
-  <%= @user.prefecture.name %>
+  <%= @user.prefecture.name if @user.prefecture.present? %>
 </p>
 
 <p>
   <strong>Home prefecture:</strong>
-  <%= @user.home_prefecture.name %>
+  <%= @user.home_prefecture.name if @user.prefecture.present? %>
 </p>
 
 <p>
