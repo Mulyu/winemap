@@ -124,10 +124,10 @@ CSV.foreach('db/seed_csv/prefectures.csv') do |row|
 end
 
 
-# usersusers
-# CSV.foreach('db/seed_csv/usersusers.csv') do |row|
-#   UsersUser.create(
-#     from_user_id: row[0],
-#     to_user_id: row[1]
-#     )
-# end
+# Follows
+CSV.foreach('db/seed_csv/follows.csv') do |row|
+    Follow.create(
+    from_user_id: row[0],
+    to_user_id: row[1]
+    )     
+end
