@@ -21,15 +21,27 @@
   </div>
   <div class="field">
     <%= f.label :body %><br>
-    <%= f.range_field :body, min: 0, max: 5 %>
+    1<%= f.radio_button :body, 1 %>
+    2<%= f.radio_button :body, 2 %>
+    3<%= f.radio_button :body, 3, {:checked=>true} %>
+    4<%= f.radio_button :body, 4 %>
+    5<%= f.radio_button :body, 5 %>
   </div>
   <div class="field">
     <%= f.label :sweetness %><br>
-    <%= f.range_field :sweetness, min: 0, max: 5 %>
+    1<%= f.radio_button :sweetness, 1 %>
+    2<%= f.radio_button :sweetness, 2 %>
+    3<%= f.radio_button :sweetness, 3, {:checked=>true} %>
+    4<%= f.radio_button :sweetness, 4 %>
+    5<%= f.radio_button :sweetness, 5 %>
   </div>
   <div class="field">
     <%= f.label :sourness %><br>
-    <%= f.range_field :sourness, min: 0, max: 5 %>
+    1<%= f.radio_button :sourness, 1 %>
+    2<%= f.radio_button :sourness, 2 %>
+    3<%= f.radio_button :sourness, 3, {:checked=>true} %>
+    4<%= f.radio_button :sourness, 4 %>
+    5<%= f.radio_button :sourness, 5 %>
   </div>
   <div class="field">
     <%= f.label :winetype_id %><br>
@@ -47,7 +59,11 @@
   </div>
   <div class="field">
     <%= f.label :score %><br>
-    <%= f.range_field :score, min: 1, max: 5 %>
+    1<%= f.radio_button :score, 1 %>
+    2<%= f.radio_button :score, 2 %>
+    3<%= f.radio_button :score, 3, {:checked=>true} %>
+    4<%= f.radio_button :score, 4 %>
+    5<%= f.radio_button :score, 5 %>
   </div>
   <div class="field">
     <%= f.label :price %><br>
