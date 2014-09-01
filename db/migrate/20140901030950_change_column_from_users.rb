@@ -4,5 +4,5 @@ class ChangeColumnFromUsers < ActiveRecord::Migration
       t.remove :prefecture_id, :home_prefecture_id
       t.references :prefecture
       t.references :home_prefecture
-    end  end
+    end
   end
