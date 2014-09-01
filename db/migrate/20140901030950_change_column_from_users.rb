@@ -6,3 +6,4 @@ class ChangeColumnFromUsers < ActiveRecord::Migration
       t.references :home_prefecture
     end
   end
+end
