@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :get_prefectureregions, only: [:new, :edit]
 
   # GET /users
   # GET /users.json
@@ -67,6 +68,10 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def get_prefectureregions
+      @prefectureregions = Prefectureregion.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
