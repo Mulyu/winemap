@@ -2,9 +2,19 @@ class User < ActiveRecord::Base
   belongs_to :prefecture , class_name: 'Prefecture' ,  foreign_key: 'prefecture_id'
   belongs_to :home_prefecture , class_name: 'Prefecture',  foreign_key: 'home_prefecture_id'
 
-  has_many  :wines
-  has_and_belongs_to_many  :users , dependent: :delete_all
+  #has_and_belongs_to_many :follow_users , class_name: 'User' ,foreign_key: 'from_user_id' , dependent: :delete_all
+  #has_and_belongs_to_many  :follow_users ,class_name: 'User',foreign_key: 'from_user_id',association_foreign_key: 'to_user_id' ,dependent: :delete_all
+  #has_and_belongs_to_many  :follower_users ,class_name: 'User',forein_lyu: 'to_user_id' ,association_foreign_key: 'from_user_id' ,dependent: :delete_all
+  
+  # association Follow
+  has_many :follows_from , class_name: 'Follow' , foreign_key: :from_user_id , dependent: :delete_all
+  has_many :follows_to , class_name: 'Follow' , foreign_key: :to_user_id , dependent: :delete_all
+  has_many :following , through: :follows_from , source: :to_user
+  has_many :followed , through: :follows_to , source: :from_user
 
+
+  has_many  :wines
+  
   before_save { |user| user.email = email.downcase }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -25,4 +35,5 @@ class User < ActiveRecord::Base
     length: { maximum: 255 }
 
   has_secure_password
+
 end
