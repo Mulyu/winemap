@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140831041545) do
+ActiveRecord::Schema.define(version: 20140901030950) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 20140831041545) do
     t.integer  "ranking",                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "prefecture_id",                  null: false
-    t.integer  "home_prefecture_id",             null: false
+    t.integer  "prefecture_id"
+    t.integer  "home_prefecture_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
