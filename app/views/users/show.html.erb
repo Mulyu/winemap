@@ -22,12 +22,12 @@
 
 <p>
   <strong>Prefecture:</strong>
-  <%= @user.prefecture.name %>
+  <%= @user.prefecture.name if @user.prefecture.present? %>
 </p>
 
 <p>
   <strong>Home prefecture:</strong>
-  <%= @user.home_prefecture.name %>
+  <%= @user.home_prefecture.name if @user.prefecture.present? %>
 </p>
 
 <p>
@@ -37,13 +37,18 @@
 
 <p>
   <strong>Married:</strong>
-  <%= @user.married %>
+  <% case @user.married %>
+  <% when 1 then %>
+    既婚
+  <% when 2 then %>
+    未婚
+  <% end %>
 </p>
 
 <p>
   <strong>Introduction:</strong>
   <%= @user.introduction %>
 </p>
-
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Delete', @user , method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', users_path %>
