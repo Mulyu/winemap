@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :email,
     presence: true,
     length: { maximum: 255 },
-    format: { with: VALID_EMAIL_REGEX },
+    format: { with: VALID_EMAIL_REGEX , allow_blank: true },
     uniqueness: { case_sensitive: false }
   validates :age,
     numericality: { only_integer: true, greater_than_or_equal_to: 20, less_than_or_equal_to: 120, allow_blank: true }
