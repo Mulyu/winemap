@@ -44,6 +44,6 @@
   <strong>Introduction:</strong>
   <%= @user.introduction %>
 </p>
-
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Delete', @user , method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', users_path %>

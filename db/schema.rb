@@ -22,14 +22,24 @@ ActiveRecord::Schema.define(version: 20140901030950) do
     t.integer "worldregion_id",                                    null: false
   end
 
+  create_table "follows", id: false, force: true do |t|
+    t.integer "from_user_id", null: false
+    t.integer "to_user_id",   null: false
+  end
+
   create_table "localregions", force: true do |t|
     t.string  "name",       limit: 30
     t.integer "ranking"
     t.integer "country_id"
   end
 
+  create_table "prefectureregions", force: true do |t|
+    t.string "name", limit: 6, null: false
+  end
+
   create_table "prefectures", force: true do |t|
-    t.string "name", limit: 5, null: false
+    t.string  "name",                limit: 5, null: false
+    t.integer "prefectureregion_id",           null: false
   end
 
   create_table "situations", force: true do |t|
@@ -62,11 +72,6 @@ ActiveRecord::Schema.define(version: 20140901030950) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-
-  create_table "users_users", id: false, force: true do |t|
-    t.integer "from_user_id", null: false
-    t.integer "to_user_id",   null: false
-  end
 
   create_table "wines", force: true do |t|
     t.string   "name",           limit: 100,                         null: false
