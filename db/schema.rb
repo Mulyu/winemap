@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901030950) do
+ActiveRecord::Schema.define(version: 20140901053349) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -52,23 +52,23 @@ ActiveRecord::Schema.define(version: 20140901030950) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",               limit: 15,  null: false
-    t.string   "email",                          null: false
-    t.string   "password_digest",    limit: 127, null: false
-    t.integer  "age"
+    t.string   "name",               limit: 15,              null: false
+    t.string   "email",                                      null: false
+    t.string   "password_digest",    limit: 127,             null: false
     t.integer  "gender"
     t.string   "job",                limit: 30
-    t.boolean  "married"
+    t.integer  "married",                        default: 0
     t.string   "introduction"
-    t.float    "winelevel",          limit: 24,  null: false
-    t.integer  "winenum",                        null: false
-    t.integer  "follow",                         null: false
-    t.integer  "follower",                       null: false
-    t.integer  "ranking",                        null: false
+    t.float    "winelevel",          limit: 24,              null: false
+    t.integer  "winenum",                                    null: false
+    t.integer  "follow",                                     null: false
+    t.integer  "follower",                                   null: false
+    t.integer  "ranking",                                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "prefecture_id"
     t.integer  "home_prefecture_id"
+    t.date     "birth"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
