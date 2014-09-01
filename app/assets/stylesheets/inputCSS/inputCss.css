@@ -96,26 +96,34 @@ form .must{
 form .sliderField label{
   float:          left;
   display:        block;
-  height:         30px;
-  line-height:    30px;
-  margin-right:   15px;
-  text-align:     right;
-  width:          50px;
+  height:         26px;
+  width:          26px;
+  line-height:    26px;
+  text-align:     center;
+  border:         solid 2px #0C555D;
+  margin:         0;
 }
 
-form .sliderField div{
-  float:          left;
-  width:          10px;
-  height:         30px;
-  line-height:    30px;
-  margin-right:    10px;
+form .sliderField label:first-child{
+  width:          116px;
+  border:         none;
+  pointer-events: none;
 }
 
 form .sliderField input{
-  float:          left;
-  margin-right:   10px;
-  width:        150px;
-  height:       30px;
+  display:        none;
+}
+
+form .sliderField label:hover{
+  transition:     0.2s;
+  border:         solid 2px white;
+}
+
+form .sliderField input[type="radio"]:checked+label{
+  transition:     0.2s;
+  background-color: white;
+  color:          #0C555D;
+  border:         solid 2px white;
 }
 
 #scoreField{
