@@ -10,7 +10,7 @@ class Wine < ActiveRecord::Base
     presence: true,
     length: { maximum: 100 }
   validates :body, :sweetness, :sourness,
-    inclusion: { in: 0..5 }
+    inclusion: { in: 1..5 }
   validates :winetype_id,
     presence: true
   validates :year,

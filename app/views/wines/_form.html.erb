@@ -11,60 +11,70 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="field textField must" id="nameField">
+    <%= f.label :name ,"Name"%>
+    <%= f.text_field :name%>
   </div>
-  <div class="field">
-    <%= f.label :country_or_region %><br>
+  <div class="field textField must" id="regionField">
+    <%= f.label :country_or_region ,"Country"%>
     <%= f.text_field :input_region %>
   </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.range_field :body, min: 0, max: 5 %>
-  </div>
-  <div class="field">
-    <%= f.label :sweetness %><br>
-    <%= f.range_field :sweetness, min: 0, max: 5 %>
-  </div>
-  <div class="field">
-    <%= f.label :sourness %><br>
-    <%= f.range_field :sourness, min: 0, max: 5 %>
-  </div>
-  <div class="field">
-    <%= f.label :winetype_id %><br>
+  <div class="field textField must" id="winetypeField">
+    <%= f.label :winetype_id  ,"Type"%>
     <%= f.collection_select :winetype_id, Winetype.all, :id, :name, :include_blank => true %>
   </div>
-  <div class="field">
-    <%= f.label :year %><br>
-    <%= f.number_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :winevariety %><br>
-    <%= collection_check_boxes(:wine, :winevariety_ids, Winevariety.all, :id, :name) do |b| %>
-      <%= b.label { b.check_box + b.text } %>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :score %><br>
-    <%= f.range_field :score, min: 1, max: 5 %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :situation %><br>
-    <%= collection_check_boxes(:wine, :situation_ids, Situation.all, :id, :name) do |b| %>
-      <%= b.label { b.check_box + b.text } %>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :winery %><br>
+  <div class="field textField" id="wineryField">
+    <%= f.label :winery  ,"Winery"%>
     <%= f.text_field :winery %>
   </div>
-  <div class="field">
-    <%= f.label :photo %><br>
+  <div class="field textField" id="yearField">
+    <%= f.label :year  ,"Year"%>
+    <%= f.number_field :year %>
+  </div>
+  <div class="field textField" id="priceField">
+    <%= f.label :price ,"Price"%>
+    <%= f.number_field :price %>
+  </div>
+  <div class="field sliderField" id="scoreField">
+    <%= f.label :score ,"好み" %>
+    <div>1</div>
+    <%= f.range_field :score, min: 1, max: 5 %>
+    <div>5</div>
+  </div>
+  <div class="field sliderField" id="bodyField">
+    <%= f.label :body  ,"重さ"%>
+    <div>1</div>
+    <%= f.range_field :body, min: 1, max: 5 %>
+    <div>5</div>
+  </div>
+  <div class="field sliderField" id="sweetField">
+    <%= f.label :sweetness ,"甘み" %>
+    <div>1</div>
+    <%= f.range_field :sweetness, min: 1, max: 5 %>
+    <div>5</div>
+  </div>
+  <div class="field sliderField" id="sournField">
+    <%= f.label :sourness  ,"酸味"%>
+    <div>1</div>
+    <%= f.range_field :sourness, min: 1, max: 5 %>
+    <div>5</div>
+  </div>
+  <div class="field checkField" id="varietyField">
+    <%= f.label :winevariety %>
+    <%= collection_check_boxes(:wine, :winevariety_ids, Winevariety.all, :id, :name) do |b| %>
+      <%= b.check_box %>
+      <%= b.label { b.text } %>
+    <% end %>
+  </div>
+  <div class="field checkField" id="situationField">
+    <%= f.label :situation %>
+    <%= collection_check_boxes(:wine, :situation_ids, Situation.all, :id, :name) do |b| %>
+      <%= b.check_box %>
+      <%= b.label { b.text } %>
+    <% end %>
+  </div>
+  <div class="field" id="photoField">
+    <%= f.label :photo %>
     <%= f.file_field :photo, accept: 'image/*' %>
   </div>
   <div class="actions">
