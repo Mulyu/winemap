@@ -11,9 +11,8 @@ class User < ActiveRecord::Base
   has_many :follows_to , class_name: 'Follow' , foreign_key: :to_user_id , dependent: :delete_all
   has_many :following , through: :follows_from , source: :to_user
   has_many :followed , through: :follows_to , source: :from_user
-
-
-  has_many  :wines
+  
+  has_many :wines
   
   before_save { |user| user.email = email.downcase }
 
@@ -27,13 +26,14 @@ class User < ActiveRecord::Base
     length: { maximum: 255 },
     format: { with: VALID_EMAIL_REGEX , allow_blank: true },
     uniqueness: { case_sensitive: false }
+  has_secure_password
   validates :password,
     length: { minimum: 6 , maximum: 127 , allow_blank: true }
+  validates :birth,
+    adult: true
   validates :job,
     length: { maximum: 30 }
   validates :introduction,
     length: { maximum: 255 }
-
-  has_secure_password
 
 end
