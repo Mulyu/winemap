@@ -57,13 +57,13 @@ ActiveRecord::Schema.define(version: 20140901053349) do
     t.string   "password_digest",    limit: 127, null: false
     t.integer  "gender"
     t.string   "job",                limit: 30
-    t.boolean  "married"
+    t.integer  "married",                        default: 0
     t.string   "introduction"
-    t.float    "winelevel",          limit: 24,  null: false
-    t.integer  "winenum",                        null: false
-    t.integer  "follow",                         null: false
-    t.integer  "follower",                       null: false
-    t.integer  "ranking",                        null: false
+    t.float    "winelevel",          limit: 24,              null: false
+    t.integer  "winenum",                                    null: false
+    t.integer  "follow",                                     null: false
+    t.integer  "follower",                                   null: false
+    t.integer  "ranking",                                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "prefecture_id"
