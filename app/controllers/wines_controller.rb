@@ -1,6 +1,6 @@
 class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
-  before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit]
+  before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit, :create, :update]
 
   UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
   UNKNOWN_SVG_LAT_OR_LNG = 100.12345
