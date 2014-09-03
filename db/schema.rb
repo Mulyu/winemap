@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 20140901053349) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",               limit: 15,  null: false
-    t.string   "email",                          null: false
-    t.string   "password_digest",    limit: 127, null: false
+    t.string   "name",               limit: 15,              null: false
+    t.string   "email",                                      null: false
+    t.string   "password_digest",    limit: 127,             null: false
     t.integer  "gender"
     t.string   "job",                limit: 30
     t.integer  "married",                        default: 0
