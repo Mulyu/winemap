@@ -9,13 +9,30 @@ class WinesController < ApplicationController
   # GET /wines.json
   def index
 
-    wines = Wine.includes(:winetype , :winevarieties ,:user , :localregion , country: :worldregion ).where(user_id: 1)
+    wines = Wine.includes(:winetype , :winevarieties , :user , :localregions , country: :worldregion).where(user_id: 1)
 
     #array mapping
     @array_wines = wines.map{ |wine|
-
-      { wine_id: wine.id, winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_latitude: wine.svg_latitude ,svg_longitude: wine.svg_longitude ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevarieties: wine.winevarieties , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_id: wine.country.worldregion_id }
-
+      {
+        wine_id: wine.id,
+        winetype_id: wine.winetype_id,
+        name: wine.name,
+        country_name: wine.country.name,
+        svg_latitude: wine.svg_latitude,
+        svg_longitude: wine.svg_longitude,
+        body: wine.body,
+        sweetness: wine.sweetness,
+        winetype_name: wine.winetype.name,
+        year: wine.year,
+        winevarieties: wine.winevarieties,
+        score: wine.score,
+        price: wine.price,
+        winery: wine.winery,
+        user: wine.user.name,
+        winelevel: wine.winelevel,
+        worldregion_id: wine.country.worldregion_id,
+        localregions: wine.localregions
+      }
     }
 
   end

@@ -12,7 +12,9 @@
 
 <p>
   <strong>Localregions:</strong>
-  <%= @wine.localregion.name %>
+  <% @wine.localregions.each do |localregion| %>
+    <%= localregion.name %>
+  <% end %>
 </p>
 
 <p>

@@ -1,6 +1,6 @@
 class Wine < ActiveRecord::Base
 	belongs_to :country
-	belongs_to :localregion
+	has_and_belongs_to_many :localregions , dependent: :delete_all
 	belongs_to :winetype
   belongs_to :user
   has_and_belongs_to_many :winevarieties , dependent: :delete_all
