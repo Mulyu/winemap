@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007081236) do
+ActiveRecord::Schema.define(version: 20141007081800) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(version: 20141007081236) do
   end
 
   create_table "localregions", force: true do |t|
-    t.string  "name",       limit: 30
-    t.integer "ranking"
-    t.integer "country_id"
+    t.string  "name",       limit: 30, null: false
+    t.integer "ranking",               null: false
     t.integer "layer",                 null: false
+    t.integer "country_id",            null: false
   end
 
   create_table "localregions_wines", id: false, force: true do |t|
