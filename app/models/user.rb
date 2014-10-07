@@ -1,11 +1,9 @@
 class User < ActiveRecord::Base
   belongs_to :prefecture , class_name: 'Prefecture' ,  foreign_key: 'prefecture_id'
   belongs_to :home_prefecture , class_name: 'Prefecture',  foreign_key: 'home_prefecture_id'
-
-  #has_and_belongs_to_many :follow_users , class_name: 'User' ,foreign_key: 'from_user_id' , dependent: :delete_all
-  #has_and_belongs_to_many  :follow_users ,class_name: 'User',foreign_key: 'from_user_id',association_foreign_key: 'to_user_id' ,dependent: :delete_all
-  #has_and_belongs_to_many  :follower_users ,class_name: 'User',forein_lyu: 'to_user_id' ,association_foreign_key: 'from_user_id' ,dependent: :delete_all
   
+  has_one :logininfo , dependent: :delete
+
   # association Follow
   has_many :follows_from , class_name: 'Follow' , foreign_key: :from_user_id , dependent: :delete_all
   has_many :follows_to , class_name: 'Follow' , foreign_key: :to_user_id , dependent: :delete_all
