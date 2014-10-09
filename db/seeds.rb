@@ -30,13 +30,12 @@ CSV.foreach('db/seed_csv/countries.csv') do |row|
 end
 
 # localregions
-Localregion.create(name: '不明', ranking: 0, layer: 0, country_id: 1)
+Localregion.create(name: '不明', ranking: 0, country_id: 1)
 CSV.foreach('db/seed_csv/localregions.csv') do |row|
   Localregion.create(
     name: row[0],
     ranking: row[1],
-    layer: row[2],
-    country_id: row[3]
+    country_id: row[2]
     )
 end
 
