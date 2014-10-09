@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009094653) do
+ActiveRecord::Schema.define(version: 20141009101358) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -27,20 +27,20 @@ ActiveRecord::Schema.define(version: 20141009094653) do
     t.integer "to_user_id",   null: false
   end
 
-  create_table "localregions", force: true do |t|
-    t.string  "name",       limit: 30, null: false
-    t.integer "ranking",               null: false
-    t.integer "country_id",            null: false
-  end
-
-  create_table "localregions_wines", id: false, force: true do |t|
+  create_table "localregion_wines", id: false, force: true do |t|
     t.integer "localregion_id", null: false
     t.integer "wine_id",        null: false
     t.integer "layer",          null: false
   end
 
-  add_index "localregions_wines", ["localregion_id"], name: "index_localregions_wines_on_localregion_id", using: :btree
-  add_index "localregions_wines", ["wine_id"], name: "index_localregions_wines_on_wine_id", using: :btree
+  add_index "localregion_wines", ["localregion_id"], name: "index_localregion_wines_on_localregion_id", using: :btree
+  add_index "localregion_wines", ["wine_id"], name: "index_localregion_wines_on_wine_id", using: :btree
+
+  create_table "localregions", force: true do |t|
+    t.string  "name",       limit: 30, null: false
+    t.integer "ranking",               null: false
+    t.integer "country_id",            null: false
+  end
 
   create_table "prefectureregions", force: true do |t|
     t.string "name", limit: 6, null: false

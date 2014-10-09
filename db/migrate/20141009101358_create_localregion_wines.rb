@@ -1,6 +1,6 @@
-class CreateLocalregionsWines < ActiveRecord::Migration
+class CreateLocalregionWines < ActiveRecord::Migration
   def change
-    create_table :localregions_wines, id: false do |t|
+    create_table :localregion_wines, id: false do |t|
       t.references :localregion, index: true, null: false
       t.references :wine, index: true, null: false
       t.integer :layer, null: false
