@@ -133,7 +133,7 @@ class WinesController < ApplicationController
         array_addresses = response['results'][0]['address_components']
 
         @wine.country_id = find_country(array_addresses)
-        @wine.localregion_id = select_localregion_id(array_addresses)
+        check_localregions(array_addresses)
 
         # 緯度経度情報ハッシュ
         hash_location = response['results'][0]['geometry']['location']
@@ -143,7 +143,7 @@ class WinesController < ApplicationController
 
       else
         # レスポンスが無い、もしくはCountryが含まれていない場合は不明とする
-        @wine.country_id = @wine.localregion_id = UNKNOWN_COUNTRY_OR_LOCALREGION_ID
+        @wine.country_id = UNKNOWN_COUNTRY_OR_LOCALREGION_ID
         @wine.svg_latitude = @wine.svg_longitude = UNKNOWN_SVG_LAT_OR_LNG
       end
 
@@ -164,26 +164,23 @@ class WinesController < ApplicationController
       Country.where('svg_id = ?', country_code).first.id
     end
 
-    def select_localregion_id(array_addresses)
-      localregion_index = array_addresses.find_index { |address| address['types'][0] == 'administrative_area_level_1' }
-      localregion_name = localregion_index ? array_addresses[localregion_index]['long_name'] : nil
+    def check_localregions(array_addresses)
+      # 国の次の区分から地域名を取得
+      localregion_names = array_addresses.reverse_each.map { |address| address['long_name'] }.drop(1)
 
-      unless localregion_name.present?
-        # localregionが無い場合は不明とする
-        return UNKNOWN_COUNTRY_OR_LOCALREGION_ID
+      @wine.localregions.clear
+
+      localregion_names.each.with_index(1) do |localregion_name, layer|
+        # localregionがすでにDBに存在するか
+        localregion_db = Localregion.find_by(name: localregion_name)
+        if localregion_db.present?
+          # 存在する場合はそのデータとの関連を登録
+          @wine.localregions.push(localregion_db)
+        else
+          # 存在しない場合はlocalregionsテーブルへ新しく追加して関連を登録
+          @wine.localregions.build(name: localregion_name, ranking: 9_999_999, layer: layer, country_id: @wine.country_id)
+        end
       end
-
-      # localregionがすでにDBに存在するか
-      localregion_db = Localregion.find_by(name: localregion_name)
-      unless localregion_db.present?
-        # 存在しない場合はDBへ新しく追加してidを返す
-        new_localregion = Localregion.new(name: localregion_name, ranking: 9_999_999, country_id: @wine.country_id)
-        new_localregion.save
-        return new_localregion.id
-      end
-
-      # 存在する場合は一致したidを返す
-      localregion_db.id
     end
 
     def upload_photo
