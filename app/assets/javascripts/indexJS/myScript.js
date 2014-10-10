@@ -85,7 +85,7 @@ function renderWine(){
 }
 
 
-function regionNameAdd(){
+function regionNameAdd(){ // GoogleMapになったらいらない
   regionNameMap["europe"]="ヨーロッパ";
   regionNameMap["africa"]="アフリカ";
   regionNameMap["asia"]="アジア";

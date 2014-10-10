@@ -1,41 +1,28 @@
-function Wine(id, name, price, type, year, location, review, user){
-  this.id = id;
-  this.name = name;
-  this.price = price;
-  this.type = type;
-  this.year = year;
-  this.location = location;
-  this.review = review;
-  this.user = user;
+function Wine(wineData){
+  // ワインデータの格納
+  this.id = wineData.wine_id;
+  this.name = wineData.name;
+  this.price = wineData.price;
+  this.type = {
+    id:         wineData.winetype_id,
+    type:       wineData.winetype_name };
+  this.year = wineData.year;
+  this.location = {
+    names:      [ wineData.worldregion_id,
+                  wineData.country_name ],
+      // とりあえず、受け取っているデータを順番に格納
+      // todo: コントローラの書き換えたら格納方法も変える
+    winery:     wineData.winery,
+    latitude:   wineData.svg_latitude,
+    longitude:  wineData.svg_longitude };
+  this.review = {
+    score:      wineData.score,
+    body:       wineData.body,
+    sweetness:  wineData.sweetness };
+  this.user = {
+    name:       wineData.user,
+    level:      wineData.winelevel };
 }
-
-function setWineData(wineData){
-  var wines=[];
-
-  wineData.forEach(function(wine){
-    wines.push(new Wine(
-      wine.wine_id,
-      wine.name,
-      wine.price,
-      { id:         wine.winetype_id,
-        type:       wine.winetype_name },
-      wine.year,
-      { names:      [ wine.worldregion_id,
-                      wine.country_name ],
-        winery:     wine.winery,
-        latitude:   wine.svg_latitude,
-        longitude:  wine.longitude },
-      { score:      wine.score,
-        body:       wine.body,
-        sweetness:  wine.sweetness },
-      { name:       wine.user,
-        level:      wine.winelevel}
-    ));
-  });
-
-  return wines;
-}
-
 
 function layoutWine(tagId, areaSize, wines){
   console.log("---- Layout Start : "+tagId+" ----");

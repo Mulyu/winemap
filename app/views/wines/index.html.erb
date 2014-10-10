@@ -29,7 +29,11 @@
 
   var wineData = <%= raw @array_wines.to_json %>;
 
-  var wines = setWineData(wineData);
+  var wines = [];
+
+  wineData.forEach(function(wine){
+    wines.push(new Wine(wine));
+  });
 
   regionNameAdd();
 
