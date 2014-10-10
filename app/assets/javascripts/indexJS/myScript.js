@@ -1,27 +1,3 @@
-var windowX=window.innerWidth;
-var windowY=window.innerHeight;
-
-var wineSize=0;
-
-var regionNameMap=[];
-
-var wineData;
-
-
-window.onload=function(){
-  console.log("---- start ----");
-
-  regionNameAdd();
-
-  d3.select("#visArea")
-     .attr("width", windowX)
-     .attr("height", windowY);
-
-  d3.selectAll(".renderArea")
-      .attr("transform","translate(100,50)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
-
-  renderWine();
-};
 
 
 function renderWine(){
@@ -124,22 +100,23 @@ function regionNameAdd(){
 }
 
 
+function enableUpdateVisAreaSize(){
+  var timer = false;
+  $(window).resize(function() {
+      if (timer !== false) {
+          clearTimeout(timer);
+      }
+      timer = setTimeout(function() {
+          windowX=window.innerWidth;
+          windowY=window.innerHeight;
 
-var timer = false;
-$(window).resize(function() {
-    if (timer !== false) {
-        clearTimeout(timer);
-    }
-    timer = setTimeout(function() {
-        windowX=window.innerWidth;
-        windowY=window.innerHeight;
+          d3.select("#visArea")
+             .attr("width", windowX)
+             .attr("height", windowY);
 
-        d3.select("#visArea")
-           .attr("width", windowX)
-           .attr("height", windowY);
+          d3.selectAll(".renderArea")
+            .attr("transform","translate(100,50)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
 
-        d3.selectAll(".renderArea")
-          .attr("transform","translate(100,50)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
-
-    }, 200);
-});
+      }, 200);
+  });
+}
