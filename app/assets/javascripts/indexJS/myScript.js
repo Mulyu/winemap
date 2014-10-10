@@ -18,10 +18,6 @@ function renderWine(){
   var south_and_central_america_wines=[];
   var south_and_central_america_wines_size=0;
 
-  var e = document.getElementById('wineData');
-  wineData = e.getAttribute('data-winedata');
-  wineData=JSON.parse(wineData);
-
   wineData.sort(function(a,b){
     var typeA = a["winetype_id"];
     var typeB = b["winetype_id"];

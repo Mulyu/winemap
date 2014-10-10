@@ -17,9 +17,6 @@
 		</g>
 	</svg>
 </div>
-<div id="forWineData">
-	<div id="wineData" data-wineData="<%= @array_wines.to_json %>" />
-</div>
 
 
 <script>
@@ -30,7 +27,7 @@
 
   var regionNameMap=[];
 
-  var wineData;
+  var wineData = <%= raw @array_wines.to_json %>;
 
   regionNameAdd();
 
