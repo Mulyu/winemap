@@ -1,3 +1,40 @@
+function Wine(id, name, price, type, year, location, review, user){
+  this.id = id;
+  this.name = name;
+  this.price = price;
+  this.type = type;
+  this.year = year;
+  this.location = location;
+  this.review = review;
+  this.user = user;
+}
+
+function setWineData(wineData){
+  var wines=[];
+
+  wineData.forEach(function(wine){
+    wines.push(new Wine(
+      wine.wine_id,
+      wine.name,
+      wine.price,
+      { id:         wine.winetype_id,
+        type:       wine.winetype_name },
+      wine.year,
+      { names:      [ wine.worldregion_id,
+                      wine.country_name ],
+        winery:     wine.winery,
+        latitude:   wine.svg_latitude,
+        longitude:  wine.longitude },
+      { score:      wine.score,
+        body:       wine.body,
+        sweetness:  wine.sweetness },
+      { name:       wine.user,
+        level:      wine.winelevel}
+    ));
+  });
+
+  return wines;
+}
 
 
 function layoutWine(tagId, areaSize, wines){

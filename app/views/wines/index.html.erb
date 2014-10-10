@@ -29,6 +29,8 @@
 
   var wineData = <%= raw @array_wines.to_json %>;
 
+  var wines = setWineData(wineData);
+
   regionNameAdd();
 
   d3.select("#visArea")
