@@ -30,10 +30,18 @@
   var wineData = <%= raw @array_wines.to_json %>;
 
   var wines = [];
+  var wineParams = {
+    productionDiscrictNamesMaxLength : 0
+  };
 
   wineData.forEach(function(wine){
     wines.push(new Wine(wine));
+    // todo : 産地の名前を見て、
+    //        productionDiscrictNamesMaxLength 
+    //        を更新してく処理をかく
   });
+
+  computeWineLayoutPosition(wines);
 
   regionNameAdd();
 

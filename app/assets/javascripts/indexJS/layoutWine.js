@@ -7,7 +7,7 @@ function Wine(wineData){
     id:         wineData.winetype_id,
     type:       wineData.winetype_name };
   this.year = wineData.year;
-  this.location = {
+  this.productionDiscrict = {
     names:      [ wineData.worldregion_id,
                   wineData.country_name ],
       // とりあえず、受け取っているデータを順番に格納
@@ -22,6 +22,23 @@ function Wine(wineData){
   this.user = {
     name:       wineData.user,
     level:      wineData.winelevel };
+
+  this.layoutPosition = [];
+}
+
+function computeWineLayoutPosition(wines){
+
+  var productionDiscrictNames = [];
+
+  wines.forEach(function(wine){
+    wine.productionDiscrict.names.forEach(function(name, i){
+      // todo : 生産地のレベル毎に地名を見て
+      //        productionDiscrictNamesを
+      
+      // todo : 地名がいくつあるかを見て
+      //        wine.layoutPosition いれてく処理
+    });
+  });
 }
 
 function layoutWine(tagId, areaSize, wines){

@@ -97,12 +97,12 @@ function regionNameAdd(){ // GoogleMapになったらいらない
 
 
 function enableUpdateVisAreaSize(){
-  var timer = false;
+  var windowSizingTimer = false;
   $(window).resize(function() {
-      if (timer !== false) {
-          clearTimeout(timer);
+      if (windowSizingTimer !== false) {
+          clearTimeout(windowSizingTimer);
       }
-      timer = setTimeout(function() {
+      windowSizingTimer = setTimeout(function() {
           windowX=window.innerWidth;
           windowY=window.innerHeight;
 
