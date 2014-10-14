@@ -9,7 +9,7 @@ class WinesController < ApplicationController
   # GET /wines.json
   def index
 
-    wines = Wine.includes(:winetype , :winevarieties , :user , :localregions , country: :worldregion).where(user_id: 1)
+    wines = Wine.includes(:winetype , :winevarieties , :user , :localregion , country: :worldregion).where(user_id: 1)
 
     #array mapping
     @array_wines = wines.map{ |wine|
@@ -31,7 +31,7 @@ class WinesController < ApplicationController
         user: wine.user.name,
         winelevel: wine.winelevel,
         worldregion_id: wine.country.worldregion_id,
-        localregions: wine.localregions
+        localregion: wine.localregion
       }
     }
 
@@ -57,6 +57,8 @@ class WinesController < ApplicationController
     @wine = Wine.new(wine_params)
 
     normalize_wine_data
+
+    # raise
 
     respond_to do |format|
       if @wine.save
@@ -133,7 +135,7 @@ class WinesController < ApplicationController
         array_addresses = response['results'][0]['address_components']
 
         @wine.country_id = find_country(array_addresses)
-        check_localregions(array_addresses)
+        @wine.localregion_id = select_localregion_id(array_addresses)
 
         # 緯度経度情報ハッシュ
         hash_location = response['results'][0]['geometry']['location']
@@ -164,23 +166,28 @@ class WinesController < ApplicationController
       Country.where('svg_id = ?', country_code).first.id
     end
 
-    def check_localregions(array_addresses)
+    def select_localregion_id(array_addresses)
+
+      # raise
       # 国の次の区分から地域名を取得
-      localregion_names = array_addresses.reverse_each.map { |address| address['long_name'] }.drop(1)
+      localregion_names = array_addresses.reverse.drop_while { |address| address['types'][0] != 'country' }.drop(1).map { |region| region['long_name'] }.join(',')
 
-      @wine.localregions.clear
-
-      localregion_names.each.with_index(1) do |localregion_name, layer|
-        # localregionがすでにDBに存在するか
-        localregion_db = Localregion.find_by(name: localregion_name)
-        if localregion_db.present?
-          # 存在する場合はそのデータとの関連を登録
-          @wine.localregions.push(localregion_db)
-        else
-          # 存在しない場合はlocalregionsテーブルへ新しく追加して関連を登録
-          @wine.localregions.build(name: localregion_name, ranking: 9_999_999, layer: layer, country_id: @wine.country_id)
-        end
+      unless localregion_names.present?
+        # localregionが無い場合は不明とする
+        return UNKNOWN_COUNTRY_OR_LOCALREGION_ID
       end
+
+      # localregionがすでにDBに存在するか
+      localregion_db = Localregion.find_by(name: localregion_names)
+      unless localregion_db.present?
+        # 存在しない場合はDBへ新しく追加してidを返す
+        new_localregion = Localregion.new(name: localregion_names, ranking: 9_999_999, country_id: @wine.country_id)
+        new_localregion.save
+        return new_localregion.id
+      end
+
+      # 存在する場合は一致したidを返す
+      localregion_db.id
     end
 
     def upload_photo
