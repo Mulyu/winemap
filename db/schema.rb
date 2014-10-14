@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014071726) do
+ActiveRecord::Schema.define(version: 20141014084144) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 20141014071726) do
 
   create_table "wines", force: true do |t|
     t.string   "name",           limit: 100,                         null: false
-    t.decimal  "svg_latitude",               precision: 8, scale: 5, null: false
-    t.decimal  "svg_longitude",              precision: 8, scale: 5, null: false
+    t.decimal  "latitude",                   precision: 8, scale: 5, null: false
+    t.decimal  "longitude",                  precision: 8, scale: 5, null: false
     t.integer  "body"
     t.integer  "sweetness"
     t.integer  "sourness"
