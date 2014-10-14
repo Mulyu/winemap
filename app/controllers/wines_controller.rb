@@ -13,7 +13,7 @@ class WinesController < ApplicationController
 
     #array mapping
     @array_wines = wines.map{ |wine|
-      regions = wine.localregion.name.split(',')
+      regions = wine.localregion.name.delete('不明').split(',')
       regions.unshift(wine.country.worldregion.name, wine.country.name)
       {
         wine_id: wine.id,

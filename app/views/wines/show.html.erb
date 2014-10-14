@@ -7,7 +7,7 @@
 
 <p>
   <strong>Regions:</strong>
-  <%= @wine.country.worldregion.name %>,<%= @wine.country.name %>,<%= @wine.localregion.name %>
+  <%= @wine.country.worldregion.name %>,<%= @wine.country.name %><%= ",#{@wine.localregion.name}" unless @wine.localregion.name == '不明' %>
 </p>
 
 <p>
