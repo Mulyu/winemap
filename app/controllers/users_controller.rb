@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_prefectureregions, only: [:new, :edit, :create, :update]
-
+  
   # GET /users
   # GET /users.json
   def index
     @users = User.all
   end
-
+  
   # GET /users/1
   # GET /users/1.json
   def show
   end
-
+  
   # GET /users/new
   def new
     @user = User.new
