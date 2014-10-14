@@ -145,7 +145,7 @@ class WinesController < ApplicationController
 
       else
         # レスポンスが無い、もしくはCountryが含まれていない場合は不明とする
-        @wine.country_id = UNKNOWN_COUNTRY_OR_LOCALREGION_ID
+        @wine.country_id = @wine.localregion_id = UNKNOWN_COUNTRY_OR_LOCALREGION_ID
         @wine.latitude = @wine.longitude = UNKNOWN_LAT_OR_LNG
       end
 
