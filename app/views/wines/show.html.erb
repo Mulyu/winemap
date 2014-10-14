@@ -6,13 +6,23 @@
 </p>
 
 <p>
-  <strong>Country:</strong>
-  <%= @wine.country.name %>
+  <strong>Regions:</strong>
+  <%= @wine.country.worldregion.name %>,<%= @wine.country.name %>,<%= @wine.localregion.name %>
 </p>
 
 <p>
-  <strong>Localregions:</strong>
-  <%= @wine.localregion.name %>
+  <strong>Inputregion:</strong>
+  <%= @wine.input_region %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @wine.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @wine.longitude %>
 </p>
 
 <p>

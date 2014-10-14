@@ -3,7 +3,7 @@ class WinesController < ApplicationController
   before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit, :create, :update]
 
   UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
-  UNKNOWN_SVG_LAT_OR_LNG = 100.12345
+  UNKNOWN_LAT_OR_LNG = 100.12345
 
   # GET /wines
   # GET /wines.json
@@ -13,13 +13,15 @@ class WinesController < ApplicationController
 
     #array mapping
     @array_wines = wines.map{ |wine|
+      regions = wine.localregion.name.split(',')
+      regions.unshift(wine.country.worldregion.name, wine.country.name)
       {
         wine_id: wine.id,
         winetype_id: wine.winetype_id,
         name: wine.name,
         country_name: wine.country.name,
-        svg_latitude: wine.svg_latitude,
-        svg_longitude: wine.svg_longitude,
+        latitude: wine.latitude.to_f,
+        longitude: wine.longitude.to_f,
         body: wine.body,
         sweetness: wine.sweetness,
         winetype_name: wine.winetype.name,
@@ -31,7 +33,7 @@ class WinesController < ApplicationController
         user: wine.user.name,
         winelevel: wine.winelevel,
         worldregion_id: wine.country.worldregion_id,
-        localregion: wine.localregion
+        regions: regions
       }
     }
 
@@ -57,8 +59,6 @@ class WinesController < ApplicationController
     @wine = Wine.new(wine_params)
 
     normalize_wine_data
-
-    # raise
 
     respond_to do |format|
       if @wine.save
@@ -140,13 +140,13 @@ class WinesController < ApplicationController
         # 緯度経度情報ハッシュ
         hash_location = response['results'][0]['geometry']['location']
 
-        @wine.svg_latitude = hash_location['lat']
-        @wine.svg_longitude = hash_location['lng']
+        @wine.latitude = hash_location['lat']
+        @wine.longitude = hash_location['lng']
 
       else
         # レスポンスが無い、もしくはCountryが含まれていない場合は不明とする
         @wine.country_id = UNKNOWN_COUNTRY_OR_LOCALREGION_ID
-        @wine.svg_latitude = @wine.svg_longitude = UNKNOWN_SVG_LAT_OR_LNG
+        @wine.latitude = @wine.longitude = UNKNOWN_LAT_OR_LNG
       end
 
       ### 画像を保存してphotopathをセット
@@ -167,8 +167,6 @@ class WinesController < ApplicationController
     end
 
     def select_localregion_id(array_addresses)
-
-      # raise
       # 国の次の区分から地域名を取得
       localregion_names = array_addresses.reverse.drop_while { |address| address['types'][0] != 'country' }.drop(1).map { |region| region['long_name'] }.join(',')
 
