@@ -7,7 +7,7 @@ function Wine(wineData){
     id:         wineData.winetype_id,
     type:       wineData.winetype_name };
   this.year = wineData.year;
-  this.productionDiscrict = {
+  this.productionDistrict = {
     names:      [ wineData.worldregion_id,
                   wineData.country_name ],
       // とりあえず、受け取っているデータを順番に格納
@@ -28,12 +28,12 @@ function Wine(wineData){
 
 function computeWineLayoutPosition(wines){
 
-  var productionDiscrictNames = [];
+  var productionDistrictNames = [];
 
   wines.forEach(function(wine){
-    wine.productionDiscrict.names.forEach(function(name, i){
+    wine.productionDistrict.names.forEach(function(name, i){
       // todo : 生産地のレベル毎に地名を見て
-      //        productionDiscrictNamesを
+      //        productionDistrictNamesを
       
       // todo : 地名がいくつあるかを見て
       //        wine.layoutPosition いれてく処理
