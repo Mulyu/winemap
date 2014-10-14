@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014062237) do
+ActiveRecord::Schema.define(version: 20141014071726) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -32,14 +32,6 @@ ActiveRecord::Schema.define(version: 20141014062237) do
     t.integer "ranking",                null: false
     t.integer "country_id",             null: false
   end
-
-  create_table "localregions_wines", id: false, force: true do |t|
-    t.integer "localregion_id", null: false
-    t.integer "wine_id",        null: false
-  end
-
-  add_index "localregions_wines", ["localregion_id"], name: "index_localregions_wines_on_localregion_id", using: :btree
-  add_index "localregions_wines", ["wine_id"], name: "index_localregions_wines_on_wine_id", using: :btree
 
   create_table "prefectureregions", force: true do |t|
     t.string "name", limit: 6, null: false
@@ -82,25 +74,28 @@ ActiveRecord::Schema.define(version: 20141014062237) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "wines", force: true do |t|
-    t.string   "name",          limit: 100,                         null: false
-    t.decimal  "svg_latitude",              precision: 8, scale: 5, null: false
-    t.decimal  "svg_longitude",             precision: 8, scale: 5, null: false
+    t.string   "name",           limit: 100,                         null: false
+    t.decimal  "svg_latitude",               precision: 8, scale: 5, null: false
+    t.decimal  "svg_longitude",              precision: 8, scale: 5, null: false
     t.integer  "body"
     t.integer  "sweetness"
     t.integer  "sourness"
     t.integer  "year"
-    t.string   "photopath",     limit: 30
+    t.string   "photopath",      limit: 30
     t.integer  "score"
     t.integer  "price"
-    t.string   "winery",        limit: 30
-    t.float    "winelevel",     limit: 24,                          null: false
+    t.string   "winery",         limit: 30
+    t.float    "winelevel",      limit: 24,                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "country_id",                                        null: false
-    t.integer  "winetype_id",                                       null: false
-    t.integer  "user_id",                                           null: false
-    t.string   "input_region",  limit: 30,                          null: false
+    t.integer  "country_id",                                         null: false
+    t.integer  "winetype_id",                                        null: false
+    t.integer  "user_id",                                            null: false
+    t.string   "input_region",   limit: 30,                          null: false
+    t.integer  "localregion_id",                                     null: false
   end
+
+  add_index "wines", ["localregion_id"], name: "index_wines_on_localregion_id", using: :btree
 
   create_table "wines_winevarieties", id: false, force: true do |t|
     t.integer "wine_id",        null: false

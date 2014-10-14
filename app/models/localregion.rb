@@ -1,4 +1,4 @@
 class Localregion < ActiveRecord::Base
-	belongs_to :country
-	has_and_belongs_to_many :wines
+  belongs_to :country
+  has_many :wines
 end

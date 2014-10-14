@@ -73,7 +73,7 @@ CSV.foreach('db/seed_csv/wines.csv') do |row|
   Wine.create(
     name: row[0],
     country_id: row[1],
-    # localregion_id: row[2],
+    localregion_id: row[2],
     svg_latitude: row[3],
     svg_longitude: row[4],
     body: row[5],
