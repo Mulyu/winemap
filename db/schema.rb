@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901053349) do
+ActiveRecord::Schema.define(version: 20141014084144) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20140901053349) do
   end
 
   create_table "localregions", force: true do |t|
-    t.string  "name",       limit: 30
-    t.integer "ranking"
-    t.integer "country_id"
+    t.string  "name",       limit: 100, null: false
+    t.integer "ranking",                null: false
+    t.integer "country_id",             null: false
   end
 
   create_table "prefectureregions", force: true do |t|
@@ -75,9 +75,8 @@ ActiveRecord::Schema.define(version: 20140901053349) do
 
   create_table "wines", force: true do |t|
     t.string   "name",           limit: 100,                         null: false
-    t.integer  "localregion_id",                                     null: false
-    t.decimal  "svg_latitude",               precision: 8, scale: 5, null: false
-    t.decimal  "svg_longitude",              precision: 8, scale: 5, null: false
+    t.decimal  "latitude",                   precision: 8, scale: 5, null: false
+    t.decimal  "longitude",                  precision: 8, scale: 5, null: false
     t.integer  "body"
     t.integer  "sweetness"
     t.integer  "sourness"
@@ -93,7 +92,10 @@ ActiveRecord::Schema.define(version: 20140901053349) do
     t.integer  "winetype_id",                                        null: false
     t.integer  "user_id",                                            null: false
     t.string   "input_region",   limit: 30,                          null: false
+    t.integer  "localregion_id",                                     null: false
   end
+
+  add_index "wines", ["localregion_id"], name: "index_wines_on_localregion_id", using: :btree
 
   create_table "wines_winevarieties", id: false, force: true do |t|
     t.integer "wine_id",        null: false
