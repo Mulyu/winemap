@@ -55,8 +55,8 @@ function setGoogleMap(domId){
 
     wines.forEach(function(wine){
       var myLatlng = new google.maps.LatLng(
-                        wine.productionDistrict.longitude,
-                        wine.productionDistrict.latitude );
+                        wine.productionDistrict.latitude,
+                        wine.productionDistrict.longitude );
       var marker = new google.maps.Marker({
          position: myLatlng,
          map: map,
