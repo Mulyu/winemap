@@ -8,13 +8,13 @@ function Wine(wineData){
     type:       wineData.winetype_name };
   this.year = wineData.year;
   this.productionDistrict = {
-    names:      [ wineData.worldregion_id,
-                  wineData.country_name ],
+    names:      wineData.regions,
       // とりあえず、受け取っているデータを順番に格納
       // todo: コントローラの書き換えたら格納方法も変える
     winery:     wineData.winery,
-    latitude:   wineData.svg_latitude,
-    longitude:  wineData.svg_longitude };
+    latitude:   wineData.latitude,
+    longitude:  wineData.longitude };
+  this.varieties = wineData.winevarieties;
   this.review = {
     score:      wineData.score,
     body:       wineData.body,
