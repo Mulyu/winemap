@@ -3,19 +3,38 @@ class WinesController < ApplicationController
   before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit, :create, :update]
 
   UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
-  UNKNOWN_SVG_LAT_OR_LNG = 100.12345
+  UNKNOWN_LAT_OR_LNG = 100.12345
 
   # GET /wines
   # GET /wines.json
   def index
 
-    wines = Wine.includes(:winetype , :winevarieties ,:user , :localregion , country: :worldregion ).where(user_id: 1)
+    wines = Wine.includes(:winetype , :winevarieties , :user , :localregion , country: :worldregion).where(user_id: 1)
 
     #array mapping
     @array_wines = wines.map{ |wine|
-
-      { wine_id: wine.id, winetype_id: wine.winetype_id ,name: wine.name , country_name: wine.country.name , svg_latitude: wine.svg_latitude ,svg_longitude: wine.svg_longitude ,body: wine.body , sweetness: wine.sweetness , winetype_name: wine.winetype.name , year: wine.year , winevarieties: wine.winevarieties , score: wine.score , price: wine.price , winery: wine.winery , user: wine.user.name , winelevel: wine.winelevel , worldregion_id: wine.country.worldregion_id }
-
+      regions = wine.localregion.name.delete('不明').split(',')
+      regions.unshift(wine.country.worldregion.name, wine.country.name)
+      {
+        wine_id: wine.id,
+        winetype_id: wine.winetype_id,
+        name: wine.name,
+        country_name: wine.country.name,
+        latitude: wine.latitude.to_f,
+        longitude: wine.longitude.to_f,
+        body: wine.body,
+        sweetness: wine.sweetness,
+        winetype_name: wine.winetype.name,
+        year: wine.year,
+        winevarieties: wine.winevarieties,
+        score: wine.score,
+        price: wine.price,
+        winery: wine.winery,
+        user: wine.user.name,
+        winelevel: wine.winelevel,
+        worldregion_id: wine.country.worldregion_id,
+        regions: regions
+      }
     }
 
   end
@@ -121,13 +140,13 @@ class WinesController < ApplicationController
         # 緯度経度情報ハッシュ
         hash_location = response['results'][0]['geometry']['location']
 
-        @wine.svg_latitude = hash_location['lat']
-        @wine.svg_longitude = hash_location['lng']
+        @wine.latitude = hash_location['lat']
+        @wine.longitude = hash_location['lng']
 
       else
         # レスポンスが無い、もしくはCountryが含まれていない場合は不明とする
         @wine.country_id = @wine.localregion_id = UNKNOWN_COUNTRY_OR_LOCALREGION_ID
-        @wine.svg_latitude = @wine.svg_longitude = UNKNOWN_SVG_LAT_OR_LNG
+        @wine.latitude = @wine.longitude = UNKNOWN_LAT_OR_LNG
       end
 
       ### 画像を保存してphotopathをセット
@@ -148,19 +167,19 @@ class WinesController < ApplicationController
     end
 
     def select_localregion_id(array_addresses)
-      localregion_index = array_addresses.find_index { |address| address['types'][0] == 'administrative_area_level_1' }
-      localregion_name = localregion_index ? array_addresses[localregion_index]['long_name'] : nil
+      # 国の次の区分から地域名を取得
+      localregion_names = array_addresses.reverse.drop_while { |address| address['types'][0] != 'country' }.drop(1).map { |region| region['long_name'] }.join(',')
 
-      unless localregion_name.present?
+      unless localregion_names.present?
         # localregionが無い場合は不明とする
         return UNKNOWN_COUNTRY_OR_LOCALREGION_ID
       end
 
       # localregionがすでにDBに存在するか
-      localregion_db = Localregion.find_by(name: localregion_name)
+      localregion_db = Localregion.find_by(name: localregion_names)
       unless localregion_db.present?
         # 存在しない場合はDBへ新しく追加してidを返す
-        new_localregion = Localregion.new(name: localregion_name, ranking: 9_999_999, country_id: @wine.country_id)
+        new_localregion = Localregion.new(name: localregion_names, ranking: 9_999_999, country_id: @wine.country_id)
         new_localregion.save
         return new_localregion.id
       end

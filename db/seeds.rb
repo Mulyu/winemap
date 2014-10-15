@@ -74,8 +74,8 @@ CSV.foreach('db/seed_csv/wines.csv') do |row|
     name: row[0],
     country_id: row[1],
     localregion_id: row[2],
-    svg_latitude: row[3],
-    svg_longitude: row[4],
+    latitude: row[3],
+    longitude: row[4],
     body: row[5],
     sweetness: row[6],
     sourness: row[7],
@@ -137,5 +137,5 @@ CSV.foreach('db/seed_csv/follows.csv') do |row|
     Follow.create(
     from_user_id: row[0],
     to_user_id: row[1]
-    )     
+    )
 end

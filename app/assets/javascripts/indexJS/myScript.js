@@ -1,27 +1,3 @@
-var windowX=window.innerWidth;
-var windowY=window.innerHeight;
-
-var wineSize=0;
-
-var regionNameMap=[];
-
-var wineData;
-
-
-window.onload=function(){
-  console.log("---- start ----");
-
-  regionNameAdd();
-
-  d3.select("#visArea")
-     .attr("width", windowX)
-     .attr("height", windowY);
-
-  d3.selectAll(".renderArea")
-      .attr("transform","translate(100,50)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
-
-  renderWine();
-};
 
 
 function renderWine(){
@@ -41,10 +17,6 @@ function renderWine(){
   var north_america_wines_size=0;
   var south_and_central_america_wines=[];
   var south_and_central_america_wines_size=0;
-
-  var e = document.getElementById('wineData');
-  wineData = e.getAttribute('data-winedata');
-  wineData=JSON.parse(wineData);
 
   wineData.sort(function(a,b){
     var typeA = a["winetype_id"];
@@ -113,7 +85,7 @@ function renderWine(){
 }
 
 
-function regionNameAdd(){
+function regionNameAdd(){ // GoogleMapになったらいらない
   regionNameMap["europe"]="ヨーロッパ";
   regionNameMap["africa"]="アフリカ";
   regionNameMap["asia"]="アジア";
@@ -124,22 +96,23 @@ function regionNameAdd(){
 }
 
 
+function enableUpdateVisAreaSize(){
+  var windowSizingTimer = false;
+  $(window).resize(function() {
+      if (windowSizingTimer !== false) {
+          clearTimeout(windowSizingTimer);
+      }
+      windowSizingTimer = setTimeout(function() {
+          windowX=window.innerWidth;
+          windowY=window.innerHeight;
 
-var timer = false;
-$(window).resize(function() {
-    if (timer !== false) {
-        clearTimeout(timer);
-    }
-    timer = setTimeout(function() {
-        windowX=window.innerWidth;
-        windowY=window.innerHeight;
+          d3.select("#visArea")
+             .attr("width", windowX)
+             .attr("height", windowY);
 
-        d3.select("#visArea")
-           .attr("width", windowX)
-           .attr("height", windowY);
+          d3.selectAll(".renderArea")
+            .attr("transform","translate(100,50)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
 
-        d3.selectAll(".renderArea")
-          .attr("transform","translate(100,50)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
-
-    }, 200);
-});
+      }, 200);
+  });
+}
