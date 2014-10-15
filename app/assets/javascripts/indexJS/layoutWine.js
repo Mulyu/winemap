@@ -37,6 +37,11 @@ function computeWineLayoutPosition(wines){
       
       // todo : 地名がいくつあるかを見て
       //        wine.layoutPosition いれてく処理
+      
+      wine.layoutPosition[i]={
+        latitude:  wine.productionDistrict.latitude,
+        longitude: wine.productionDistrict.longitude
+      };
     });
   });
 }

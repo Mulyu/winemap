@@ -1,103 +1,29 @@
 
+function setGoogleMap(domId){
+  google.load("maps", "3.x", {"other_params":"sensor=false"});
 
-function renderWine(){
-  var undefine_wines=[];
-  var undefine_wines_size=0;
-  var europe_wines=[];
-  var europe_wines_size=0;
-  var africa_wines=[];
-  var africa_wines_size=0;
-  var asia_wines=[];
-  var asia_wines_size=0;
-  var oceania_wines=[];
-  var oceania_wines_size=0;
-  var middle_east_wines=[];
-  var middle_east_wines_size=0;
-  var north_america_wines=[];
-  var north_america_wines_size=0;
-  var south_and_central_america_wines=[];
-  var south_and_central_america_wines_size=0;
+  function initialize() {
+    var myLatLng = new google.maps.LatLng(35.47381, 139.59031);
 
-  wineData.sort(function(a,b){
-    var typeA = a["winetype_id"];
-    var typeB = b["winetype_id"];
-    if(typeA<typeB) return -1;
-    if(typeA>typeB) return 1;
-    return 0;
-  });
+    var myOptions = {
+      zoom: 2,
+      center: myLatLng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    
+    map = new google.maps.Map(document.getElementById(domId), myOptions);
 
-  wineSize=400/Math.sqrt(wineData.length);
+  }
 
-  wineData.forEach(function(e,index){
-    switch(e["worldregion_id"]){
-      case 1:
-        undefine_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
-        undefine_wines_size+=e["score"];
-        break;
-      case 7:
-        oceania_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
-        oceania_wines_size+=e["score"];
-        break;
-      case 4:
-        europe_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
-        europe_wines_size+=e["score"];
-        break;
-      case 3:
-        asia_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
-        asia_wines_size+=e["score"];
-        break;
-      case 2:
-        africa_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
-        africa_wines_size+=e["score"];
-        break;
-      case 5:
-        north_america_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
-        north_america_wines_size+=e["score"];
-        break;
-      case 6:
-        south_and_central_america_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
-        south_and_central_america_wines_size+=e["score"];
-        break;
-      default:
-        console.log(e["worldregion_id"]);
-        africa_wines.push({"feature": "type"+e["winetype_id"], "name": index, "value": e["score"]});
-        africa_wines_size+=e["score"];
-        break;
-    }
-  });
-  
-  if(undefine_wines_size>0)
-    layoutWine("undefine",Math.sqrt(undefine_wines_size)*wineSize,undefine_wines);
-  if(europe_wines_size>0)
-    layoutWine("europe",Math.sqrt(europe_wines_size)*wineSize,europe_wines);
-  if(asia_wines_size>0)
-    layoutWine("asia",Math.sqrt(asia_wines_size)*wineSize,asia_wines);
-  if(africa_wines_size>0)
-    layoutWine("africa",Math.sqrt(africa_wines_size)*wineSize,africa_wines);
-  if(oceania_wines_size>0)
-    layoutWine("oceania",Math.sqrt(oceania_wines_size)*wineSize,oceania_wines);
-  if(south_and_central_america_wines_size>0)
-    layoutWine("south_and_central_america",Math.sqrt(south_and_central_america_wines_size)*wineSize,south_and_central_america_wines);
-  if(north_america_wines_size>0)
-    layoutWine("north_america",Math.sqrt(north_america_wines_size)*wineSize,north_america_wines);
-
-  dropWine(wineData.length);
+  google.setOnLoadCallback(initialize);
 }
 
 
-function regionNameAdd(){ // GoogleMapになったらいらない
-  regionNameMap["europe"]="ヨーロッパ";
-  regionNameMap["africa"]="アフリカ";
-  regionNameMap["asia"]="アジア";
-  regionNameMap["oceania"]="オセアニア";
-  regionNameMap["south_and_central_america"]="中南米";
-  regionNameMap["north_america"]="北米";
-  regionNameMap["undefine"]="不明";
-}
-
-
-function enableUpdateVisAreaSize(){
+function enableUpdateVisAreaSize(domId){
   var windowSizingTimer = false;
+  d3.select("#"+domId)
+    .attr("style", "width:"+windowX+"px; height:"+(windowY-140)+"px");
+
   $(window).resize(function() {
       if (windowSizingTimer !== false) {
           clearTimeout(windowSizingTimer);
@@ -106,12 +32,8 @@ function enableUpdateVisAreaSize(){
           windowX=window.innerWidth;
           windowY=window.innerHeight;
 
-          d3.select("#visArea")
-             .attr("width", windowX)
-             .attr("height", windowY);
-
-          d3.selectAll(".renderArea")
-            .attr("transform","translate(100,50)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
+          d3.select("#"+domId)
+            .attr("style", "width:"+windowX+"px; height:"+(windowY-140)+"px");
 
       }, 200);
   });

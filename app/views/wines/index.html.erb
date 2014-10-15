@@ -1,36 +1,21 @@
 
-<%= stylesheet_link_tag "indexCSS/wineCss" %>
-<%= csrf_meta_tags %>
+<script src="http://www.google.com/jsapi/"></script>
 
-<div id="vis" class="area">
-	<svg id="visArea">
-
-		<g id="wineArea" class="renderArea">
-			<g id="europe" transform="translate(1380,270)"/>
-			<g id="africa" transform="translate(1330,570)"/>
-			<g id="asia" transform="translate(2050,500)"/>
-			<g id="oceania" transform="translate(2200,900)"/>
-			<g id="middle_east" transform="translate(1780,500)"/>
-			<g id="north_america" transform="translate(400,300)"/>
-      <g id="south_and_central_america" transform="translate(730,770)"/>
-      <g id="undefine" transform="translate(100,800)"/>
-		</g>
-	</svg>
+<div id="visArea">
+  <div id="map"></div>
 </div>
-
 
 <script>
   var windowX=window.innerWidth;
   var windowY=window.innerHeight;
 
-  var wineSize=0;
-
-  var regionNameMap=[];
+  enableUpdateVisAreaSize("visArea");
 
   var wineData = <%= raw @array_wines.to_json %>;
 
   var wines = [];
   var wineParams = {
+    // 何に使うか忘れた、きっと何かに使うんだよ
     productionDiscrictNamesMaxLength : 0
   };
 
@@ -43,16 +28,6 @@
 
   computeWineLayoutPosition(wines);
 
-  regionNameAdd();
+  setGoogleMap("map");
 
-  d3.select("#visArea")
-     .attr("width", windowX)
-     .attr("height", windowY);
-
-  d3.selectAll(".renderArea")
-      .attr("transform","translate(100,50)scale("+((windowX-100)/2760)+","+((windowX-100)/2760)+")");
-
-  renderWine();
-
-  enableUpdateVisAreaSize();
 </script>

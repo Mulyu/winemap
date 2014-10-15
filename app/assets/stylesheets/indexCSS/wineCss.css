@@ -9,81 +9,8 @@
   bottom: 0;
 }
 
-body{
-  background-color: black;
-  width:  100%;
+#map{
+  width: 100%;
   height: 100%;
 }
 
-
-#fr{
-  fill: red;
-}
-
-
-#mapArea path:not(.winePath){
-  stroke:   gray;
-  stroke-width:   2px;
-  fill:     none;
-}
-
-#visArea{
-  position: absolute;
-  top:      100;
-  left:     0;
-}
-
-
-path.winePath{
-	stroke:			black;
-	stroke-width:	2px;
-  opacity:    0.9;
-}
-
-text.winePath{
-  fill:       white;
-  font-size:  30px;
-  text-shadow: 2px 2px 2px black;
-  display:    none;
-  pointer-events: none;
-}
-
-path.winePath:hover + text.winePath{
-  display:    block;
-}
-
-path.type1{ /* 赤 */
-  fill:   #FF5F5C;
-}
-
-path.type2{ /* 白 */
-  fill:		#D6FFEA;
-}
-
-path.type3{ /* ロゼ */
-  fill:   #FFADD3;
-}
-
-path.type4{ /* スパークリング */
-  fill:   #F2FFA3;
-}
-
-path.type5{ /* デザート */
-  fill:   #FFA200;
-}
-
-.regionCircle{
-  fill: none;
-  stroke: white;
-  stroke-width:  10px;
-}
-
-.regionText{
-  fill: white;
-  font-size:  30px;
-  text-shadow: 2px 2px 2px black;
-}
-
-.circle{
-  display:    none;
-}
