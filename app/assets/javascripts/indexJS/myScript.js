@@ -13,6 +13,57 @@ function setGoogleMap(domId){
     
     map = new google.maps.Map(document.getElementById(domId), myOptions);
 
+     var samplestyle = [
+      {
+        featureType: "poi.park",
+        elementType: "all",
+        stylers: [
+          { gamma: 0.4 }
+        ]
+      },{
+        featureType: "water",
+        elementType: "all",
+        stylers: [
+          { hue: "#00ffff" },
+          { lightness: 50 }
+        ]
+      },{
+        featureType: "road",
+        elementType: "all",
+        stylers: [
+          { visibility: "off" }
+        ]
+      },{
+        featureType: "transit",
+        elementType: "all",
+        stylers: [
+          { visibility: "off" }
+        ]
+      },{
+        featureType: "transit",
+        elementType: "all",
+        stylers: [
+          { gamma: 0 },
+          { visibility: "off" }
+        ]
+      }
+    ];
+
+    var samplestyleOptions = {
+      name: "シンプル"
+    };
+
+    wines.forEach(function(wine){
+      var myLatlng = new google.maps.LatLng(
+                        wine.productionDistrict.longitude,
+                        wine.productionDistrict.latitude );
+      var marker = new google.maps.Marker({
+         position: myLatlng,
+         map: map,
+         title:wine.name
+      });
+    });
+
   }
 
   google.setOnLoadCallback(initialize);
