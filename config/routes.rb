@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+
+  devise_for :logininfos ,controllers: {
+    registrations: 'logininfos/registrations'
+  }
+
   resources :users
 
   resources :wines
-
-  resource :login
 
   root 'wines#index'
 
