@@ -35,6 +35,8 @@ function setMarker(map, markarName, latitude, longitude){
   var marker = new google.maps.Marker({
     position: myLatlng,
     map: map,
+    icon: "http://maps.google.co.jp/mapfiles/ms/icons/horsebackriding.png",
+    // todo : ピンをワインにする
     animation: google.maps.Animation.DROP,
     title: markarName
   });
