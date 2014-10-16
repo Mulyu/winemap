@@ -23,7 +23,6 @@ function setGoogleMap(domId){
         wine.productionDistrict.longitude
         );
     });
-
   }
 
   google.setOnLoadCallback(initialize);
@@ -96,23 +95,3 @@ function applyStyleToGoogleMap(map){
   map.setMapTypeId('black');
 }
 
-
-function enableUpdateVisAreaSize(domId){
-  var windowSizingTimer = false;
-  d3.select("#"+domId)
-  .attr("style", "width:"+windowX+"px; height:"+(windowY-140)+"px");
-
-  $(window).resize(function() {
-    if (windowSizingTimer !== false) {
-      clearTimeout(windowSizingTimer);
-    }
-    windowSizingTimer = setTimeout(function() {
-      windowX=window.innerWidth;
-      windowY=window.innerHeight;
-
-      d3.select("#"+domId)
-      .attr("style", "width:"+windowX+"px; height:"+(windowY-140)+"px");
-
-    }, 200);
-  });
-}
