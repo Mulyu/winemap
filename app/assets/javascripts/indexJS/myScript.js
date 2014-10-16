@@ -3,7 +3,7 @@ function setGoogleMap(domId){
   google.load("maps", "3.x", {"other_params":"sensor=false"});
 
   function initialize() {
-    var myLatLng = new google.maps.LatLng(35.47381, 139.59031);
+    var myLatLng = new google.maps.LatLng(35.47381, 139.59031); // 東京を中心にする
 
     var myOptions = {
       zoom: 2,
@@ -11,57 +11,17 @@ function setGoogleMap(domId){
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     
-    map = new google.maps.Map(document.getElementById(domId), myOptions);
+    googleMap = new google.maps.Map(document.getElementById(domId), myOptions);
 
-     var samplestyle = [
-      {
-        featureType: "poi.park",
-        elementType: "all",
-        stylers: [
-          { gamma: 0.4 }
-        ]
-      },{
-        featureType: "water",
-        elementType: "all",
-        stylers: [
-          { hue: "#00ffff" },
-          { lightness: 50 }
-        ]
-      },{
-        featureType: "road",
-        elementType: "all",
-        stylers: [
-          { visibility: "off" }
-        ]
-      },{
-        featureType: "transit",
-        elementType: "all",
-        stylers: [
-          { visibility: "off" }
-        ]
-      },{
-        featureType: "transit",
-        elementType: "all",
-        stylers: [
-          { gamma: 0 },
-          { visibility: "off" }
-        ]
-      }
-    ];
-
-    var samplestyleOptions = {
-      name: "シンプル"
-    };
-
+    applyStyleToGoogleMap(googleMap);
+  
     wines.forEach(function(wine){
-      var myLatlng = new google.maps.LatLng(
-                        wine.productionDistrict.latitude,
-                        wine.productionDistrict.longitude );
-      var marker = new google.maps.Marker({
-         position: myLatlng,
-         map: map,
-         title:wine.name
-      });
+      setMarker(
+        googleMap,
+        wine.name,
+        wine.productionDistrict.latitude,
+        wine.productionDistrict.longitude
+        );
     });
 
   }
@@ -69,23 +29,90 @@ function setGoogleMap(domId){
   google.setOnLoadCallback(initialize);
 }
 
+function setMarker(map, markarName, latitude, longitude){
+  var myLatlng = new google.maps.LatLng(
+    latitude,
+    longitude );
+  var marker = new google.maps.Marker({
+    position: myLatlng,
+    map: map,
+    animation: google.maps.Animation.DROP,
+    title: markarName
+  });
+}
+
+function applyStyleToGoogleMap(map){
+  var blackStyle = [
+  {
+    "featureType": "poi",
+    "stylers": [
+    { "visibility": "off" }
+    ]
+  },{
+    "featureType": "road",
+    "stylers": [
+    { "visibility": "off" }
+    ]
+  },{
+    "featureType": "transit",
+    "stylers": [
+    { "visibility": "off" }
+    ]
+  },{
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+    { "color": "#555555" }
+    ]
+  },{
+    "featureType": "administrative",
+    "elementType": "labels.text.fill",
+    "stylers": [
+    { "color": "#FFFFFF" }
+    ]
+  },{
+    "featureType": "landscape",
+    "stylers": [
+    { "color": "#000000" },
+    { "visibility": "on" }
+    ]
+  },{
+  },{
+  },{
+    "featureType": "water",
+    "stylers": [
+    { "color": "#202020" }
+    ]
+  },{
+  }
+  ];
+
+  var blackStyleOptions = {
+    name: "blackMap"
+  };
+
+  var sampleMapType = new google.maps.StyledMapType(blackStyle, blackStyleOptions);
+  map.mapTypes.set('black', sampleMapType);
+  map.setMapTypeId('black');
+}
+
 
 function enableUpdateVisAreaSize(domId){
   var windowSizingTimer = false;
   d3.select("#"+domId)
-    .attr("style", "width:"+windowX+"px; height:"+(windowY-140)+"px");
+  .attr("style", "width:"+windowX+"px; height:"+(windowY-140)+"px");
 
   $(window).resize(function() {
-      if (windowSizingTimer !== false) {
-          clearTimeout(windowSizingTimer);
-      }
-      windowSizingTimer = setTimeout(function() {
-          windowX=window.innerWidth;
-          windowY=window.innerHeight;
+    if (windowSizingTimer !== false) {
+      clearTimeout(windowSizingTimer);
+    }
+    windowSizingTimer = setTimeout(function() {
+      windowX=window.innerWidth;
+      windowY=window.innerHeight;
 
-          d3.select("#"+domId)
-            .attr("style", "width:"+windowX+"px; height:"+(windowY-140)+"px");
+      d3.select("#"+domId)
+      .attr("style", "width:"+windowX+"px; height:"+(windowY-140)+"px");
 
-      }, 200);
+    }, 200);
   });
 }

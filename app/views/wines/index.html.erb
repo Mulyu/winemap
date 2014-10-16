@@ -13,6 +13,8 @@
 
   var wineData = <%= raw @array_wines.to_json %>;
 
+  var googleMap;
+
   var wines = [];
   var wineParams = {
     // 何に使うか忘れた、きっと何かに使うんだよ
@@ -28,6 +30,6 @@
 
   computeWineLayoutPosition(wines);
 
-  setGoogleMap("map");
+  setGoogleMap("map", googleMap);
 
 </script>
