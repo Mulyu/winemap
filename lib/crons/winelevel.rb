@@ -2,9 +2,9 @@ class Crons::Winelevel
   def self.calculate
     Rails.logger.debug('Winelevel.calculate START')
 
-    # connect to user model test
-    user = User.find(1)
-    puts "#{user.name}"
+    # 今は飲んだ本数(winenum)をそのままwinelevelとする
+    users = User.all
+    users.each { |user| user.update(winelevel: user.winenum) }
 
     Rails.logger.debug('Winelevel.calculate END')
   end
