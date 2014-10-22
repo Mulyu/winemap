@@ -4,10 +4,9 @@ ruby '2.1.2'
 gem 'rails'
 
 group :development do
-  # gem 'sqlite3'
   gem 'mysql2'
   gem 'rspec-rails'
-  # debug
+  # debug tool
   gem 'better_errors'
   gem 'binding_of_caller'
 end
@@ -25,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
-# for login system 
+# for login system
 gem 'devise'
 
 gem 'less-rails'
@@ -34,8 +33,11 @@ gem 'execjs'
 gem 'sprockets'
 gem 'bcrypt'
 
-# japanese in URI
+# Parse japanese in URI
 gem 'addressable', require: 'addressable/uri'
+
+# Manage and deploy cron jobs
+gem 'whenever', :require => false
 
 group :test do
   gem 'capybara'
