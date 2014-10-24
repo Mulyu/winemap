@@ -153,10 +153,14 @@ class WinesController < ApplicationController
       @wine.photopath = upload_photo if params[:wine][:photo].present?
 
       ### usersテーブルから取得
-      # ログイン機能を実装するまでとりあえず決め打ち
-      @wine.user_id = 1
-      @wine.winelevel = 1.5
-
+      ### 未ログイン時はid=1,winelevel=0に設定
+      if current_logininfo == nil
+        @wine.user_id = 1
+        @wine.winelevel = 0.0
+      else
+        @wine.user_id = current_logininfo.user.id
+        @wine.winelevel = current_logininfo.user.winelevel
+      end
     end
 
     def find_country(array_addresses)
