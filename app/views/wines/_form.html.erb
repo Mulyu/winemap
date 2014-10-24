@@ -1,5 +1,4 @@
 <%= form_for(@wine) do |f| %>
-<% raise %>
   <% if @wine.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
