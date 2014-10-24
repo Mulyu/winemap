@@ -3,6 +3,6 @@ class Logininfo < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_one :users , dependent: :delete
+  has_one :user , dependent: :delete
   
 end
