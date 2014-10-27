@@ -1,9 +1,15 @@
 
 <script src="http://www.google.com/jsapi/"></script>
 
+<%= render partial: 'layouts/topbar' %>
+
 <div id="visArea">
   <div id="map"></div>
 </div>
+
+<div id="detailArea" style="display:none; opacity:0"></div>
+
+<%= render partial: 'layouts/footer' %>
 
 <script>
   var windowX=window.innerWidth;
@@ -11,24 +17,17 @@
 
   enableUpdateVisAreaSize("visArea");
 
+
+
   var wineData = <%= raw @array_wines.to_json %>;
 
   var googleMap;
 
   var wines = [];
-  var wineParams = {
-    // 何に使うか忘れた、きっと何かに使うんだよ
-    productionDiscrictNamesMaxLength : 0
-  };
 
   wineData.forEach(function(wine){
     wines.push(new Wine(wine));
-    // todo : 産地の名前を見て、
-    //        productionDiscrictNamesMaxLength 
-    //        を更新してく処理をかく
   });
-
-  computeWineLayoutPosition(wines);
 
   setGoogleMap("map", googleMap);
 

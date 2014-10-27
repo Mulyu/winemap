@@ -18,9 +18,7 @@ function setGoogleMap(domId){
     wines.forEach(function(wine){
       setMarker(
         googleMap,
-        wine.name,
-        wine.productionDistrict.latitude,
-        wine.productionDistrict.longitude
+        wine
         );
     });
   }
@@ -28,17 +26,22 @@ function setGoogleMap(domId){
   google.setOnLoadCallback(initialize);
 }
 
-function setMarker(map, markarName, latitude, longitude){
+function setMarker(map, wine){
   var myLatlng = new google.maps.LatLng(
-    latitude,
-    longitude );
+    wine.productionDistrict.latitude,
+    wine.productionDistrict.longitude );
+
   var marker = new google.maps.Marker({
     position: myLatlng,
     map: map,
     icon: "/assets/redWine.png",
     // todo : ピンをワインにする
     animation: google.maps.Animation.DROP,
-    title: markarName
+    title: wine.name
+  });
+
+  google.maps.event.addListener(marker, "click", function() {
+    wine.showDetail();
   });
 }
 

@@ -1,4 +1,5 @@
 function Wine(wineData){
+
   // ワインデータの格納
   this.id = wineData.wine_id;
   this.name = wineData.name;
@@ -21,25 +22,15 @@ function Wine(wineData){
     name:       wineData.user,
     level:      wineData.winelevel };
 
-  this.layoutPosition = [];
-}
+  this.showDetail = function(){
+    var detailAreaElement = d3.select("#detailArea");
 
-function computeWineLayoutPosition(wines){
+    detailAreaElement
+      .style("display","block");
 
-  var productionDistrictNames = [];
-
-  wines.forEach(function(wine){
-    wine.productionDistrict.names.forEach(function(name, i){
-      // todo : 生産地のレベル毎に地名を見て
-      //        productionDistrictNamesを
-      
-      // todo : 地名がいくつあるかを見て
-      //        wine.layoutPosition いれてく処理
-      
-      wine.layoutPosition[i]={
-        latitude:  wine.productionDistrict.latitude,
-        longitude: wine.productionDistrict.longitude
-      };
-    });
-  });
+    detailAreaElement
+      .transition()
+      .style("opacity","0.7")
+      .text(this.name);
+  };
 }
