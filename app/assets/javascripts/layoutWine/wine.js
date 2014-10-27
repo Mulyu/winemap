@@ -9,8 +9,6 @@ function Wine(wineData){
   this.year = wineData.year;
   this.productionDistrict = {
     names:      wineData.regions,
-      // とりあえず、受け取っているデータを順番に格納
-      // todo: コントローラの書き換えたら格納方法も変える
     winery:     wineData.winery,
     latitude:   wineData.latitude,
     longitude:  wineData.longitude };
