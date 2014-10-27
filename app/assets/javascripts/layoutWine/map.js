@@ -31,7 +31,7 @@ function setMarker(map, wine){
     wine.productionDistrict.latitude,
     wine.productionDistrict.longitude );
 
-  var marker = new google.maps.Marker({
+  wine.marker = new google.maps.Marker({
     position: myLatlng,
     map: map,
     icon: "/assets/redWine.png",
@@ -40,7 +40,7 @@ function setMarker(map, wine){
     title: wine.name
   });
 
-  google.maps.event.addListener(marker, "click", function() {
+  google.maps.event.addListener(wine.marker, "click", function() {
     wine.setInfoToDetailArea();
     appendArea("detailArea");
   });

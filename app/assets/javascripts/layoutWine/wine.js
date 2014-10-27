@@ -28,11 +28,37 @@ function Wine(wineData){
 
     detailAreaElement.select("#name").select("span")
       .text(this.name);
+
     detailAreaElement.select("#type").select("span")
-      .text(this.type.name);
+      .text(this.type.name)
+      .attr("onclick","wineFilterByType('"+this.type.name+"');");
+
     detailAreaElement.select("#price").select("span")
       .text(this.price);
+
     detailAreaElement.select("#score").select("span")
       .text(this.review.score);
   };
+}
+
+function wineFilterByType( type ){
+  wines.forEach(function(wine){
+    if(wine.type.name != type){
+      wine.marker.setVisible(false);
+    }
+  });
+}
+
+function wineFilterByPrice( minPrice, maxPrice ){
+  // todo : 価格でフィルタリングする処理を書く
+}
+
+function wineFilterByScore( minScore, maxScore ){
+  // todo : スコアでフィルタリングする処理を書く
+}
+
+function resetWineFilter(){
+  wines.forEach(function(wine){
+    wine.marker.setVisible(true);
+  });
 }

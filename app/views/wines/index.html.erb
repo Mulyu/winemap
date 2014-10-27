@@ -8,7 +8,10 @@
 </div>
 
 <div id="detailArea" style="display:none; opacity:0">
-  <button id="closeButton" onClick="hiddenArea( 'detailArea' )">閉じる</button>
+  <button id="closeButton"
+          onClick=" hiddenArea( 'detailArea' ); 
+                    resetWineFilter();"
+  >閉じる</button>
   <div id="name">Name : <span/></div>
   <div id="type">Type : <span/></div>
   <div id="price">Price : <span/></div>
