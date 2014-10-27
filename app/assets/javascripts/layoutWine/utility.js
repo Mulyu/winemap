@@ -21,8 +21,8 @@ function enableUpdateVisAreaSize(domId){
   });
 }
 
-function appendArea( id ){
-    var area = d3.select("#"+id);
+function appendArea( domId ){
+    var area = d3.select("#"+domId);
 
     area.style("display","block");
 
@@ -30,11 +30,25 @@ function appendArea( id ){
       .style("opacity","0.7");
 }
 
-function hiddenArea( id ){
-    var area = d3.select("#"+id);
+function hiddenArea( domId ){
+    var area = d3.select("#"+domId);
 
     area.transition()
       .style("opacity","0");
 
     area.style("display","none");
+}
+
+function useAjax( domId ){
+  $.ajax({
+    url: "wines/new",
+    dataType: "html",
+    cache: false,
+    success: function(data, textStatus){
+      $("#"+domId).html(data);
+    },
+    error: function(xhr, textStatus, errorThrown){
+      // エラー処理
+    }
+  });
 }
