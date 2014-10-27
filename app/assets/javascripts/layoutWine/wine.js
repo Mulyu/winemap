@@ -6,7 +6,7 @@ function Wine(wineData){
   this.price = wineData.price;
   this.type = {
     id:         wineData.winetype_id,
-    type:       wineData.winetype_name };
+    name:       wineData.winetype_name };
   this.year = wineData.year;
   this.productionDistrict = {
     names:      wineData.regions,
@@ -22,15 +22,17 @@ function Wine(wineData){
     name:       wineData.user,
     level:      wineData.winelevel };
 
-  this.showDetail = function(){
+
+  this.setInfoToDetailArea = function(){
     var detailAreaElement = d3.select("#detailArea");
 
-    detailAreaElement
-      .style("display","block");
-
-    detailAreaElement
-      .transition()
-      .style("opacity","0.7")
+    detailAreaElement.select("#name").select("span")
       .text(this.name);
+    detailAreaElement.select("#type").select("span")
+      .text(this.type.name);
+    detailAreaElement.select("#price").select("span")
+      .text(this.price);
+    detailAreaElement.select("#score").select("span")
+      .text(this.review.score);
   };
 }

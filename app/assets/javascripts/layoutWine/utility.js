@@ -20,3 +20,21 @@ function enableUpdateVisAreaSize(domId){
     }, 200);
   });
 }
+
+function appendArea( id ){
+    var area = d3.select("#"+id);
+
+    area.style("display","block");
+
+    area.transition()
+      .style("opacity","0.7");
+}
+
+function hiddenArea( id ){
+    var area = d3.select("#"+id);
+
+    area.transition()
+      .style("opacity","0");
+
+    area.style("display","none");
+}
