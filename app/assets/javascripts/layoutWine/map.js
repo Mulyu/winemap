@@ -7,6 +7,8 @@ function setGoogleMap(domId){
 
     var myOptions = {
       zoom: 2,
+      minZoom: 2,
+      maxZoom: 10,
       center: myLatLng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
