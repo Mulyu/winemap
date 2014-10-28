@@ -8,7 +8,8 @@
   <li><%= link_to 'Mean', new_wine_path %></li>
   
   <% if logininfo_signed_in? %>
-    <li><%= link_to 'Logout', destroy_logininfo_session_path, method: :delete %>
+    <li><%= link_to 'Logout', destroy_logininfo_session_path, method: :delete %></li>
+    <li><%= link_to 'Mypage',mypage_path %></li>
   <% else %>
 
     <li><%= link_to 'Sign up', new_logininfo_registration_path %></li>

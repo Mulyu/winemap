@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :follow, :remove]
   before_action :set_prefectureregions, only: [:new, :edit, :create, :update]
-  
+  before_action :set_current_user, only: [:follow, :remove, :mypage, :show]
   # GET /users
   # GET /users.json
   def index
@@ -21,7 +21,25 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
+  
+  # GET /mypage
+  def mypage
+    @followed = @current_user.followed
+    @following = @current_user.following
+  end
 
+  # POST /users/1/follow
+  def follow
+    @current_user.follow!(@user)
+    redirect_to @user
+  end
+
+  # POST /remove
+  def remove
+    @current_user.remove!(@user)
+    redirect_to @user
+  end
+  
   # POST /users
   # POST /users.json
   def create
@@ -72,6 +90,10 @@ class UsersController < ApplicationController
 
     def set_prefectureregions
       @prefectureregions = Prefectureregion.all
+    end
+
+    def set_current_user
+      @current_user = current_logininfo.user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
