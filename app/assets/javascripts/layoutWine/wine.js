@@ -39,6 +39,12 @@ function Wine(wineData){
     detailAreaElement.select("#score").select("span")
       .text(this.review.score);
   };
+
+  this.getIconImagePath = function(){ // 長谷川へ
+    // todo : ワインのタイプ(this.type.id)に合わせてreturnの内容を変える
+    
+    return "/assets/redWine.png";
+  };
 }
 
 function wineFilterByType( type ){

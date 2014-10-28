@@ -34,7 +34,7 @@ function setMarker(map, wine){
   wine.marker = new google.maps.Marker({
     position: myLatlng,
     map: map,
-    icon: "/assets/redWine.png",
+    icon: wine.getIconImagePath(),
     // todo : ピンをワインにする
     animation: google.maps.Animation.DROP,
     title: wine.name
