@@ -40,10 +40,21 @@ function Wine(wineData){
       .text(this.review.score);
   };
 
-  this.getIconImagePath = function(){ // 長谷川へ
-    // todo : ワインのタイプ(this.type.id)に合わせてreturnの内容を変える
+  this.getIconImagePath = function(){
+    // todo : ワインのscore(this.review.score)に合わせてreturnの内容を変える
     
-    return "/assets/redWine.png";
+    switch(this.type.id){
+      case 1:
+        return "/assets/wine/smallRed.png";
+      case 2:
+        return "/assets/wine/smallWhite.png";
+      case 3:
+        return "/assets/wine/smallRose.png";
+      case 4:
+        return "/assets/wine/smallSpark.png";
+      case 5:
+        return "/assets/wine/smallDesart.png";
+    }
   };
 }
 
