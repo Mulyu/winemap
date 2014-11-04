@@ -1,0 +1,22 @@
+<h1> ranking page </h1>
+<table>
+  <thead>
+    <tr>
+      <th>順位</th>
+      <th>国</th>
+      <th>地域</th>
+      <th>ユーザー</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for ranking_num in 0..9 do %>
+      <tr>
+        <th><%= ranking_num+1 %></th>
+        <th><%= @country_ranking[ranking_num].name %></th>
+        <th><%= @localregion_ranking[ranking_num].name %></th>
+        <th><%= @user_ranking[ranking_num].name %></th>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>
+<%= link_to 'home', root_path %>
