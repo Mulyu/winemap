@@ -94,10 +94,10 @@ function TwoHandleSlider( d3Element, sliderId ){
   var FONT_SIZE = 15;
 
   var sliderValue = {
-    minValue:   0,
-    maxValue:   100,
-    leftValue:    30,
-    rightValue:   80
+    minValue:   1,
+    maxValue:   5,
+    leftValue:    1,
+    rightValue:   5
   };
 
   var element = d3Element.append("div")
@@ -146,13 +146,13 @@ function TwoHandleSlider( d3Element, sliderId ){
       .style("height",AXIS_HEIGHT/2+"px")
       .style("width","1px");
 
-    for( var i=0 ; i<9 ; i++){
+    for( var i=0 ; i<3 ; i++){
       axis.append("div")
         .style("float","left")
         .style("margin-top",AXIS_HEIGHT/2+"px")
         .style("height",AXIS_HEIGHT/2+"px")
-        .style("width",((styleParam.width-MARGIN*2-BORDER_WEIGHT*2)/10-BORDER_WEIGHT)+"px")
-        .style("border-right",BORDER_WEIGHT+"px solid black");
+        .style("width",((styleParam.width-MARGIN*2-BORDER_WEIGHT*2)/4-BORDER_WEIGHT)+"px")
+        .style("border-right",BORDER_WEIGHT+"px solid white");
     }
 
     element
@@ -274,11 +274,11 @@ function TwoHandleSlider( d3Element, sliderId ){
       return sliderValue.rightValue;
     };
 
-    slider.addDraggingFuntion = function( f ){
+    slider.addDraggingFunction = function( f ){
       return draggingFunctions.push( f );
     };
 
-    slider.addDragEndFuntion = function( f ){
+    slider.addDragEndFunction = function( f ){
       return dragEndFunctions.push( f );
     };
   }
