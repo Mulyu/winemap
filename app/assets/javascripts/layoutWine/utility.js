@@ -52,3 +52,234 @@ function useAjax( domId ){
     }
   });
 }
+
+
+
+
+function TwoHandleSlider( d3Element, sliderId ){
+
+  var styleParam = {
+    width:      400,
+    height:     50
+  };
+
+
+
+  var dragEvents = d3.behavior.drag()
+    .on("drag", function(d,i){
+      var value = computePosToValue( d3.event.x );
+      var left_or_right = d3.select(this).classed("leftHandle")? "left" : "right" ;
+
+      sliderValue[ left_or_right+"Value" ] = value;
+
+      normalValue( left_or_right );
+
+      d3.select(this)
+        .style("left", getHandlePosition( left_or_right )+"px");
+
+      draggingFunctions.forEach( function( f ){
+        f();
+      });
+    })
+    .on("dragend", function(d,i){
+      dragEndFunctions.forEach( function( f ){
+        f();
+      });
+    });
+
+  var HANDLE_SIZE = 40;
+  var BORDER_WEIGHT = 2;
+  var MARGIN = 60;
+  var HEIGHT = MARGIN+HANDLE_SIZE;
+  var FONT_SIZE = 15;
+
+  var sliderValue = {
+    minValue:   0,
+    maxValue:   100,
+    leftValue:    30,
+    rightValue:   80
+  };
+
+  var element = d3Element.append("div")
+            .attr("id",sliderId)
+            .classed("twoHandleSlider",true)
+            .style("position","relative")
+            .style("backgrount-color","red")
+            .style("height",HEIGHT+"px")
+            .style("width",styleParam.width+"px");
+
+  var draggingFunctions = [];
+  var dragEndFunctions = [];
+
+  defineFunctions( this );
+
+  makeAxis();
+
+  makeHandle( this, "left" );
+
+  makeHandle( this, "right" );
+
+  showHandleValue();
+
+  draggingFunctions.push( function(){
+    showHandleValue();
+  });
+
+
+  function makeAxis(){
+    var AXIS_HEIGHT = 10;
+
+    var axis = element
+      .append("div")
+      .style("position","absolute")
+      .style("top", (MARGIN/2+HANDLE_SIZE-AXIS_HEIGHT)+"px")
+      .style("left", MARGIN+"px")
+      .style("height",(AXIS_HEIGHT)+"px")
+      .style("width",(styleParam.width-MARGIN*2-BORDER_WEIGHT*2)+"px")
+      .style("border",BORDER_WEIGHT+"px solid white")
+      .style("border-top","none")
+      .classed("sliderAxis",true);
+
+    axis.append("div")
+      .style("float","left")
+      .style("margin-top",AXIS_HEIGHT/2+"px")
+      .style("height",AXIS_HEIGHT/2+"px")
+      .style("width","1px");
+
+    for( var i=0 ; i<9 ; i++){
+      axis.append("div")
+        .style("float","left")
+        .style("margin-top",AXIS_HEIGHT/2+"px")
+        .style("height",AXIS_HEIGHT/2+"px")
+        .style("width",((styleParam.width-MARGIN*2-BORDER_WEIGHT*2)/10-BORDER_WEIGHT)+"px")
+        .style("border-right",BORDER_WEIGHT+"px solid black");
+    }
+
+    element
+      .append("div")
+      .classed("minValue",true)
+      .style("font-size",FONT_SIZE+"px")
+      .style("position","absolute")
+      .style("top", (MARGIN/2+HANDLE_SIZE+AXIS_HEIGHT)+"px")
+      .style("left", MARGIN+"px")
+      .text(convertValueToDate(sliderValue.minValue));
+
+
+    element
+      .append("div")
+      .classed("maxValue",true)
+      .style("font-size",FONT_SIZE+"px")
+      .style("position","absolute")
+      .style("top", (MARGIN/2+HANDLE_SIZE+AXIS_HEIGHT)+"px")
+      .style("right",MARGIN+"px")
+      .text(convertValueToDate(sliderValue.maxValue));
+  }
+
+  function makeHandle( slider, left_or_right ){
+    var handleElement = element
+      .append("div")
+      .style("position","absolute")
+      .style("top", MARGIN/2+"px")
+      .style("left", getHandlePosition( left_or_right )+"px")
+      .style("width",(HANDLE_SIZE/2-2)+"px")
+      .style("height",HANDLE_SIZE+"px")
+      .style("border-"+(left_or_right=="left"? "right":"left"),"2px solid white")
+      .classed("handle",true)
+      .classed(left_or_right+"Handle",true)
+      .call( dragEvents );
+
+    handleElement
+      .append("div")
+      .style("position","absolute")
+      .style((left_or_right=="left"? "right":"left"), "0px")
+      .style("padding","3px")
+      .style("background-color","white")
+      .style("font-size",FONT_SIZE+"px")
+      .style("color", "black");
+  }
+
+  function convertValueToDate( value ){
+    return value;
+  }
+
+  function showHandleValue(){
+    element.select(".leftHandle").select("div")
+      .text( convertValueToDate(parseInt( sliderValue.leftValue ,10)) );
+    element.select(".rightHandle").select("div")
+      .text( convertValueToDate(parseInt( sliderValue.rightValue ,10)) );
+  }
+
+  function getHandlePosition( left_or_right ){
+    if( left_or_right == "left")
+      return MARGIN+(styleParam.width - MARGIN*2)*(sliderValue.leftValue-sliderValue.minValue)/(sliderValue.maxValue-sliderValue.minValue)-HANDLE_SIZE/2+2;
+    if( left_or_right == "right")
+      return MARGIN+(styleParam.width - MARGIN*2)*(sliderValue.rightValue-sliderValue.minValue)/(sliderValue.maxValue-sliderValue.minValue)-2;
+    return null;
+  }
+
+
+
+  function normalValue( left_or_right ){
+    if( sliderValue[ left_or_right+"Value" ] < sliderValue.minValue )
+      sliderValue[ left_or_right+"Value" ] = sliderValue.minValue;
+    
+    if( sliderValue[ left_or_right+"Value" ] > sliderValue.maxValue )
+      sliderValue[ left_or_right+"Value" ] = sliderValue.maxValue;
+
+    if( left_or_right == "left" )
+      if( sliderValue.leftValue > sliderValue.rightValue )
+        sliderValue.leftValue = sliderValue.rightValue;
+
+    if( left_or_right == "right" )
+      if( sliderValue.rightValue < sliderValue.leftValue )
+        sliderValue.rightValue = sliderValue.leftValue;
+  }
+
+  function computePosToValue( position ){
+    return (position-MARGIN)/(styleParam.width-MARGIN*2)*(sliderValue.maxValue-sliderValue.minValue)+sliderValue.minValue;
+  }
+
+
+
+  function defineFunctions(slider){
+
+    slider.setSliderValue = function( minValue, maxValue, leftValue, rightValue ){
+      sliderValue = {
+        minValue:   minValue,
+        maxValue:   maxValue,
+        leftValue:    leftValue,
+        rightValue:   rightValue
+      };
+      
+      element.select(".minValue")
+        .text(convertValueToDate(minValue));
+      
+      element.select(".maxValue")
+        .text(convertValueToDate(maxValue));
+
+      showHandleValue();
+
+      element.select(".leftHandle")
+        .style("left", getHandlePosition( "left" )+"px");
+
+      element.select(".rightHandle")
+        .style("left", getHandlePosition( "right" )+"px");
+    };
+
+    slider.getLeftHandleValue = function(){
+      return sliderValue.leftValue;
+    };
+
+    slider.getRightHandleValue = function(){
+      return sliderValue.rightValue;
+    };
+
+    slider.addDraggingFuntion = function( f ){
+      return draggingFunctions.push( f );
+    };
+
+    slider.addDragEndFuntion = function( f ){
+      return dragEndFunctions.push( f );
+    };
+  }
+}
