@@ -54,6 +54,8 @@ function Wine(wineData){
         return "/assets/wine/smallSpark.png";
       case 5:
         return "/assets/wine/smallDesart.png";
+      default:
+        return "/assets/wine/smallDefault.png";
     }
   };
 }
