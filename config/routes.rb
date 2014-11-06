@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   root 'wines#index'
 
   match 'mypage', to: 'users#mypage', via: :get
+  match 'ranking', to: 'ranking#index', via: :get
 
 end
