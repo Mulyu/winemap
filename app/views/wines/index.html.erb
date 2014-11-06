@@ -40,4 +40,21 @@
 
   setGoogleMap("map", googleMap);
 
+  var scoreSlider = new TwoHandleSlider( d3.select("#detailArea"), "scoreSlider" );
+
+  scoreSlider.addDraggingFunction(
+    function(){
+      resetWineFilter();
+    }
+  );
+
+  scoreSlider.addDraggingFunction(
+    function(){
+      wineFilterByScore(
+        scoreSlider.getLeftHandleValue(),
+        scoreSlider.getRightHandleValue()
+      );
+    }
+  );
+
 </script>

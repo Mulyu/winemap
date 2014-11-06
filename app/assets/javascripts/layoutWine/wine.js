@@ -54,6 +54,8 @@ function Wine(wineData){
         return "/assets/wine/smallSpark.png";
       case 5:
         return "/assets/wine/smallDesart.png";
+      default:
+        return "/assets/wine/smallDefault.png";
     }
   };
 }
@@ -71,7 +73,11 @@ function wineFilterByPrice( minPrice, maxPrice ){
 }
 
 function wineFilterByScore( minScore, maxScore ){
-  // todo : スコアでフィルタリングする処理を書く
+  wines.forEach(function(wine){
+    if( ( wine.review.score < minScore ) || ( wine.review.score > maxScore ) ){
+      wine.marker.setVisible(false);
+    }
+  });
 }
 
 function resetWineFilter(){
