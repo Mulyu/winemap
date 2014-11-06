@@ -12,7 +12,8 @@ group :development do
 end
 
 gem 'uglifier', '>= 1.3.0'
-
+# Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.0.0'
 # install javascript runtime for rails s
 gem 'therubyracer'
 # Use jquery as the JavaScript library
@@ -42,4 +43,10 @@ gem 'whenever', :require => false
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
+end
+
+# deploy to heroku
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
 end
