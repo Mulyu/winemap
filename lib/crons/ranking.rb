@@ -26,7 +26,7 @@ class Crons::Ranking
 
         # ワインの評価値の平均が高い順
         # .find_all以降では、winesのシードデータに存在しないcountry_idが含まれているため、それを除去している(正しいデータを用意すればいらなくなるはず)
-        rank_countries = Wine.group(:country_id).order('AVG(score) DESC').map(&:country_id).find_all { |rc| country_ids.include?(rc) }
+        rank_countries = Wine.group(:country_id).order('AVG(score) DESC').select(:country_id).map(&:country_id).find_all { |rc| country_ids.include?(rc) }
         rank_countries.each.with_index(1) { |country_id, rank| Country.update(country_id, ranking: rank)  }
 
         # 登録されていないcountryのrankingを調整
@@ -37,7 +37,7 @@ class Crons::Ranking
         localregion_ids = (1..Localregion.count).to_a
 
         # ワインの評価値の平均が高い順
-        rank_localregions = Wine.group(:localregion_id).order('AVG(score) DESC').map(&:localregion_id).find_all { |rl| localregion_ids.include?(rl) }
+        rank_localregions = Wine.group(:localregion_id).order('AVG(score) DESC').select(:localregion_id).map(&:localregion_id).find_all { |rl| localregion_ids.include?(rl) }
         rank_localregions.each.with_index(1) { |localregion_id, rank| Localregion.update(localregion_id, ranking: rank) }
 
         # 登録されていないlocalregionのrankingを調整
