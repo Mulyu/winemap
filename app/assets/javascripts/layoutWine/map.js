@@ -10,7 +10,12 @@ function setGoogleMap(domId){
       minZoom: 2,
       maxZoom: 10,
       center: myLatLng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControl: false,
+      streetViewControl: true,
+      scaleControl: false,
+      zoomControl: false,
+      panControl: false
     };
     
     googleMap = new google.maps.Map(document.getElementById(domId), myOptions);
