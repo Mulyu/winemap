@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014091839) do
+ActiveRecord::Schema.define(version: 20141108113335) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -96,7 +96,6 @@ ActiveRecord::Schema.define(version: 20141014091839) do
     t.integer  "sweetness"
     t.integer  "sourness"
     t.integer  "year"
-    t.string   "photopath",      limit: 30
     t.integer  "score"
     t.integer  "price"
     t.string   "winery",         limit: 30
@@ -108,6 +107,7 @@ ActiveRecord::Schema.define(version: 20141014091839) do
     t.integer  "user_id",                                            null: false
     t.string   "input_region",   limit: 30,                          null: false
     t.integer  "localregion_id",                                     null: false
+    t.string   "photo"
   end
 
   add_index "wines", ["localregion_id"], name: "index_wines_on_localregion_id", using: :btree

@@ -88,7 +88,7 @@
 
 <p>
   <strong>Photo:</strong>
-  <%= image_tag @wine.photopath unless @wine.photopath.nil? %>
+  <%= image_tag @wine.photo.url(:thumb).to_s %>
 </p>
 
 <%= link_to 'Edit', edit_wine_path(@wine) %> |

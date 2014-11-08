@@ -56,8 +56,9 @@ class WinesController < ApplicationController
   # POST /wines
   # POST /wines.json
   def create
-    @wine = Wine.new(wine_params)
 
+    @wine = Wine.new(wine_params)
+    
     normalize_wine_data
 
     respond_to do |format|
@@ -118,7 +119,7 @@ class WinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wine_params
-      params.require(:wine).permit(:name, :input_region, :body, :sweetness, :sourness, :winetype_id, :year, {:winevariety_ids => []}, :score, :price, {:situation_ids => []}, :winery)
+      params.require(:wine).permit(:name, :input_region, :body, :sweetness, :sourness, :winetype_id, :year, {:winevariety_ids => []}, :score, :price, {:situation_ids => []}, :winery, :photo)
     end
 
     def normalize_wine_data
@@ -148,9 +149,6 @@ class WinesController < ApplicationController
         @wine.country_id = @wine.localregion_id = UNKNOWN_COUNTRY_OR_LOCALREGION_ID
         @wine.latitude = @wine.longitude = UNKNOWN_LAT_OR_LNG
       end
-
-      ### 画像を保存してphotopathをセット
-      @wine.photopath = upload_photo if params[:wine][:photo].present?
 
       ### usersテーブルから取得
       ### 未ログイン時はid=1,winelevel=0に設定
@@ -190,15 +188,6 @@ class WinesController < ApplicationController
 
       # 存在する場合は一致したidを返す
       localregion_db.id
-    end
-
-    def upload_photo
-      # 画像を保存
-      photo = params[:wine][:photo]
-      photo_name = @wine.id ? @wine.id : (Wine.maximum(:id).next)
-      photo_path = "/winephoto/#{photo_name}#{File.extname(photo.original_filename).downcase}"
-      File.open("public#{photo_path}", 'wb') { |f| f.write(photo.read) }
-      photo_path
     end
 
 end
