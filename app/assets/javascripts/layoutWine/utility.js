@@ -220,6 +220,8 @@ function TwoHandleSlider( d3Element, sliderId ){
 
 
   function normalValue( left_or_right ){
+    sliderValue[ left_or_right+"Value" ] = Math.round( sliderValue[ left_or_right+"Value" ] );
+
     if( sliderValue[ left_or_right+"Value" ] < sliderValue.minValue )
       sliderValue[ left_or_right+"Value" ] = sliderValue.minValue;
     

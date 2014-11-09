@@ -38,6 +38,9 @@ function Wine(wineData){
 
     detailAreaElement.select("#score").select("span")
       .text(this.review.score);
+
+    detailAreaElement.select("#year").select("span")
+      .text(this.year);
   };
 
   this.getIconImagePath = function(){
@@ -68,21 +71,29 @@ function wineFilterByType( type ){
   });
 }
 
-function wineFilterByPrice( minPrice, maxPrice ){
-  // todo : 価格でフィルタリングする処理を書く
-}
-
-function wineFilterByScore( minScore, maxScore ){
-  wines.forEach(function(wine){
-    if( ( wine.review.score < minScore ) || ( wine.review.score > maxScore ) ){
-      wine.marker.setVisible(false);
-    }
-  });
-}
-
-function resetWineFilter(){
+function wineFilter(){
   wines.forEach(function(wine){
     wine.marker.setVisible(true);
+
+    if( ( wine.review.score < scoreSlider.getLeftHandleValue() ) ||
+        ( wine.review.score > scoreSlider.getRightHandleValue() ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( wine.price !== null)
+      if( ( wine.price < priceSlider.getLeftHandleValue() ) ||
+          ( wine.price > priceSlider.getRightHandleValue() ) ){
+        wine.marker.setVisible(false);
+        return;
+      }
+
+    if( wine.year !== null)
+      if( ( wine.year < yearSlider.getLeftHandleValue() ) ||
+          ( wine.year > yearSlider.getRightHandleValue() ) ){
+        wine.marker.setVisible(false);
+        return;
+      }
   });
 }
 
