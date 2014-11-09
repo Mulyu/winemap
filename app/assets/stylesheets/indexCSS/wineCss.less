@@ -9,17 +9,61 @@
   bottom: 0;
 }
 
-#map{
-  width: 100%;
-  height: 100%;
-}
+#visArea{
+	position:	relative;
 
-#detailArea{
-	padding:			10px;
-	background-color: 	black;
-	border:				solid 2px red;
-	border-radius: 		30px;
-	position:			absolute;
-	right:				100px;
-	top:				100px;
+	#map{
+		position:	absolute;
+	 	z-index: 		1;
+	 	width: 100%;
+	 	height: 100%;
+	}
+
+	#filterArea{
+		position:			absolute;
+	 	z-index: 			2;
+	 	width:				100%;
+	 	background-color:	black;
+	 	opacity:			0.7;
+
+	 	.twoHandleSlider{
+	 		margin-left: 	100px;
+	 	}
+	}
+
+	#filterShowSwitch{
+		position:			absolute;
+		z-index: 			3;
+		top:				10px;
+		right:				10px;
+		width:				auto;
+
+		input{
+			display:		none;
+		}
+
+		label{
+			display:		block;
+			padding:		5px;
+
+			background-color: black;
+			border:			solid 2px white;
+		}
+
+		input:checked + label{
+			background-color:	white;
+			color:				black;
+		}
+	}
+
+	#detailArea{
+		padding:			10px;
+		background-color: 	black;
+		border:				solid 2px red;
+		border-radius: 		30px;
+		position:			absolute;
+	 	z-index: 			3;
+		right:				100px;
+		top:				100px;
+	}
 }

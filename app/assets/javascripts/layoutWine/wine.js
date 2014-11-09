@@ -85,3 +85,10 @@ function resetWineFilter(){
     wine.marker.setVisible(true);
   });
 }
+
+function changeVisFilterArea(){
+  if( d3.select("#filterShowInput").property("checked") )
+    appendArea("filterArea");
+  else
+    hiddenArea("filterArea");
+}

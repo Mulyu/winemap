@@ -5,17 +5,25 @@
 
 <div id="visArea">
   <div id="map"></div>
-</div>
+  <div id="filterArea" style="pointer-events:none; opacity:0"></div>
+  <form id="filterShowSwitch">
+    <input type="checkbox"
+           id="filterShowInput"
+           onClick="changeVisFilterArea();"
+    ></input>
+    <label for="filterShowInput">Filter</label>
+  </form>
 
-<div id="detailArea" style="display:none; opacity:0">
-  <button id="closeButton"
-          onClick=" hiddenArea( 'detailArea' );
-                    resetWineFilter();"
-  >閉じる</button>
-  <div id="name">Name : <span/></div>
-  <div id="type">Type : <span/></div>
-  <div id="price">Price : <span/></div>
-  <div id="score">Score : <span/></div>
+  <div id="detailArea" style="pointer-events:none; opacity:0">
+    <button id="closeButton"
+            onClick=" hiddenArea( 'detailArea' );
+                      resetWineFilter();"
+    >閉じる</button>
+    <div id="name">Name : <span/></div>
+    <div id="type">Type : <span/></div>
+    <div id="price">Price : <span/></div>
+    <div id="score">Score : <span/></div>
+  </div>
 </div>
 
 <%= render partial: 'layouts/footer' %>
@@ -40,7 +48,7 @@
 
   setGoogleMap("map", googleMap);
 
-  var scoreSlider = new TwoHandleSlider( d3.select("#detailArea"), "scoreSlider" );
+  var scoreSlider = new TwoHandleSlider( d3.select("#filterArea"), "scoreSlider" );
 
   scoreSlider.addDraggingFunction(
     function(){

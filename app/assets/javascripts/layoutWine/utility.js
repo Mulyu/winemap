@@ -24,7 +24,7 @@ function enableUpdateVisAreaSize(domId){
 function appendArea( domId ){
     var area = d3.select("#"+domId);
 
-    area.style("display","block");
+    area.style("pointer-events","auto");
 
     area.transition()
       .style("opacity","0.7");
@@ -36,7 +36,7 @@ function hiddenArea( domId ){
     area.transition()
       .style("opacity","0");
 
-    area.style("display","none");
+    area.style("pointer-events","none");
 }
 
 function useAjax( domId ){
