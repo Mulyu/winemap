@@ -14,7 +14,7 @@ function setGoogleMap(domId){
       mapTypeControl: false,
       streetViewControl: true,
       scaleControl: false,
-      zoomControl: false,
+      zoomControl: true,
       panControl: false
     };
     
