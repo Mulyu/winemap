@@ -44,7 +44,7 @@ function setMarker(map, wine){
 
   google.maps.event.addListener(wine.marker, "click", function() {
     wine.setInfoToDetailArea();
-    appendArea("detailArea");
+    appendArea("detailArea", 0.7);
   });
 }
 

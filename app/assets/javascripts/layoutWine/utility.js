@@ -21,13 +21,13 @@ function enableUpdateVisAreaSize(domId){
   });
 }
 
-function appendArea( domId ){
+function appendArea( domId , opacityValue){
     var area = d3.select("#"+domId);
 
     area.style("pointer-events","auto");
 
     area.transition()
-      .style("opacity","0.7");
+      .style("opacity",opacityValue);
 }
 
 function hiddenArea( domId ){
@@ -46,6 +46,16 @@ function useAjax( domId ){
     cache: false,
     success: function(data, textStatus){
       $("#"+domId).html(data);
+
+      $(function($){
+        $("#new_wine")
+        .bind("ajax:complete", function(){
+          hiddenArea("createWineArea");
+          d3.select("#new_wine").remove();
+          // todo : ピンを落とす処理を書く
+          //       入力したwineの情報が欲しいでござる
+        });
+      });
     },
     error: function(xhr, textStatus, errorThrown){
       // エラー処理

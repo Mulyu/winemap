@@ -99,7 +99,12 @@ function wineFilter(){
 
 function changeVisFilterArea(){
   if( d3.select("#filterShowInput").property("checked") )
-    appendArea("filterArea");
+    appendArea("filterArea", 0.7);
   else
     hiddenArea("filterArea");
+}
+
+function showCreateArea(){
+  appendArea("createWineArea", 1);
+  useAjax("createWineForm");
 }

@@ -35,6 +35,10 @@
     <div id="score">Score : <span/></div>
     <div id="year">Year : <span/></div>
   </div>
+
+  <div id="createWineArea" style="pointer-events:none;opacity:0;">
+      <div id="createWineForm"></div>
+  </div>
 </div>
 
 <%= render partial: 'layouts/footer' %>
@@ -121,5 +125,4 @@
     wineParams.maxYear,
     wineParams.minYear,
     wineParams.maxYear );
-
 </script>
