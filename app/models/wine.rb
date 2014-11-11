@@ -5,6 +5,7 @@ class Wine < ActiveRecord::Base
   belongs_to :winetype
   has_and_belongs_to_many :situations , dependent: :delete_all
   has_and_belongs_to_many :winevarieties , dependent: :delete_all
+  mount_uploader :photo , PhotoUploader
 
   validates :name, :input_region,
     presence: true,
