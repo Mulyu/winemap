@@ -81,7 +81,7 @@ CSV.foreach('db/seed_csv/wines.csv') do |row|
     sourness: row[7],
     winetype_id: row[8],
     year: row[9],
-    photopath: row[10],
+    photo: row[10],
     score: row[11],
     price: row[12],
     winery: row[13],

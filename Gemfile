@@ -27,6 +27,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 # for login system
 gem 'devise'
+# for upload photo
+gem 'carrierwave'
+gem 'rmagick' , :require => 'RMagick'
 
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
