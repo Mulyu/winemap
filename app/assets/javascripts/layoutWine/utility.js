@@ -62,6 +62,9 @@ function useAjax( domId ){
         var target = e.target;
         if (target.id === 'createWineArea') {
           hiddenArea("createWineArea");
+      
+          d3.select("#new_wine").remove();
+
           return false;
         }
       });
