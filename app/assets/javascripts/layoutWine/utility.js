@@ -63,6 +63,14 @@ function useAjax( domId ){
   });
 }
 
+$("#createWineArea").click(function(e){
+  var target = e.target;
+  if (target.id === 'createWineArea') {
+    hiddenArea("createWineArea");
+    return false; // 必要に応じて
+  }
+});
+
 
 
 
