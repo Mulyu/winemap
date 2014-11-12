@@ -81,14 +81,14 @@ function wineFilter(){
       return;
     }
 
-    if( wine.price !== null)
+    if( ( wine.price !== null ) && ( wine.price !== "") )
       if( ( wine.price < priceSlider.getLeftHandleValue() ) ||
           ( wine.price > priceSlider.getRightHandleValue() ) ){
         wine.marker.setVisible(false);
         return;
       }
 
-    if( wine.year !== null)
+    if( ( wine.year !== null ) && ( wine.year !== "")  )
       if( ( wine.year < yearSlider.getLeftHandleValue() ) ||
           ( wine.year > yearSlider.getRightHandleValue() ) ){
         wine.marker.setVisible(false);
