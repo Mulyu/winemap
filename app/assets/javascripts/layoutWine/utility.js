@@ -50,11 +50,20 @@ function useAjax( domId ){
       $(function($){
         $("#new_wine")
         .bind("ajax:complete", function(){
+          dropPin();
+
           hiddenArea("createWineArea");
-          d3.select("#new_wine").remove();
           // todo : ピンを落とす処理を書く
           //       入力したwineの情報が欲しいでござる
         });
+      });
+      
+      $("#createWineArea").click(function(e){
+        var target = e.target;
+        if (target.id === 'createWineArea') {
+          hiddenArea("createWineArea");
+          return false;
+        }
       });
     },
     error: function(xhr, textStatus, errorThrown){
@@ -63,13 +72,54 @@ function useAjax( domId ){
   });
 }
 
-$("#createWineArea").click(function(e){
-  var target = e.target;
-  if (target.id === 'createWineArea') {
-    hiddenArea("createWineArea");
-    return false;
-  }
-});
+function dropPin() {
+  var geocoder = new google.maps.Geocoder();
+
+  var address = d3.select("#wine_input_region").node().value;
+
+  geocoder.geocode( { 'address': address}, function(results, status) {
+
+    if (status == google.maps.GeocoderStatus.OK) {
+      var latlng = results[0].geometry.location;
+
+      wineData = {
+        body:            3,
+        latitude:        latlng.lat(),
+        longitude:       latlng.lng(),
+        name:            d3.select("#wine_name").node().value,
+        price:           d3.select("#wine_price").node().value,
+        region:          [],
+        score:           3,
+        sweetness:       3,
+        user:            "guest",
+        wine_id:         null,
+        winelevel:       null,
+        winery:          d3.select("#wine_winery").node().value,
+        winetype_id:     d3.select("#wine_winetype_id").node().selectedIndex,
+        winetype_name:   d3.select("#wine_winetype_id").selectAll("option")[0][d3.select("#wine_winetype_id").node().selectedIndex].value,
+        winevarieties:   [],
+        year:            d3.select("#wine_year").node().value
+      };
+
+      var wine = new Wine(wineData);
+      wines.push( wine );
+
+      setMarker( googleMap, wine );
+      
+      d3.select("#new_wine").remove();
+
+
+    // ジオコーディングが成功しなかった場合
+    } else {
+      console.log('Geocode was not successful for the following reason: ' + status);
+          d3.select("#new_wine").remove();
+    }
+    
+  });
+
+}
+
+
 
 
 

@@ -42,7 +42,6 @@ function setMarker(map, wine){
     position: myLatlng,
     map: map,
     icon: wine.getIconImagePath(),
-    // todo : ピンをワインにする
     animation: google.maps.Animation.DROP,
     title: wine.name
   });
