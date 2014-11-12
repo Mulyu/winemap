@@ -108,3 +108,13 @@ function showCreateArea(){
   appendArea("createWineArea", 1);
   useAjax("createWineForm");
 }
+
+function changeMoreInfoArea(){
+  if( d3.select("#moreInfoInput").property("checked") ){
+    appendArea("moreField", 1);
+    d3.select("#moreField").style("display","block");
+  }else{
+    hiddenArea("moreField");
+    d3.select("#moreField").style("display","none");
+  }
+}
