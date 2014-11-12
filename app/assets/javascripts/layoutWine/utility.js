@@ -258,6 +258,7 @@ function TwoHandleSlider( d3Element, sliderId ){
 
     handleElement
       .append("div")
+      .style("cursor","move")
       .style("position","absolute")
       .style((left_or_right=="left"? "right":"left"), "0px")
       .style("padding","3px")
