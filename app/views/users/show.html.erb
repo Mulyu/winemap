@@ -44,9 +44,10 @@
   <strong>Introduction:</strong>
   <%= @user.introduction %>
 </p>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Delete', @user , method: :delete, data: { confirm: 'Are you sure?' } %> |
-
+<% if @user == @current_user %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Delete', @user , method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
 <!-- ログインしており、ユーザーがFollowしていない場合にFollowリンク表示 Follow済の場合はRemoveリンク表示 -->
 <% if logininfo_signed_in? %>
   <% if @user.followed.exists?(@current_user.id) == false %>
