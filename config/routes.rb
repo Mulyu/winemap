@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     registrations: 'logininfos/registrations',
     sessions: 'logininfos/sessions'
   }
-  resources :users do
+  resources :users ,except: [:new] do
     member do
       get :following,:followed
       post :follow,:remove

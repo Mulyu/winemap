@@ -4,8 +4,6 @@
   <li onClick="showCreateArea();"><a>New Wine</a></li>
   <li><%= link_to 'Filter', new_wine_path %></li>
   <li><%= link_to 'Ranking', ranking_path %></li>
-  <li><%= link_to 'Suggest', new_wine_path %></li>
-  <li><%= link_to 'Mean', new_wine_path %></li>
   
   <% if logininfo_signed_in? %>
     <li><%= link_to 'Logout', destroy_logininfo_session_path, method: :delete %></li>

@@ -3,7 +3,7 @@
 class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
   before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit, :create, :update]
-
+  before_action :set_current_user
   UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
   UNKNOWN_LAT_OR_LNG = 100.12345
 
@@ -53,6 +53,9 @@ class WinesController < ApplicationController
 
   # GET /wines/1/edit
   def edit
+    if @wine.user != @current_user
+      redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
+    end
   end
 
   # POST /wines
@@ -78,6 +81,10 @@ class WinesController < ApplicationController
   # PATCH/PUT /wines/1.json
   def update
 
+    if @wine.user != @current_user
+      redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
+    end
+
     normalize_wine_data
 
     respond_to do |format|
@@ -94,6 +101,11 @@ class WinesController < ApplicationController
   # DELETE /wines/1
   # DELETE /wines/1.json
   def destroy
+    
+    if @wine.user != @current_user
+      redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
+    end
+
     @wine.destroy
     respond_to do |format|
       format.html { redirect_to wines_url, notice: 'Wine was successfully destroyed.' }
@@ -190,6 +202,12 @@ class WinesController < ApplicationController
 
       # 存在する場合は一致したidを返す
       localregion_db.id
+    end
+
+    def set_current_user
+      if logininfo_signed_in?
+        @current_user = current_logininfo.user
+      end
     end
 
 end
