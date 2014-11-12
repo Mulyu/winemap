@@ -9,6 +9,8 @@ class WinesController < ApplicationController
   # GET /wines.json
   def index
 
+    wines = Wine.includes(:winetype , :winevarieties , :user , :localregion , country: :worldregion).where(user_id: 1)
+
     #array mapping
     @array_wines = wines.map{ |wine|
       regions = wine.localregion.name.delete('不明').split(',')
@@ -49,6 +51,9 @@ class WinesController < ApplicationController
 
   # GET /wines/1/edit
   def edit
+    if @wine.user != @current_user
+      redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
+    end
   end
 
   # POST /wines
@@ -74,6 +79,10 @@ class WinesController < ApplicationController
   # PATCH/PUT /wines/1.json
   def update
 
+    if @wine.user != @current_user
+      redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
+    end
+
     normalize_wine_data
 
     respond_to do |format|
@@ -90,6 +99,11 @@ class WinesController < ApplicationController
   # DELETE /wines/1
   # DELETE /wines/1.json
   def destroy
+    
+    if @wine.user != @current_user
+      redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
+    end
+
     @wine.destroy
     respond_to do |format|
       format.html { redirect_to wines_url, notice: 'Wine was successfully destroyed.' }
