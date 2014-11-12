@@ -105,6 +105,9 @@
       <label for="wine_sourness_5">5</label>
     </div>
 
+<% if false %>
+    フォームの中に入れるのつらいんだ、ごめんね (ﾟ □ ﾟ )
+
     <div class="field checkField" id="varietyField">
       <%= f.label :winevariety %>
       <%= collection_check_boxes(:wine, :winevariety_ids, @winevarieties, :id, :name) do |b| %>
@@ -120,6 +123,7 @@
         <%= b.label { b.text } %>
       <% end %>
     </div>
+<% end %>
 
     <div class="field" id="photoField">
       <%= f.label :photo %>
