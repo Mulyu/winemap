@@ -63,7 +63,9 @@ function useAjax( domId ){
         if (target.id === 'createWineArea') {
           hiddenArea("createWineArea");
       
-          d3.select("#new_wine").remove();
+          d3.select("#createWineForm")
+            .select(".main")
+            .remove();
 
           return false;
         }

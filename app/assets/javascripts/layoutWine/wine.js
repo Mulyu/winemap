@@ -1,5 +1,7 @@
 function Wine(wineData){
 
+  var that = this;
+
   // ワインデータの格納
   this.id = wineData.wine_id;
   this.name = wineData.name;
@@ -22,26 +24,7 @@ function Wine(wineData){
     name:       wineData.user,
     level:      wineData.winelevel };
 
-
-  this.setInfoToDetailArea = function(){
-    var detailAreaElement = d3.select("#detailArea");
-
-    detailAreaElement.select("#name").select("span")
-      .text(this.name);
-
-    detailAreaElement.select("#type").select("span")
-      .text(this.type.name)
-      .attr("onclick","wineFilterByType('"+this.type.name+"');");
-
-    detailAreaElement.select("#price").select("span")
-      .text(this.price);
-
-    detailAreaElement.select("#score").select("span")
-      .text(this.review.score);
-
-    detailAreaElement.select("#year").select("span")
-      .text(this.year);
-  };
+  this.detailHtml = getDetailHtml();
 
   this.getIconImagePath = function(){
     // todo : ワインのscore(this.review.score)に合わせてreturnの内容を変える
@@ -61,6 +44,50 @@ function Wine(wineData){
         return "/assets/wine/smallDefault.png";
     }
   };
+
+  this.showInfo = function( map ){
+      that.infoWindow = new google.maps.InfoWindow({
+        content: this.detailHtml
+      });
+
+      that.infoWindow.open(map, that.marker);
+  };
+
+  function getDetailHtml(){
+    setInfoToDetailArea();
+
+    var html = d3.select("#detailTemplateArea")
+                  .select("div").node().cloneNode(true);
+
+    return html;
+  }
+
+  function setInfoToDetailArea(){
+    var detailAreaElement = d3.select("#detailTemplateArea");
+
+    detailAreaElement.select("#name").select("span")
+      .text(that.name);
+
+    detailAreaElement.select("#type").select("span")
+      .text(that.type.name)
+      .attr("onclick","wineFilterByType('"+that.type.name+"');");
+
+    detailAreaElement.select("#price").select("span")
+      .text(that.price);
+
+    detailAreaElement.select("#score").select("span")
+      .text(that.review.score);
+
+    detailAreaElement.select("#year").select("span")
+      .text(that.year);
+  }
+}
+
+function hiddenWineDetail(){
+  wines.forEach( function(wine){
+    if("infoWindow" in wine)
+      wine.infoWindow.close();
+  });
 }
 
 function wineFilterByType( type ){

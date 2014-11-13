@@ -26,16 +26,14 @@
     <label for="filterShowInput">Filter</label>
   </form>
 
-  <div id="detailArea" style="pointer-events:none; opacity:0">
-    <button id="closeButton"
-            onClick=" hiddenArea( 'detailArea' );
-                      resetWineFilter();"
-    >閉じる</button>
-    <div id="name">Name : <span/></div>
-    <div id="type">Type : <span/></div>
-    <div id="price">Price : <span/></div>
-    <div id="score">Score : <span/></div>
-    <div id="year">Year : <span/></div>
+  <div id="detailTemplateArea" style="pointer-events:none; opacity:0">
+    <div id="detailArea">
+      <div id="name">Name : <span/></div>
+      <div id="type">Type : <span/></div>
+      <div id="price">Price : <span/></div>
+      <div id="score">Score : <span/></div>
+      <div id="year">Year : <span/></div>
+    </div>
   </div>
 
   <div id="createWineArea"

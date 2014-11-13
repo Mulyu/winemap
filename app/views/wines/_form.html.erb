@@ -123,12 +123,13 @@
         <%= b.label { b.text } %>
       <% end %>
     </div>
-<% end %>
 
     <div class="field" id="photoField">
       <%= f.label :photo %>
       <%= f.file_field :photo, accept: 'image/*' %>
     </div>
+<% end %>
+
   </div>
   <div class="actions">
     <%= f.submit %>
