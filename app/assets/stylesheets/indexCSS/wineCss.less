@@ -41,6 +41,11 @@
 	 		div{
 	 			float:		left;
 	 		}
+
+	 		.filterName{
+	 			margin-top: 10px;
+	 			font-size:  17px;
+	 		}
 	 	}
 
 	 	.filter:first-child{
@@ -51,8 +56,8 @@
 	#filterShowSwitch{
 		position:			absolute;
 		z-index: 			3;
-		top:				10px;
-		right:				10px;
+		top:				20px;
+		right:				20px;
 		width:				auto;
 
 		input{
@@ -62,10 +67,17 @@
 		label{
 			cursor: 		pointer;
 			display:		block;
-			padding:		5px;
-
+			padding:		8px;
+			font-size: 		15px;
 			background-color: black;
 			border:			solid 2px white;
+			border-radius: 	10px;
+			transition:		0.2s;
+		}
+
+		label:hover{
+			background-color:	white;
+			color:				black;
 		}
 
 		input:checked + label{
@@ -120,7 +132,7 @@
 		#createWineForm{
 			margin-top: 	100px;
 			margin:			0 auto;
-			width:			600px;
+			width:			650px;
 		}
 	}
 }

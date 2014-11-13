@@ -16,30 +16,32 @@
 }
 
 #createWineForm .main{
-  margin-top:     30px;
-  border:         solid 2px white;
-  border-radius:  30px;
+  margin-top:       30px;
+  border:           solid 2px white;
+  border-radius:    30px;
+  background-color: #353535;
 
   h1{
-    margin:       0 auto;
-    font-size:    20px;
-    padding:      20px;
-    padding-bottom:  0;
+    margin:         0 auto;
+    margin-bottom:  10px;
+    font-size:      20px;
+    padding:        20px;
+    padding-bottom: 0;
   }
 
   form{
-    margin-right: auto;
-    margin-left:  auto;
-    width:        600px;
+    margin-right:   auto;
+    margin-left:    auto;
+    width:          600px;
     
     .field{
-      margin-top:   20px;
-      margin-left:   20px;
+      margin-top:       20px;
+      margin-left:      20px;
       background-color: #0C555D;
-      border:        solid 3px #0C555D;
-      height:       30px;
-      text-align:    right;
-      font-size:    14px;
+      border:           solid 3px #0C555D;
+      height:           30px;
+      text-align:       right;
+      font-size:        14px;
 
       label{
         margin-right:   5px;
@@ -141,10 +143,25 @@
     .actions{
       clear:        both;
       text-align:   right;
+      margin:       20px;
 
       input{
-        border:       none;
-        cursor: pointer;
+        diaplay:          block;
+        cursor:           pointer;
+        color:            white;
+        font-size:        15px;
+        padding:          3px;
+        border:           solid 3px #E9872E;
+        background-color: #E9872E;
+        border-radius:    10px;
+      }
+
+      input:hover{
+        background-color: #E9872E;
+      }
+
+      input:active{
+        background-color: #E9872E;
       }
     }
 
@@ -155,16 +172,28 @@
 
     #moreInfoArea{
       clear:        both;
-      text-align:   left;
+      text-align:   center;
+      width:        60px;
+      margin:       0 auto;
 
         input{
           display:  none;
         }
 
         label{
-          cursor: pointer;
-          margin-left:    30px;
-          background-color: gray;
+          display:        block;
+          cursor:         pointer;
+          font-size:      15px;
+          padding:        2px 5px;
+          border-bottom:  dotted 2px white;
+        }
+
+        label:hover{
+          border-bottom:  solid 2px white;
+        }
+
+        input:checked + label{
+          border-bottom:  solid 2px white;
         }
     }
 
