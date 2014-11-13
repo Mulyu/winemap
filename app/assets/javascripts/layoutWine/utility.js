@@ -132,9 +132,12 @@ function dropPin() {
 function TwoHandleSlider( d3Element, sliderId ){
 
   var styleParam = {
-    width:      400,
+    width:      300,
     height:     50
   };
+
+  if(sliderId == "scoreSlider")
+    styleParam.width = 200;
 
 
 
@@ -160,9 +163,9 @@ function TwoHandleSlider( d3Element, sliderId ){
       });
     });
 
-  var HANDLE_SIZE = 40;
+  var HANDLE_SIZE = 30;
   var BORDER_WEIGHT = 2;
-  var MARGIN = 60;
+  var MARGIN = 50;
   var HEIGHT = MARGIN+HANDLE_SIZE;
   var FONT_SIZE = 15;
 
