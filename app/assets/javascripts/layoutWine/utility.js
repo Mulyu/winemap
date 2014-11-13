@@ -21,13 +21,13 @@ function enableUpdateVisAreaSize(domId){
   });
 }
 
-function appendArea( domId ){
+function appendArea( domId , opacityValue){
     var area = d3.select("#"+domId);
 
-    area.style("display","block");
+    area.style("pointer-events","auto");
 
     area.transition()
-      .style("opacity","0.7");
+      .style("opacity",opacityValue);
 }
 
 function hiddenArea( domId ){
@@ -36,7 +36,7 @@ function hiddenArea( domId ){
     area.transition()
       .style("opacity","0");
 
-    area.style("display","none");
+    area.style("pointer-events","none");
 }
 
 function useAjax( domId ){
@@ -46,6 +46,30 @@ function useAjax( domId ){
     cache: false,
     success: function(data, textStatus){
       $("#"+domId).html(data);
+
+      $(function($){
+        $("#new_wine")
+        .bind("ajax:complete", function(){
+          dropPin();
+
+          hiddenArea("createWineArea");
+          // todo : ピンを落とす処理を書く
+          //       入力したwineの情報が欲しいでござる
+        });
+      });
+      
+      $("#createWineArea").click(function(e){
+        var target = e.target;
+        if (target.id === 'createWineArea') {
+          hiddenArea("createWineArea");
+      
+          d3.select("#createWineForm")
+            .select(".main")
+            .remove();
+
+          return false;
+        }
+      });
     },
     error: function(xhr, textStatus, errorThrown){
       // エラー処理
@@ -53,15 +77,67 @@ function useAjax( domId ){
   });
 }
 
+function dropPin() {
+  var geocoder = new google.maps.Geocoder();
+
+  var address = d3.select("#wine_input_region").node().value;
+
+  geocoder.geocode( { 'address': address}, function(results, status) {
+
+    if (status == google.maps.GeocoderStatus.OK) {
+      var latlng = results[0].geometry.location;
+
+      wineData = {
+        body:            3,
+        latitude:        latlng.lat(),
+        longitude:       latlng.lng(),
+        name:            d3.select("#wine_name").node().value,
+        price:           d3.select("#wine_price").node().value,
+        regions:         d3.select("#wine_input_region").node().value,
+        score:           3,
+        sweetness:       3,
+        user:            "guest",
+        wine_id:         null,
+        winelevel:       null,
+        winery:          d3.select("#wine_winery").node().value,
+        winetype_id:     d3.select("#wine_winetype_id").node().selectedIndex,
+        winetype_name:   d3.select("#wine_winetype_id").selectAll("option")[0][d3.select("#wine_winetype_id").node().selectedIndex].value,
+        winevarieties:   [],
+        year:            d3.select("#wine_year").node().value
+      };
+
+      var wine = new Wine(wineData);
+      wines.push( wine );
+
+      setMarker( googleMap, wine );
+      
+      d3.select("#new_wine").remove();
+
+
+    // ジオコーディングが成功しなかった場合
+    } else {
+      console.log('Geocode was not successful for the following reason: ' + status);
+          d3.select("#new_wine").remove();
+    }
+    
+  });
+
+}
+
+
+
 
 
 
 function TwoHandleSlider( d3Element, sliderId ){
 
   var styleParam = {
-    width:      400,
+    width:      300,
     height:     50
   };
+
+  if(sliderId == "scoreSlider")
+    styleParam.width = 200;
 
 
 
@@ -87,9 +163,9 @@ function TwoHandleSlider( d3Element, sliderId ){
       });
     });
 
-  var HANDLE_SIZE = 40;
+  var HANDLE_SIZE = 30;
   var BORDER_WEIGHT = 2;
-  var MARGIN = 60;
+  var MARGIN = 50;
   var HEIGHT = MARGIN+HANDLE_SIZE;
   var FONT_SIZE = 15;
 
@@ -190,6 +266,7 @@ function TwoHandleSlider( d3Element, sliderId ){
 
     handleElement
       .append("div")
+      .style("cursor","move")
       .style("position","absolute")
       .style((left_or_right=="left"? "right":"left"), "0px")
       .style("padding","3px")
@@ -220,6 +297,8 @@ function TwoHandleSlider( d3Element, sliderId ){
 
 
   function normalValue( left_or_right ){
+    sliderValue[ left_or_right+"Value" ] = Math.round( sliderValue[ left_or_right+"Value" ] );
+
     if( sliderValue[ left_or_right+"Value" ] < sliderValue.minValue )
       sliderValue[ left_or_right+"Value" ] = sliderValue.minValue;
     

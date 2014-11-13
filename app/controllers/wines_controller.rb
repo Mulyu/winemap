@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
   before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit, :create, :update]

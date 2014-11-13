@@ -1,21 +1,47 @@
 
+<%= javascript_include_tag 'application'%>
+
 <script src="https://www.google.com/jsapi/"></script>
 
 <%= render partial: 'layouts/topbar' %>
 
 <div id="visArea">
   <div id="map"></div>
-</div>
+  <div id="filterArea" style="pointer-events:none; opacity:0">
+      <div id="scoreFilter" class="filter">
+        <div class="filterName">Score</div>
+      </div>
+      <div id="priceFilter" class="filter">
+        <div class="filterName">Price</div>
+      </div>
+      <div id="yearFilter" class="filter">
+        <div class="filterName">Year</div>
+      </div>
+  </div>
+  <form id="filterShowSwitch">
+    <input type="checkbox"
+           id="filterShowInput"
+           onChange="changeVisFilterArea();"
+    ></input>
+    <label for="filterShowInput">Filter</label>
+  </form>
 
-<div id="detailArea" style="display:none; opacity:0">
-  <button id="closeButton"
-          onClick=" hiddenArea( 'detailArea' );
-                    resetWineFilter();"
-  >閉じる</button>
-  <div id="name">Name : <span/></div>
-  <div id="type">Type : <span/></div>
-  <div id="price">Price : <span/></div>
-  <div id="score">Score : <span/></div>
+  <div id="detailTemplateArea" style="display:none">
+    <div id="detailArea">
+      <div class="name"><span/></div>
+      <div class="region">Region : <span/></div>
+      <div class="type">Type : <span/></div>
+      <div class="price">Price : <span/></div>
+      <div class="score">Score : <span/></div>
+      <div class="year">Year : <span/></div>
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+
+  <div id="createWineArea"
+       style="pointer-events:none;opacity:0;">
+      <div id="createWineForm"></div>
+  </div>
 </div>
 
 <%= render partial: 'layouts/footer' %>
@@ -33,28 +59,73 @@
   var googleMap;
 
   var wines = [];
+  var wineParams = {
+    minPrice:     2000,
+    maxPrice:     2000,
+    minYear:      2000,
+    maxYear:      2000, 
+  };
 
   wineData.forEach(function(wine){
     wines.push(new Wine(wine));
+
+    if(wine.price != null){
+      if(wine.price < wineParams.minPrice)
+        wineParams.minPrice = wine.price;
+      if(wine.price > wineParams.maxPrice)
+        wineParams.maxPrice = wine.price;
+    }
+
+    if(wine.year != null){
+      if(wine.year < wineParams.minYear)
+        wineParams.minYear = wine.year;
+      if(wine.year > wineParams.maxYear)
+        wineParams.maxYear = wine.year;
+    }
   });
 
   setGoogleMap("map", googleMap);
 
-  var scoreSlider = new TwoHandleSlider( d3.select("#detailArea"), "scoreSlider" );
+  
+
+  var scoreSlider = new TwoHandleSlider( d3.select("#scoreFilter"), "scoreSlider" );
 
   scoreSlider.addDraggingFunction(
     function(){
-      resetWineFilter();
+      wineFilter();
     }
   );
 
-  scoreSlider.addDraggingFunction(
+  scoreSlider.setSliderValue( 1, 5, 1, 5);
+
+  
+
+  var priceSlider = new TwoHandleSlider( d3.select("#priceFilter"), "priceSlider" );
+
+  priceSlider.addDraggingFunction(
     function(){
-      wineFilterByScore(
-        scoreSlider.getLeftHandleValue(),
-        scoreSlider.getRightHandleValue()
-      );
+      wineFilter();
     }
   );
 
+  priceSlider.setSliderValue(
+    wineParams.minPrice,
+    wineParams.maxPrice,
+    wineParams.minPrice,
+    wineParams.maxPrice );
+
+  
+  var yearSlider = new TwoHandleSlider( d3.select("#yearFilter"), "yearSlider" );
+
+  yearSlider.addDraggingFunction(
+    function(){
+      wineFilter();
+    }
+  );
+
+  yearSlider.setSliderValue(
+    wineParams.minYear,
+    wineParams.maxYear,
+    wineParams.minYear,
+    wineParams.maxYear );
 </script>

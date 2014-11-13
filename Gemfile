@@ -29,7 +29,7 @@ gem 'spring',        group: :development
 gem 'devise'
 # for upload photo
 gem 'carrierwave'
-gem 'rmagick' , :require => 'RMagick'
+# gem 'rmagick' , :require => 'RMagick'
 
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'

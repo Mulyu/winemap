@@ -1,7 +1,11 @@
 <div class = 'navbar'>
   <ul class = 'nav'>
   <li><%= link_to "Home" , root_path , :style => "ref" %></li>
+<<<<<<< HEAD
   <li><%= link_to 'New Wine', new_wine_path %></li>
+=======
+  <li onClick="showCreateArea();"><a>New Wine</a></li>
+>>>>>>> feature_more_ajax
   <li><%= link_to 'Ranking', ranking_path %></li>
   
   <% if logininfo_signed_in? %>

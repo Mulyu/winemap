@@ -42,14 +42,13 @@ function setMarker(map, wine){
     position: myLatlng,
     map: map,
     icon: wine.getIconImagePath(),
-    // todo : ピンをワインにする
     animation: google.maps.Animation.DROP,
     title: wine.name
   });
 
   google.maps.event.addListener(wine.marker, "click", function() {
-    wine.setInfoToDetailArea();
-    appendArea("detailArea");
+    hiddenWineDetail();
+    wine.showInfo( map );
   });
 }
 

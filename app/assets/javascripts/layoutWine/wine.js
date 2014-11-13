@@ -1,5 +1,7 @@
 function Wine(wineData){
 
+  var that = this;
+
   // ワインデータの格納
   this.id = wineData.wine_id;
   this.name = wineData.name;
@@ -22,23 +24,7 @@ function Wine(wineData){
     name:       wineData.user,
     level:      wineData.winelevel };
 
-
-  this.setInfoToDetailArea = function(){
-    var detailAreaElement = d3.select("#detailArea");
-
-    detailAreaElement.select("#name").select("span")
-      .text(this.name);
-
-    detailAreaElement.select("#type").select("span")
-      .text(this.type.name)
-      .attr("onclick","wineFilterByType('"+this.type.name+"');");
-
-    detailAreaElement.select("#price").select("span")
-      .text(this.price);
-
-    detailAreaElement.select("#score").select("span")
-      .text(this.review.score);
-  };
+  this.detailHtml = getDetailHtml();
 
   this.getIconImagePath = function(){
     // todo : ワインのscore(this.review.score)に合わせてreturnの内容を変える
@@ -58,6 +44,57 @@ function Wine(wineData){
         return "/assets/wine/smallDefault.png";
     }
   };
+
+  this.showInfo = function( map ){
+      that.infoWindow = new google.maps.InfoWindow({
+        content: this.detailHtml
+      });
+
+      that.infoWindow.open(map, that.marker);
+  };
+
+  function getDetailHtml(){
+    setInfoToDetailArea();
+
+    var html = d3.select("#detailTemplateArea")
+                  .select("div").node().cloneNode(true);
+
+    return html;
+  }
+
+  function setInfoToDetailArea(){
+    var detailAreaElement = d3.select("#detailTemplateArea");
+
+    detailAreaElement.select(".name").select("span")
+      .text(that.name);
+
+    var names = that.productionDistrict.names;
+    if( names.length >3 )
+      names = names.slice(0, 4);
+
+    detailAreaElement.select(".region").select("span")
+      .text( names );
+
+    detailAreaElement.select(".type").select("span")
+      .text(that.type.name)
+      .attr("onclick","wineFilterByType('"+that.type.name+"');");
+
+    detailAreaElement.select(".price").select("span")
+      .text(that.price);
+
+    detailAreaElement.select(".score").select("span")
+      .text(that.review.score);
+
+    detailAreaElement.select(".year").select("span")
+      .text(that.year);
+  }
+}
+
+function hiddenWineDetail(){
+  wines.forEach( function(wine){
+    if("infoWindow" in wine)
+      wine.infoWindow.close();
+  });
 }
 
 function wineFilterByType( type ){
@@ -68,20 +105,50 @@ function wineFilterByType( type ){
   });
 }
 
-function wineFilterByPrice( minPrice, maxPrice ){
-  // todo : 価格でフィルタリングする処理を書く
-}
-
-function wineFilterByScore( minScore, maxScore ){
-  wines.forEach(function(wine){
-    if( ( wine.review.score < minScore ) || ( wine.review.score > maxScore ) ){
-      wine.marker.setVisible(false);
-    }
-  });
-}
-
-function resetWineFilter(){
+function wineFilter(){
   wines.forEach(function(wine){
     wine.marker.setVisible(true);
+
+    if( ( wine.review.score < scoreSlider.getLeftHandleValue() ) ||
+        ( wine.review.score > scoreSlider.getRightHandleValue() ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( ( wine.price !== null ) && ( wine.price !== "") )
+      if( ( wine.price < priceSlider.getLeftHandleValue() ) ||
+          ( wine.price > priceSlider.getRightHandleValue() ) ){
+        wine.marker.setVisible(false);
+        return;
+      }
+
+    if( ( wine.year !== null ) && ( wine.year !== "")  )
+      if( ( wine.year < yearSlider.getLeftHandleValue() ) ||
+          ( wine.year > yearSlider.getRightHandleValue() ) ){
+        wine.marker.setVisible(false);
+        return;
+      }
   });
+}
+
+function changeVisFilterArea(){
+  if( d3.select("#filterShowInput").property("checked") )
+    appendArea("filterArea", 0.7);
+  else
+    hiddenArea("filterArea");
+}
+
+function showCreateArea(){
+  appendArea("createWineArea", 1);
+  useAjax("createWineForm");
+}
+
+function changeMoreInfoArea(){
+  if( d3.select("#moreInfoInput").property("checked") ){
+    appendArea("moreField", 1);
+    d3.select("#moreField").style("display","block");
+  }else{
+    hiddenArea("moreField");
+    d3.select("#moreField").style("display","none");
+  }
 }

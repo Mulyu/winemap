@@ -15,198 +15,249 @@
   color:        white;
 }
 
-h1{
-  margin-right: auto;
-  margin-left:  auto;
-  width:        600px;
-  font-size:    40px;
-  padding:      40px;
-}
+#createWineForm .main{
+  margin-top:       30px;
+  border:           solid 2px white;
+  border-radius:    30px;
+  background-color: #353535;
 
-form{
-  margin-right: auto;
-  margin-left:  auto;
-  width:        600px;
-  
-  .field{
-    margin-top:   20px;
-    margin-left:   20px;
-    background-color: #0C555D;
-    border:        solid 3px #0C555D;
-    height:       30px;
-    text-align:    right;
-    font-size:    14px;
-
-    label{
-      margin-right:   5px;
-    }
-
-    input{
-      height:       30px;
-      width:        80px;
-      border:       none;
-    }
-
-    select{
-      height:       30px;
-      width:        80px;
-      border:       none;
-    }
+  h1{
+    margin:         0 auto;
+    margin-bottom:  10px;
+    font-size:      20px;
+    padding:        20px;
+    padding-bottom: 0;
   }
 
-  .textField{
-    width:        170px;
-  }
+  form{
+    margin-right:   auto;
+    margin-left:    auto;
+    width:          600px;
+    
+    .field{
+      margin-top:       20px;
+      margin-left:      20px;
+      background-color: #0C555D;
+      border:           solid 3px #0C555D;
+      height:           30px;
+      text-align:       right;
+      font-size:        14px;
 
-  .sliderField{
-    width:        267px;
+      label{
+        margin-right:   5px;
+      }
 
-    label{
-      float:          left;
-      display:        block;
-      height:         26px;
-      width:          26px;
-      line-height:    26px;
-      text-align:     center;
-      border:         solid 2px #0C555D;
-      margin:         0;
+      input{
+        height:       30px;
+        width:        80px;
+        border:       none;
+      }
+
+      select{
+        height:       30px;
+        width:        80px;
+        border:       none;
+
+        color:        black !important;
+      }
     }
 
-    label:first-child{
-      width:          116px;
-      border:         none;
-      pointer-events: none;
+    .textField{
+      width:        170px;
     }
 
-    input{
-      display:        none;
+    .sliderField{
+      width:        267px;
+
+      label{
+        float:          left;
+        display:        block;
+        height:         26px;
+        width:          26px;
+        line-height:    26px;
+        text-align:     center;
+        border:         solid 2px #0C555D;
+        margin:         0;
+      }
+
+      label:first-child{
+        width:          116px;
+        border:         none;
+        pointer-events: none;
+      }
+
+      input{
+        display:        none;
+      }
+
+      label:hover{
+        transition:     0.2s;
+        border:         solid 2px white;
+      }
+
+      input[type="radio"]:checked+label{
+        transition:     0.2s;
+        background-color: white;
+        color:          #0C555D;
+        border:         solid 2px white;
+      }
     }
 
-    label:hover{
-      transition:     0.2s;
-      border:         solid 2px white;
+    .checkField{
+      width:        560px;
+      height:       auto;
+      text-align:   left;
+
+      label{
+        float:        left;
+        display:      block;
+        border:       solid 2px gray;
+        border-radius: 30px;
+        margin:        5px;
+        padding:        4px;
+      }
+
+      label:first-child{
+        float:        none;
+        border:       none;
+        pointer-events: none;
+      }
+
+      input{
+        display:      none;
+      }
+
+      label:hover{
+        transition:    0.2s;
+        border:       solid 2px white; 
+      }
+
+      input[type="checkbox"]:checked+label{
+        transition:   0.2s;
+        background-color: white;
+        color:        #0C555D;
+        border:       solid 2px white;
+      }
     }
 
-    input[type="radio"]:checked+label{
-      transition:     0.2s;
-      background-color: white;
-      color:          #0C555D;
-      border:         solid 2px white;
+    .actions{
+      clear:        both;
+      text-align:   right;
+      margin:       20px;
+
+      input{
+        diaplay:          block;
+        cursor:           pointer;
+        color:            white;
+        font-size:        15px;
+        padding:          3px;
+        border:           solid 3px #E9872E;
+        background-color: #E9872E;
+        border-radius:    10px;
+      }
+
+      input:hover{
+        background-color: #E9872E;
+      }
+
+      input:active{
+        background-color: #E9872E;
+      }
     }
-  }
 
-  .checkField{
-    width:        560px;
-    height:       auto;
-    text-align:   left;
+    .must{
+      border:        solid 3px #E9872E;
+      background-color: #E9872E;
+    }
 
-    label{
+    #moreInfoArea{
+      clear:        both;
+      text-align:   center;
+      width:        60px;
+      margin:       0 auto;
+
+        input{
+          display:  none;
+        }
+
+        label{
+          display:        block;
+          cursor:         pointer;
+          font-size:      15px;
+          padding:        2px 5px;
+          border-bottom:  dotted 2px white;
+        }
+
+        label:hover{
+          border-bottom:  solid 2px white;
+        }
+
+        input:checked + label{
+          border-bottom:  solid 2px white;
+        }
+    }
+
+    #nameField{
       float:        left;
-      display:      block;
-      border:       solid 2px gray;
-      border-radius: 30px;
-      margin:        5px;
-      padding:        4px;
     }
 
-    label:first-child{
-      float:        none;
-      border:       none;
-      pointer-events: none;
+    #regionField{
+      float:        left;
     }
 
-    input{
-      display:      none;
+    #winetypeField{
+      float:        left;
     }
 
-    label:hover{
-      transition:    0.2s;
-      border:       solid 2px white; 
+    #wineryField{
+      clear:        both;
+      float:        left;
     }
 
-    input[type="checkbox"]:checked+label{
-      transition:   0.2s;
-      background-color: white;
-      color:        #0C555D;
-      border:       solid 2px white;
+    #yearField{
+      float:        left;
     }
-  }
 
-  .actions{
-    clear:        both;
-    text-align:   right;
-
-    input{
-      border:       none;
+    #priceField{
+      float:        left;
     }
-  }
 
-  .must{
-    border:        solid 3px #E9872E;
-    background-color: #E9872E;
-  }
+    #scoreField{
+      clear:        both;
+      float:        left;
+    }
 
-  #nameField{
-    float:        left;
-  }
+    #bodyField{
+      float:        left;
+    }
 
-  #regionField{
-    float:        left;
-  }
+    #sweetField{
+      clear:        both;
+      float:        left;
+    }
 
-  #winetypeField{
-    float:        left;
-  }
+    #sournField{
+      float:        left;
+    }
 
-  #wineryField{
-    clear:        both;
-    float:        left;
-  }
+    #varietyField{
+      clear:        both;
+      float:        left;
+    }
 
-  #yearField{
-    float:        left;
-  }
+    #situationField{
+      float:        left;
+    }
 
-  #priceField{
-    float:        left;
-  }
+    #photoField{
+      clear:        both;
+      float:        left;
+      width:        200px;
+      text-align:   left;
+    }
 
-  #scoreField{
-    clear:        both;
-    float:        left;
-  }
-
-  #bodyField{
-    float:        left;
-  }
-
-  #sweetField{
-    clear:        both;
-    float:        left;
-  }
-
-  #sournField{
-    float:        left;
-  }
-
-  #varietyField{
-    clear:        both;
-    float:        left;
-  }
-
-  #situationField{
-    float:        left;
-  }
-
-  #photoField{
-    clear:        both;
-    float:        left;
-    width:        200px;
-    text-align:   left;
-  }
-
-  #photoField input{
-    width:        100px;
+    #photoField input{
+      width:        100px;
+    }
   }
 }
-
