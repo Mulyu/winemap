@@ -65,20 +65,27 @@ function Wine(wineData){
   function setInfoToDetailArea(){
     var detailAreaElement = d3.select("#detailTemplateArea");
 
-    detailAreaElement.select("#name").select("span")
+    detailAreaElement.select(".name").select("span")
       .text(that.name);
 
-    detailAreaElement.select("#type").select("span")
+    var names = that.productionDistrict.names;
+    if( names.length >3 )
+      names = names.slice(0, 4);
+
+    detailAreaElement.select(".region").select("span")
+      .text( names );
+
+    detailAreaElement.select(".type").select("span")
       .text(that.type.name)
       .attr("onclick","wineFilterByType('"+that.type.name+"');");
 
-    detailAreaElement.select("#price").select("span")
+    detailAreaElement.select(".price").select("span")
       .text(that.price);
 
-    detailAreaElement.select("#score").select("span")
+    detailAreaElement.select(".score").select("span")
       .text(that.review.score);
 
-    detailAreaElement.select("#year").select("span")
+    detailAreaElement.select(".year").select("span")
       .text(that.year);
   }
 }

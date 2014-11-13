@@ -93,7 +93,7 @@ function dropPin() {
         longitude:       latlng.lng(),
         name:            d3.select("#wine_name").node().value,
         price:           d3.select("#wine_price").node().value,
-        region:          [],
+        regions:         d3.select("#wine_input_region").node().value,
         score:           3,
         sweetness:       3,
         user:            "guest",
