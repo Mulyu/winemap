@@ -9,7 +9,7 @@ class WinesController < ApplicationController
   # GET /wines.json
   def index
 
-    wines = Wine.includes(:winetype , :winevarieties , :user , :localregion , country: :worldregion).where(user_id: 1)
+    wines = Wine.includes(:winetype , :winevarieties , :user , :localregion , country: :worldregion).all
 
     #array mapping
     @array_wines = wines.map{ |wine|
@@ -156,6 +156,12 @@ class WinesController < ApplicationController
         @wine.latitude = hash_location['lat']
         @wine.longitude = hash_location['lng']
 
+        # 重複処理
+        if Localregion.find(@wine.localregion).present?
+          duplicated_num = Wine.where(localregion_id: @wine.localregion_id).size
+          @wine.latitude -= 1.0e-1 * (duplicated_num / 5)
+          @wine.longitude += 1.0e-1 * (duplicated_num % 5)
+        end
       else
         # レスポンスが無い、もしくはCountryが含まれていない場合は不明とする
         @wine.country_id = @wine.localregion_id = UNKNOWN_COUNTRY_OR_LOCALREGION_ID
