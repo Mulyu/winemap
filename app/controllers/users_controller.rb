@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   def mypage
     @followed = @current_user.followed
     @following = @current_user.following
+    @list_size = [@followed.size,@following.size].max
   end
 
   # POST /users/1/follow
