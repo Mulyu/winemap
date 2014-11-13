@@ -10,9 +10,18 @@
   </thead>
 
   <tbody>
-    <% @following.each do |following| %>
+    <% @list_size.times do |count| %>
       <tr>
-        <td><%= following.name %></td>
+        <td>
+          <% if @following[count].present? %>
+            <%= @following[count].name %>
+          <% end %>
+        </td>
+        <td>
+          <% if @followed[count].present? %>
+            <%= @followed[count].name %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
