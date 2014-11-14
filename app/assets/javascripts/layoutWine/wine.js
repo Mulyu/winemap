@@ -31,17 +31,17 @@ function Wine(wineData){
     
     switch(this.type.id){
       case 1:
-        return "/assets/wine/smallRed.png";
+        return "/assets/wine/redSmall.png";
       case 2:
-        return "/assets/wine/smallWhite.png";
+        return "/assets/wine/whiteSmall.png";
       case 3:
-        return "/assets/wine/smallRose.png";
+        return "/assets/wine/roseSmall.png";
       case 4:
-        return "/assets/wine/smallSpark.png";
+        return "/assets/wine/sparkSmall.png";
       case 5:
-        return "/assets/wine/smallDesart.png";
+        return "/assets/wine/desartSmall.png";
       default:
-        return "/assets/wine/smallDefault.png";
+        return "/assets/wine/defaultSmall.png";
     }
   };
 
