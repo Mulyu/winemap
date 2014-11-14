@@ -94,14 +94,14 @@ function dropPin() {
         name:            d3.select("#wine_name").node().value,
         price:           d3.select("#wine_price").node().value,
         regions:         d3.select("#wine_input_region").node().value,
-        score:           3,
+        score:           $("input[name='wine[score]']:checked").val(),
         sweetness:       3,
         user:            "guest",
         wine_id:         null,
         winelevel:       null,
         winery:          d3.select("#wine_winery").node().value,
         winetype_id:     d3.select("#wine_winetype_id").node().selectedIndex,
-        winetype_name:   d3.select("#wine_winetype_id").selectAll("option")[0][d3.select("#wine_winetype_id").node().selectedIndex].value,
+        winetype_name:   d3.select("#wine_winetype_id").selectAll("option")[0][d3.select("#wine_winetype_id").node().selectedIndex].text,
         winevarieties:   [],
         year:            d3.select("#wine_year").node().value
       };
