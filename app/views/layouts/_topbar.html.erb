@@ -1,13 +1,9 @@
 <div class = 'navbar'>
   <ul class = 'nav'>
   <li><%= link_to "Home" , root_path , :style => "ref" %></li>
-<<<<<<< HEAD
-  <li><%= link_to 'New Wine', new_wine_path %></li>
-=======
   <li onClick="showCreateArea();"><a>New Wine</a></li>
->>>>>>> feature_more_ajax
   <li><%= link_to 'Ranking', ranking_path %></li>
-  
+
   <% if logininfo_signed_in? %>
     <li><%= link_to 'Logout', destroy_logininfo_session_path, method: :delete %></li>
     <li><%= link_to 'Mypage',mypage_path %></li>
@@ -16,6 +12,6 @@
     <li><%= link_to 'Sign up', new_logininfo_registration_path %></li>
     <li><%= link_to 'Login', new_logininfo_session_path %></li>
   <% end %>
-  
+
   </ul>
 </div>
