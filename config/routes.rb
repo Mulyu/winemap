@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'inquiry/index'
+
+  get 'inquiry/confirm'
+
+  get 'inquiry/thanks'
+
   devise_for :logininfos ,controllers: {
     registrations: 'logininfos/registrations',
     sessions: 'logininfos/sessions'
