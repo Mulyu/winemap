@@ -3,6 +3,7 @@
   <li><%= link_to "Home" , root_path , :style => "ref" %></li>
   <li onClick="showCreateArea();"><a>New Wine</a></li>
   <li><%= link_to 'Ranking', ranking_path %></li>
+  <li><%= link_to 'Contact', inquiry_path %></li>
 
   <% if logininfo_signed_in? %>
     <li><%= link_to 'Logout', destroy_logininfo_session_path, method: :delete %></li>

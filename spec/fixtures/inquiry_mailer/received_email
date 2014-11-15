@@ -1,0 +1,3 @@
+InquiryMailer#received_email
+
+Hi, find me in app/views/inquiry_mailer/received_email

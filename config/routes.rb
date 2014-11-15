@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   match 'mypage', to: 'users#mypage', via: :get
   match 'ranking', to: 'ranking#index', via: :get
 
+  match 'inquiry', to: 'inquiry#index', via: :get
+  match 'inquiry/confirm', to: 'inquiry#confirm', via: :post
+  match 'inquiry/thanks', to: 'inquiry#thanks', via: :post
+
 end
