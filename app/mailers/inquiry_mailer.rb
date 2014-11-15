@@ -1,10 +1,10 @@
-class InpuiryMailer < ActionMailer::Base
+class InquiryMailer < ActionMailer::Base
   default from: "from@example.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
-  #   en.inpuiry_mailer.received_email.subject
+  #   en.inquiry_mailer.received_email.subject
   #
   def received_email
     @greeting = "Hi"

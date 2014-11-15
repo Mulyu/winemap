@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe InpuiryMailer, :type => :mailer do
+RSpec.describe InquiryMailer, :type => :mailer do
   describe "received_email" do
-    let(:mail) { InpuiryMailer.received_email }
+    let(:mail) { InquiryMailer.received_email }
 
     it "renders the headers" do
       expect(mail.subject).to eq("Received email")
