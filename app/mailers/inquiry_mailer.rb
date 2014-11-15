@@ -9,6 +9,6 @@ class InquiryMailer < ActionMailer::Base
   #
   def received_email(inquiry)
     @inquiry = inquiry
-    mail(subject: 'お問い合わせがありました')
+    mail(subject: 'お問い合わせがありました【VinoMap】')
   end
 end
