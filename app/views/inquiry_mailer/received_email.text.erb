@@ -1,3 +1,8 @@
-InquiryMailer#received_email
+Vinomapへお問い合わせがありました。
 
-<%= @greeting %>, find me in app/views/inquiry_mailer/received_email.text.erb
+--------------------------
+Name: <%= @inquiry.name %>
+Email: <%= @inquiry.email %>
+Message:
+<%= @inquiry.message %>
+--------------------------

@@ -1,5 +1,6 @@
 class InquiryMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: 'enpit.s04@gmail.com'
+  default to: 'enpit.s04@gmail.com'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -7,8 +8,7 @@ class InquiryMailer < ActionMailer::Base
   #   en.inquiry_mailer.received_email.subject
   #
   def received_email
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+    @inquiry = inquiry
+    mail(subject: 'お問い合わせがありました')
   end
 end
