@@ -1,0 +1,117 @@
+<%= form_for(@wine, remote: true, authenticity_token: true) do |f| %>
+  <% if @wine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
+
+      <ul>
+      <% @wine.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field textField must" id="nameField">
+    <%= f.label :name ,"Name"%>
+    <%= f.text_field :name%>
+  </div>
+
+  <div class="field textField must" id="regionField">
+    <%= f.label :country_or_region ,"Region"%>
+    <%= f.text_field :input_region %>
+  </div>
+
+  <div class="field textField must" id="winetypeField">
+    <%= f.label :winetype_id  ,"Type"%>
+    <%= f.collection_select :winetype_id, @winetypes, :id, :name, :include_blank => true %>
+  </div>
+
+  <div class="field textField" id="wineryField">
+    <%= f.label :winery  ,"Winery"%>
+    <%= f.text_field :winery %>
+  </div>
+  <div class="field textField" id="yearField">
+    <%= f.label :year  ,"Year"%>
+    <%= f.number_field :year %>
+  </div>
+  <div class="field textField" id="priceField">
+    <%= f.label :price ,"Price"%>
+    <%= f.number_field :price %>
+  </div>
+  <div class="field sliderField" id="scoreField">
+    <%= f.label :score ,"好み" %>
+    <%= f.radio_button :score, 1 %>
+    <label for="wine_score_1">1</label>
+    <%= f.radio_button :score, 2 %>
+    <label for="wine_score_2">2</label>
+    <%= f.radio_button :score, 3, {:checked=>true} %>
+    <label for="wine_score_3">3</label>
+    <%= f.radio_button :score, 4 %>
+    <label for="wine_score_4">4</label>
+    <%= f.radio_button :score, 5 %>
+    <label for="wine_score_5">5</label>
+  </div>
+  <div class="field sliderField" id="bodyField">
+    <%= f.label :body  ,"重さ"%>
+    <%= f.radio_button :body, 1 %>
+    <label for="wine_body_1">1</label>
+    <%= f.radio_button :body, 2 %>
+    <label for="wine_body_2">2</label>
+    <%= f.radio_button :body, 3, {:checked=>true} %>
+    <label for="wine_body_3">3</label>
+    <%= f.radio_button :body, 4 %>
+    <label for="wine_body_4">4</label>
+    <%= f.radio_button :body, 5 %>
+    <label for="wine_body_5">5</label>
+  </div>
+  <div class="field sliderField" id="sweetField">
+    <%= f.label :sweetness ,"甘み" %>
+    <%= f.radio_button :sweetness, 1 %>
+    <label for="wine_sweetness_1">1</label>
+    <%= f.radio_button :sweetness, 2 %>
+    <label for="wine_sweetness_2">2</label>
+    <%= f.radio_button :sweetness, 3, {:checked=>true} %>
+    <label for="wine_sweetness_3">3</label>
+    <%= f.radio_button :sweetness, 4 %>
+    <label for="wine_sweetness_4">4</label>
+    <%= f.radio_button :sweetness, 5 %>
+    <label for="wine_sweetness_5">5</label>
+  </div>
+  <div class="field sliderField" id="sournField">
+    <%= f.label :sourness  ,"酸味"%>
+    <%= f.radio_button :sourness, 1 %>
+    <label for="wine_sourness_1">1</label>
+    <%= f.radio_button :sourness, 2 %>
+    <label for="wine_sourness_2">2</label>
+    <%= f.radio_button :sourness, 3, {:checked=>true} %>
+    <label for="wine_sourness_3">3</label>
+    <%= f.radio_button :sourness, 4 %>
+    <label for="wine_sourness_4">4</label>
+    <%= f.radio_button :sourness, 5 %>
+    <label for="wine_sourness_5">5</label>
+  </div>
+  <div class="field checkField" id="varietyField">
+    <%= f.label :winevariety %>
+    <%= collection_check_boxes(:wine, :winevariety_ids, @winevarieties, :id, :name) do |b| %>
+      <%= b.check_box %>
+      <%= b.label { b.text } %>
+    <% end %>
+  </div>
+  <div class="field checkField" id="situationField">
+    <%= f.label :situation %>
+    <%= collection_check_boxes(:wine, :situation_ids, @situations, :id, :name) do |b| %>
+      <%= b.check_box %>
+      <%= b.label { b.text } %>
+    <% end %>
+  </div>
+  <div class="field" id="photoField">
+    <%= f.label :photo %>
+    <%= f.file_field :photo, accept: 'image/*' %>
+  </div>
+
+  <div style="clear: both;"></div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
