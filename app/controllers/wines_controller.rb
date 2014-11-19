@@ -102,7 +102,7 @@ class WinesController < ApplicationController
 
     @wine.destroy
     respond_to do |format|
-      format.html { redirect_to wines_url, notice: 'Wine was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Wine was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
