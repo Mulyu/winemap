@@ -90,7 +90,7 @@
   <strong>Photo:</strong>
   <%= image_tag @wine.photo.url(:thumb).to_s %>
 </p>
-<% if @wine.user == @current_user %>
+<% if @wine.user == @current_user || @wine.user.id == 1 %>
   <%= link_to 'Edit', edit_wine_path(@wine) %>
   <%= link_to 'Delete', @wine , method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
