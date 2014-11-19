@@ -16,6 +16,9 @@ class Logininfos::RegistrationsController < Devise::RegistrationsController
       @user.logininfo_id=resource.id
       @user.save
     end
+
+    # send welcome mail
+    LogininfoMailer.registration_confirmation(resource).deliver unless resource.invalid?
     
   end
   
