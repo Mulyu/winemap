@@ -30,14 +30,21 @@ class ProductController < ApplicationController
     def search_product_name(jan_code)
       res_amazon = Amazonapi.request(jan_code)
 
-      if res_amazon.has_key?('ItemSearchErrorResponse') && res_amazon['ItemSearchErrorResponse']['Error']['Code'] == 'RequestThrottled'
+      count_req = 0
+      no_res_amazon = false
+
+      while res_amazon.has_key?('ItemSearchErrorResponse') && res_amazon['ItemSearchErrorResponse']['Error']['Code'] == 'RequestThrottled'
         sleep 1
         res_amazon = Amazonapi.request(jan_code)
+        count_req += 1
+        if count_req >= 5
+          no_res_amazon = true
+          break
+        end
       end
 
-      items = res_amazon['ItemSearchResponse']['Items']
-
-      if items['TotalResults'].to_i > 0
+      if res_amazon['ItemSearchResponse']['Items']['TotalResults'].to_i > 0 && !no_res_amazon
+        items = res_amazon['ItemSearchResponse']['Items']
         item = items['Item'].instance_of?(Array) ? items['Item'][0] : items['Item']
         return item['ItemAttributes']['Title']
       else
