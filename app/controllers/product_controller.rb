@@ -28,11 +28,13 @@ class ProductController < ApplicationController
     end
 
     def search_product_name(jan_code)
+      # Amazonで検索
       res_amazon = Amazonapi.request(jan_code)
 
       count_req = 0
       no_res_amazon = false
 
+      # RequestThrottledエラーの場合に再リクエスト
       while res_amazon.has_key?('ItemSearchErrorResponse') && res_amazon['ItemSearchErrorResponse']['Error']['Code'] == 'RequestThrottled'
         sleep 1
         res_amazon = Amazonapi.request(jan_code)
@@ -43,6 +45,7 @@ class ProductController < ApplicationController
         end
       end
 
+      # Amazonで結果が無かった場合はYahooで検索
       if res_amazon['ItemSearchResponse']['Items']['TotalResults'].to_i > 0 && !no_res_amazon
         items = res_amazon['ItemSearchResponse']['Items']
         item = items['Item'].instance_of?(Array) ? items['Item'][0] : items['Item']
@@ -54,6 +57,7 @@ class ProductController < ApplicationController
         end
       end
 
+      # どちらも結果が無かった場合
       return 0
     end
 end
