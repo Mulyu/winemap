@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   match 'inquiry/confirm', to: 'inquiry#confirm', via: :post
   match 'inquiry/thanks', to: 'inquiry#thanks', via: :post
 
+  match 'product', to: 'product#index', via: :get
+
 end
