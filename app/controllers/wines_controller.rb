@@ -53,9 +53,7 @@ class WinesController < ApplicationController
 
   # GET /wines/1/edit
   def edit
-    if @wine.user != @current_user
-      redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
-    end
+    check_current_user
   end
 
   # POST /wines
@@ -81,9 +79,7 @@ class WinesController < ApplicationController
   # PATCH/PUT /wines/1.json
   def update
 
-    if @wine.user != @current_user
-      redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
-    end
+    check_current_user
 
     normalize_wine_data
 
@@ -102,13 +98,11 @@ class WinesController < ApplicationController
   # DELETE /wines/1.json
   def destroy
     
-    if @wine.user != @current_user
-      redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
-    end
+    check_current_user
 
     @wine.destroy
     respond_to do |format|
-      format.html { redirect_to wines_url, notice: 'Wine was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Wine was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -215,5 +209,10 @@ class WinesController < ApplicationController
         @current_user = current_logininfo.user
       end
     end
-
+    # 未登録ユーザーが登録したワインは誰でも編集可能
+    def check_current_user
+      if @wine.user != @current_user && @wine.user.id != 1
+        redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
+      end 
+    end
 end

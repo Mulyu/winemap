@@ -20,9 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    if @user != @current_user
-      redirect_to @user, notice: 'あなたは指定されたユーザではありません'
-    end
+    check_current_user
   end
   
   # GET /mypage
@@ -47,9 +45,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    if @user != @current_user
-      redirect_to @user, notice: 'あなたは指定されたユーザではありません'
-    end
+
+    check_current_user
 
     @user = User.new(user_params)
 
@@ -70,9 +67,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
 
-    if @user != @current_user
-      redirect_to @user, notice: 'あなたは指定されたユーザではありません'
-    end
+    check_current_user
 
     respond_to do |format|
       if @user.update(user_params)
@@ -89,9 +84,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     
-    if @user != @current_user
-      redirect_to @user, notice: 'あなたは指定されたユーザではありません'
-    end
+    check_current_user
 
     @user.destroy
     respond_to do |format|
@@ -119,5 +112,11 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :birth, :gender, :prefecture_id, :home_prefecture_id, :job, :married, :introduction)
+    end
+
+    def check_current_user
+      if @user != @current_user
+        redirect_to @user, notice: 'あなたは指定されたユーザではありません'
+      end
     end
 end
