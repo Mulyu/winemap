@@ -29,9 +29,11 @@ class ProductController < ApplicationController
 
     def search_product_name(jan_code)
       res_amazon = Amazonapi.request(jan_code)
+      items = res_amazon['ItemSearchResponse']['Items']
 
-      if res_amazon['ItemSearchResponse']['Items']['TotalResults'].to_i > 0
-        return res_amazon['ItemSearchResponse']['Items']['Item']['ItemAttributes']['Title']
+      if items['TotalResults'].to_i > 0
+        item = items['Item'].instance_of?(Array) ? items['Item'][0] : items['Item']
+        return item['ItemAttributes']['Title']
       else
         res_yahoo = Yahooapi.request(jan_code)
         if res_yahoo['ResultSet']['totalResultsReturned'].to_i > 0

@@ -20,12 +20,11 @@ class Amazonapi < ActiveRecord::Base
 
     req << "Operation=ItemSearch"
     req << "Keywords=#{jan_code}"
-    req << "ResponseGroup=ItemAttributes"
     req << "Timestamp=#{CGI.escape(Time.now.getutc.iso8601)}"
     req << "AssociateTag=suiyujin-22"
     req << "Condition=All"
     req << "Merchant=All"
-    req << "SearchIndex=All"
+    req << "SearchIndex=Grocery"
 
     req.sort!
 
