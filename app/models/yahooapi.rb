@@ -5,11 +5,15 @@ require 'json'
 class Yahooapi < ActiveRecord::Base
 
   def self.request(jan_code)
+
+    keys = YAML::load(File.open("#{Rails.root.to_s}/config/apikey.yml"))
+    app_id = keys['yahoo']['app_id']
+
     webapi(
       'http://shopping.yahooapis.jp/ShoppingWebService',
       '/V1/json/itemSearch',
       {
-        appid: 'dj0zaiZpPTNKd1RtRXFrY1lrdSZzPWNvbnN1bWVyc2VjcmV0Jng9YzM-',
+        appid: app_id,
         jan: jan_code
       }
     )
