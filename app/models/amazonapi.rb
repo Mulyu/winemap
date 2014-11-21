@@ -13,9 +13,14 @@ class Amazonapi < ActiveRecord::Base
 
     aws_host   = 'webservices.amazon.co.jp'
 
-    keys = YAML::load(File.open("#{Rails.root.to_s}/config/apikey.yml"))
-    access_key = keys['amazon']['access_key']
-    secret_key = keys['amazon']['secret_key']
+    if Rails.env == 'development'
+      keys = YAML::load(File.open("#{Rails.root.to_s}/config/apikey.yml"))
+      access_key = keys['amazon']['access_key']
+      secret_key = keys['amazon']['secret_key']
+    elsif Rails.env == 'production'
+      access_key = Rails.application.secrets.amazon_access_key
+      secret_key = Rails.application.secrets.amazon_secret_key
+    end
 
     req = ["Service=AWSECommerceService", "AWSAccessKeyId=#{access_key}", "Version=2009-06-01"]
 

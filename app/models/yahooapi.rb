@@ -6,8 +6,12 @@ class Yahooapi < ActiveRecord::Base
 
   def self.request(jan_code)
 
-    keys = YAML::load(File.open("#{Rails.root.to_s}/config/apikey.yml"))
-    app_id = keys['yahoo']['app_id']
+    if Rails.env == 'development'
+      keys = YAML::load(File.open("#{Rails.root.to_s}/config/apikey.yml"))
+      app_id = keys['yahoo']['app_id']
+    elsif Rails.env == 'production'
+      app_id = Rails.application.secrets.yahoo_api_id
+    end
 
     webapi(
       'http://shopping.yahooapis.jp/ShoppingWebService',
