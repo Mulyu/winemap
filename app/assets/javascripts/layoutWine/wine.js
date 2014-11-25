@@ -28,18 +28,18 @@ function Wine(wineData){
 
   this.getIconImagePath = function(){
     // todo : ワインのscore(this.review.score)に合わせてreturnの内容を変える
-    
     switch(this.type.id){
       case 1:
-        return "/assets/wine/redSmall.png";
+        return "/assets/wine/red"+this.review.score.toString()+".png";
       case 2:
-        return "/assets/wine/whiteSmall.png";
+        return "/assets/wine/white"+this.review.score.toString()+".png";
       case 3:
-        return "/assets/wine/roseSmall.png";
+        return "/assets/wine/rose"+this.review.score.toString()+".png";
       case 4:
-        return "/assets/wine/sparkSmall.png";
+        return "/assets/wine/sparkling"+this.review.score.toString()+".png";
       case 5:
-        return "/assets/wine/desartSmall.png";
+        console.log("dessert"+this.review.score.toString());
+        return "/assets/wine/dessert"+this.review.score.toString()+".png";
       default:
         return "/assets/wine/defaultSmall.png";
     }
