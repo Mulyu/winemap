@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108113335) do
+ActiveRecord::Schema.define(version: 20141126144230) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -34,18 +34,19 @@ ActiveRecord::Schema.define(version: 20141108113335) do
   end
 
   create_table "logininfos", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                             default: "", null: false
+    t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "mobile_token",           limit: 16
   end
 
   add_index "logininfos", ["email"], name: "index_logininfos_on_email", unique: true, using: :btree
