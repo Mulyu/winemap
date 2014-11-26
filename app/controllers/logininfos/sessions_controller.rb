@@ -1,6 +1,6 @@
 class Logininfos::SessionsController < Devise::SessionsController
 	respond_to :html,:json
-	protect_from_forgery :except => [:create]
+	protect_from_forgery :except => [:create,:destroy]
   def new
     super
   end
@@ -14,8 +14,13 @@ class Logininfos::SessionsController < Devise::SessionsController
       # モバイルから接続した場合は端末ごとに認証トークンを登録
     	resource[:mobile_token] = SecureRandom.hex(8)
      	resource.save
+     	respond_to do |format|
+     		format.json{render :json => resource}
+     		format.html{after_sign_in_path_for(resource)}
+     	end
+    else
+    	respond_with resource, location: after_sign_in_path_for(resource)
     end
-    respond_with resource, location: after_sign_in_path_for(resource)
   end
  
   def destroy
