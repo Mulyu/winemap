@@ -48,7 +48,6 @@ class Amazonapi < ActiveRecord::Base
 
   def self.webapi(site, path, params)
     uri = Addressable::URI.parse("#{site}#{path}?#{params}")
-    # raise
     xml = Net::HTTP.get(uri)
     json = Hash.from_xml(xml).to_json
     JSON.parse(json)

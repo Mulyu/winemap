@@ -61,7 +61,7 @@ class WinesController < ApplicationController
   def create
 
     @wine = Wine.new(wine_params)
-    
+
     normalize_wine_data
 
     respond_to do |format|
@@ -97,7 +97,7 @@ class WinesController < ApplicationController
   # DELETE /wines/1
   # DELETE /wines/1.json
   def destroy
-    
+
     check_current_user
 
     @wine.destroy
@@ -213,6 +213,6 @@ class WinesController < ApplicationController
     def check_current_user
       if @wine.user != @current_user && @wine.user.id != 1
         redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
-      end 
+      end
     end
 end
