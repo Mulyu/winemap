@@ -2,7 +2,7 @@ class ProductController < ApplicationController
   def index
     jan_code = params[:jan]
 
-    country_name = search_country(jan_code)
+    country_name = search_country(jan_code.slice(0, 3))
     product_name = search_product_name(jan_code)
 
     ret_json = {
@@ -16,15 +16,10 @@ class ProductController < ApplicationController
     render json: ret_json
   end
   private
-    def search_country(jan_code)
-      country_code = jan_code.slice(0, 3).to_i
+    def search_country(country_code)
+      country_id = Countrycode.select(:country_id).find_by(code: country_code)
 
-      # とりあえず日本だけ
-      if (country_code >= 450 && country_code <= 459) || (country_code >= 490 && country_code <= 499)
-        return '日本'
-      else
-        return 0
-      end
+      country_id.present? ? country_id.country.name : 0
     end
 
     def search_product_name(jan_code)
