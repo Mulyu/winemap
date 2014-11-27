@@ -2,14 +2,11 @@ class ProductController < ApplicationController
   def index
     jan_code = params[:jan]
 
-    country_name = search_country(jan_code.slice(0, 3))
-    product_name = search_product_name(jan_code)
-
     ret_json = {
       jan: jan_code,
       result: {
-        country_name: country_name,
-        product_name: product_name
+        country_name: search_country(jan_code.slice(0, 3)),
+        product_name: search_product_name(jan_code)
       }
     }
 
