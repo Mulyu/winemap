@@ -6,7 +6,7 @@ class ProductController < ApplicationController
       jan: jan_code,
       result: {
         country_name: search_country(jan_code.slice(0, 3)),
-        product_name: search_product_name(jan_code)
+        product_name: search_product(jan_code)
       }
     }
 
@@ -19,7 +19,7 @@ class ProductController < ApplicationController
       country_id.present? ? country_id.country.name : 0
     end
 
-    def search_product_name(jan_code)
+    def search_product(jan_code)
       # Amazonで検索
       res_amazon = Amazonapi.request(jan_code)
 
