@@ -1,33 +1,32 @@
-<%= stylesheet_link_tag "inputCSS/inputCss" %>
-
+<%= render partial: 'layouts/topbar' %>
 <h1> user info page </h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Follow</th>
-      <th>Follower</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @list_size.times do |count| %>
+<div class="centering-mypage" >
+  <table class="table-mypage">
+    <thead>
       <tr>
-        <td>
-          <% if @following[count].present? %>
-            <%= @following[count].name %>
-          <% end %>
-        </td>
-        <td>
-          <% if @followed[count].present? %>
-            <%= @followed[count].name %>
-          <% end %>
-        </td>
+        <th>Follow</th>
+        <th>Follower</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<%= link_to 'Edit', edit_user_path(id: @current_user.id) %>
+    </thead>
+    <tbody>
+      <% @list_size.times do |count| %>
+        <tr>
+          <% if @following[count].present? %>
+            <td>
+              <%= @following[count].name %>
+            </td>
+          <% end %>
+          <% if @followed[count].present? %>
+            <td>
+              <%= @followed[count].name %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="centering-infolink">
+  <%= link_to 'Edit your info', edit_user_path(id: @current_user.id) %>
+  </div>
+</div>
+<%= render partial: 'layouts/footer' %>
