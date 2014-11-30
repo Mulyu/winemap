@@ -53,7 +53,7 @@ function useAjax( domId ){
           var result = JSON.parse(data);
 
           if( "error" in result ){
-            console.log("エラーです");
+            showValidationMessage( result.error );
           }else{
             dropPin( result );
 
@@ -79,6 +79,18 @@ function useAjax( domId ){
       // エラー処理
     }
   });
+}
+
+function showValidationMessage( messageJson ){
+  var massageHtml="";
+  var massageDiv = d3.select(".errorArea");
+
+  massageDiv.selectAll("div").remove();
+
+  for( var key in messageJson ){
+    massageDiv.append("div")
+              .text(messageJson[key][0]);
+  }
 }
 
 function dropPin( wineData ) {

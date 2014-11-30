@@ -1,15 +1,6 @@
 <%= form_for(@wine, remote: true) do |f| %>
-  <% if @wine.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
-
-      <ul>
-      <% @wine.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="errorArea">
+  </div>
 
   <div class="field textField must" id="nameField">
     <%= f.label :name ,"Name"%>
