@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126144230) do
+ActiveRecord::Schema.define(version: 20141127103951) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20141126144230) do
     t.decimal "center_y",                  precision: 8, scale: 5, null: false
     t.integer "worldregion_id",                                    null: false
   end
+
+  create_table "countrycodes", id: false, force: true do |t|
+    t.integer "code",       null: false
+    t.integer "country_id", null: false
+  end
+
+  add_index "countrycodes", ["country_id"], name: "index_countrycodes_on_country_id", using: :btree
 
   create_table "follows", id: false, force: true do |t|
     t.integer "from_user_id", null: false
