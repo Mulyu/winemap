@@ -23,3 +23,9 @@
     </div>
   </ul>
 </div>
+
+<script>
+  var userData = <%= raw @current_user.to_json %>;
+  
+  setUserData( userData );
+</script>
