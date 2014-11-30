@@ -56,6 +56,8 @@
 
   var wineData = <%= raw @array_wines.to_json %>;
 
+  var userData = <%= raw @current_user.to_json %>;
+
   var googleMap;
 
   var wines = [];
@@ -85,8 +87,8 @@
   });
 
   setGoogleMap("map", googleMap);
-
   
+  setUserData( userData );
 
   var scoreSlider = new TwoHandleSlider( d3.select("#scoreFilter"), "scoreSlider" );
 

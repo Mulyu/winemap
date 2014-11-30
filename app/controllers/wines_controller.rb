@@ -7,6 +7,7 @@ class WinesController < ApplicationController
   protect_from_forgery :except => [:create]
   UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
   UNKNOWN_LAT_OR_LNG = 100.12345
+  protect_from_forgery except: :create
 
   # GET /wines
   # GET /wines.json

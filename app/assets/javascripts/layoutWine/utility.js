@@ -49,7 +49,10 @@ function useAjax( domId ){
 
       $(function($){
         $("#new_wine")
-        .bind("ajax:complete", function(){
+        .bind("ajax:success", function(status, data){
+          console.log("status :" + status);
+          console.log(data);
+
           dropPin();
 
           hiddenArea("createWineArea");
@@ -122,6 +125,20 @@ function dropPin() {
     
   });
 
+}
+
+function switchVisUserMenu(){
+  var menuSwitch = d3.select("#userName").property("checked");
+  
+  if( menuSwitch ){
+    d3.select("#userMenu")
+      .transition()
+      .style("height","60px");
+  }else{
+    d3.select("#userMenu")
+      .transition()
+      .style("height","0px");
+  }
 }
 
 

@@ -1,0 +1,59 @@
+.navbar{
+	li *{
+		transition:		0.3s;
+	}
+
+	#userInfoArea{
+		float:				right;
+		position:			relative;
+
+		input{
+			display:		none;
+		}
+
+		label{
+			display:		block;
+			margin:			5px;
+			height:			27px;
+			min-width: 		80px;
+			text-align: 	center;
+			line-height: 	27px;
+			color: 			#999999;
+			border-bottom: 	solid 3px #353535;
+			transition:		0.3s;
+			cursor: 		pointer;
+		}
+
+		label:hover{
+			border-bottom: 	solid 3px #00b8fd;
+		}
+
+		input:checked + label{
+			border-bottom: 	solid 3px #00b8fd;
+		}
+
+		#userMenu{
+			position:			absolute;
+			top:				32px;
+			right:				5px;
+			height:				0px;
+			z-index: 			5;
+			overflow: 			hidden;
+
+			a{
+				display:		block;
+				color:			white;
+				background-color: 	#00b8fd;
+				text-align: 	center;
+				line-height: 	30px;
+				height:			30px;
+				width:			80px;
+			}
+
+			a:hover{
+				color:		white;
+				background-color: 	#0090FF;
+			}
+		}
+	}
+}
