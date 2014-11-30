@@ -3,7 +3,6 @@
 class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
   before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit, :create, :update]
-  before_action :set_current_user, only: [:index, :show, :new, :edit, :update, :destroy]
   protect_from_forgery :except => [:create]
   UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
   UNKNOWN_LAT_OR_LNG = 100.12345
@@ -207,11 +206,6 @@ class WinesController < ApplicationController
       localregion_db.id
     end
 
-    def set_current_user
-      if logininfo_signed_in?
-        @current_user = current_logininfo.user
-      end
-    end
     # 未登録ユーザーが登録したワインは誰でも編集可能
     def check_current_user
       if @wine.user != @current_user && @wine.user.id != 1
