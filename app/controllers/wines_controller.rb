@@ -34,6 +34,7 @@ class WinesController < ApplicationController
         price: wine.price,
         winery: wine.winery,
         user: wine.user.name,
+        user_id: wine.user.id,
         winelevel: wine.winelevel,
         worldregion_id: wine.country.worldregion_id,
         regions: regions
@@ -87,10 +88,10 @@ class WinesController < ApplicationController
 
     respond_to do |format|
       if @wine.update(wine_params)
-        format.html { render json: @wine, notice: 'Wine was successfully created.' }
+        format.html { redirect_to root_path }
         format.json { render :show, status: :ok, location: @wine }
       else
-        format.html { render json: {wine: @wine, error: @wine.errors} }
+        format.html { redirect_to root_path }
         format.json { render json: @wine.errors, status: :unprocessable_entity }
       end
     end
