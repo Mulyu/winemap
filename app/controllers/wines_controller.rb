@@ -139,7 +139,7 @@ class WinesController < ApplicationController
       response = GoogleGeo.request(params[:wine][:input_region])
 
       ### 住所情報から必要な情報をセット
-      if response['status'] == 'OK' && response['results'][0]['address_components'].any? { |address| address['types'][0] == 'country' }
+      if response['status'] == 'OK'
         # 住所のレスポンスにCountryが含まれている場合
 
         # 住所情報配列
