@@ -17,7 +17,8 @@ class WinesController < ApplicationController
     #array mapping
     @array_wines = wines.map{ |wine|
       regions = wine.localregion.name.delete('不明').split(',')
-      regions.unshift(wine.country.worldregion.name, wine.country.name)
+      regions.unshift(wine.country.worldregion.name) unless wine.country.worldregion.id == 1
+      regions.unshift(wine.country.name) unless wine.country.id == 1
       {
         wine_id: wine.id,
         winetype_id: wine.winetype_id,
@@ -139,9 +140,7 @@ class WinesController < ApplicationController
       response = GoogleGeo.request(params[:wine][:input_region])
 
       ### 住所情報から必要な情報をセット
-      if response['status'] == 'OK' && response['results'][0]['address_components'].any? { |address| address['types'][0] == 'country' }
-        # 住所のレスポンスにCountryが含まれている場合
-
+      if response['status'] == 'OK'
         # 住所情報配列
         array_addresses = response['results'][0]['address_components']
 
@@ -161,7 +160,7 @@ class WinesController < ApplicationController
           @wine.longitude += 1.0e-1 * (duplicated_num % 5)
         end
       else
-        # レスポンスが無い、もしくはCountryが含まれていない場合は不明とする
+        # レスポンスが無い場合は不明とする
         @wine.country_id = @wine.localregion_id = UNKNOWN_COUNTRY_OR_LOCALREGION_ID
         @wine.latitude = @wine.longitude = UNKNOWN_LAT_OR_LNG
       end
@@ -183,6 +182,11 @@ class WinesController < ApplicationController
     end
 
     def find_country(array_addresses)
+      unless array_addresses.any? { |address| address['types'][0] == 'country' }
+        # countryがない場合は不明とする
+        return UNKNOWN_COUNTRY_OR_LOCALREGION_ID
+      end
+
       # 国コードを使って一致するcountry_idを返す
       country_index = array_addresses.find_index { |address| address['types'][0] == 'country' }
       country_code = array_addresses[country_index]['short_name'].downcase
@@ -190,8 +194,12 @@ class WinesController < ApplicationController
     end
 
     def select_localregion_id(array_addresses)
-      # 国の次の区分から地域名を取得
-      localregion_names = array_addresses.reverse.drop_while { |address| address['types'][0] != 'country' }.drop(1).map { |region| region['long_name'] }.join(',')
+      # 地域名を取得
+      if array_addresses.any? { |address| address['types'][0] == 'country' }
+        localregion_names = array_addresses.reverse.drop_while { |address| address['types'][0] != 'country' }.drop(1).map { |region| region['long_name'] }.join(',')
+      else
+        localregion_names = array_addresses.map { |region| region['long_name'] }.join(',')
+      end
 
       unless localregion_names.present?
         # localregionが無い場合は不明とする
