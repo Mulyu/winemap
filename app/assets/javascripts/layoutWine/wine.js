@@ -30,16 +30,15 @@ function Wine(wineData){
     // todo : ワインのscore(this.review.score)に合わせてreturnの内容を変える
     switch(this.type.id){
       case 1:
-        return "/assets/wine/red"+this.review.score.toString()+".png";
+        return "/assets/wine/red"+this.review.score.toString()+"_wide.png";
       case 2:
-        return "/assets/wine/white"+this.review.score.toString()+".png";
+        return "/assets/wine/white"+this.review.score.toString()+"_wide.png";
       case 3:
-        return "/assets/wine/rose"+this.review.score.toString()+".png";
+        return "/assets/wine/rose"+this.review.score.toString()+"_wide.png";
       case 4:
-        return "/assets/wine/sparkling"+this.review.score.toString()+".png";
+        return "/assets/wine/sparkling"+this.review.score.toString()+"_wide.png";
       case 5:
-        console.log("dessert"+this.review.score.toString());
-        return "/assets/wine/dessert"+this.review.score.toString()+".png";
+        return "/assets/wine/dessert"+this.review.score.toString()+"_wide.png";
       default:
         return "/assets/wine/defaultSmall.png";
     }
