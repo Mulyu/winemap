@@ -16,9 +16,7 @@ class WinesController < ApplicationController
 
     #array mapping
     @array_wines = wines.map{ |wine|
-      regions = wine.localregion.name.delete('不明').split(',')
-      regions.unshift(wine.country.worldregion.name) unless wine.country.worldregion.id == 1
-      regions.unshift(wine.country.name) unless wine.country.id == 1
+      regions = get_regions(wine)
       {
         wine_id: wine.id,
         winetype_id: wine.winetype_id,
@@ -69,10 +67,10 @@ class WinesController < ApplicationController
       normalize_wine_data
       respond_to do |format|
         if @wine.save
-          format.html { render json: @wine, notice: 'Wine was successfully created.' }
+          format.html { render json: {wine: @wine, regions: get_regions(@wine)}, notice: 'Wine was successfully created.' }
           format.json { render :show, status: :created, location: @wine }
       else
-          format.html { render json: {wine: @wine, error: @wine.errors} }
+          format.html { render json: {wine: @wine, regions: get_regions(@wine), error: @wine.errors} }
           format.json { render json: @wine.errors, status: :unprocessable_entity }
         end
       end
@@ -127,6 +125,13 @@ class WinesController < ApplicationController
 
     def set_situations
       @situations = Situation.all
+    end
+
+    def get_regions(wine)
+      regions = wine.localregion.name.delete('不明').split(',')
+      regions.unshift(wine.country.worldregion.name) unless wine.country.worldregion.id == 1
+      regions.unshift(wine.country.name) unless wine.country.id == 1
+      regions
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
