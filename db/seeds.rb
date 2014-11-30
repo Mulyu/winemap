@@ -29,9 +29,17 @@ CSV.foreach('db/seed_csv/countries.csv') do |row|
     )
 end
 
+# countrycodes
+CSV.foreach('db/seed_csv/countrycodes.csv') do |row|
+  Countrycode.create(
+    code: row[0],
+    country_id: row[1]
+    )
+end
+
 # localregions
 Localregion.create(name: '不明', ranking: 0, country_id: 1)
-CSV.foreach('db/seed_csv/localregions.csv') do |row|
+CSV.foreach('db/seed_csv/localregions_heroku.csv') do |row|
   Localregion.create(
     name: row[0],
     ranking: row[1],
@@ -69,7 +77,7 @@ CSV.foreach('db/seed_csv/situations.csv') do |row|
 end
 
 # wines
-CSV.foreach('db/seed_csv/wines.csv') do |row|
+CSV.foreach('db/seed_csv/wines_heroku.csv') do |row|
   Wine.create(
     name: row[0],
     country_id: row[1],
@@ -95,7 +103,7 @@ CSV.foreach('db/seed_csv/wines.csv') do |row|
 end
 
 # users
-CSV.foreach('db/seed_csv/users.csv') do |row|
+CSV.foreach('db/seed_csv/users_heroku.csv') do |row|
   User.create(
     name: row[0],
     gender: row[4],

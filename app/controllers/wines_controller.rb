@@ -3,7 +3,8 @@
 class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
   before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit, :create, :update]
-  before_action :set_current_user
+  before_action :set_current_user, only: [:index, :show, :new, :edit, :update, :destroy]
+  protect_from_forgery :except => [:create]
   UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
   UNKNOWN_LAT_OR_LNG = 100.12345
   protect_from_forgery except: :create
@@ -62,16 +63,17 @@ class WinesController < ApplicationController
   def create
 
     @wine = Wine.new(wine_params)
-    
-    normalize_wine_data
 
-    respond_to do |format|
-      if @wine.save
-        format.html { render json: @wine, notice: 'Wine was successfully created.' }
-        format.json { render :show, status: :created, location: @wine }
+    normalize_wine_data
+    if mobile_check.nil? then
+      respond_to do |format|
+        if @wine.save
+          format.html { render json: @wine, notice: 'Wine was successfully created.' }
+          format.json { render :show, status: :created, location: @wine }
       else
-        format.html { render json: {wine: @wine, error: @wine.errors} }
-        format.json { render json: @wine.errors, status: :unprocessable_entity }
+          format.html { render json: {wine: @wine, error: @wine.errors} }
+          format.json { render json: @wine.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -98,7 +100,7 @@ class WinesController < ApplicationController
   # DELETE /wines/1
   # DELETE /wines/1.json
   def destroy
-    
+
     check_current_user
 
     @wine.destroy
@@ -214,6 +216,14 @@ class WinesController < ApplicationController
     def check_current_user
       if @wine.user != @current_user && @wine.user.id != 1
         redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
-      end 
+      end
     end
+    def mobile_check
+      if params[:mobile] and (params[:mobile_token] != Logininfo.where(:id => @wine.user_id)[0].mobile_token)
+        respond_to do |format|
+          format.json {render :json =>{"message"=>"mobile token error"}.to_json}
+        end
+      end
+    end
+
 end

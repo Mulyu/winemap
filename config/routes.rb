@@ -4,14 +4,14 @@ Rails.application.routes.draw do
     registrations: 'logininfos/registrations',
     sessions: 'logininfos/sessions'
   }
-  resources :users ,except: [:new] do
+
+  resources :users ,except: [:new,:index] do
     member do
       get :following,:followed
       post :follow,:remove
     end
   end
-
-  resources :wines, except: [:index]
+    resources :wines, except: [:index]
 
   root 'wines#index'
 
@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   match 'inquiry', to: 'inquiry#index', via: :get
   match 'inquiry/confirm', to: 'inquiry#confirm', via: :post
   match 'inquiry/thanks', to: 'inquiry#thanks', via: :post
+
+  match 'product', to: 'product#index', via: :get
 
 end
