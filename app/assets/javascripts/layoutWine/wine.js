@@ -21,6 +21,7 @@ function Wine(wineData){
     body:       wineData.body,
     sweetness:  wineData.sweetness };
   this.user = {
+    id:         wineData.user_id,
     name:       wineData.user,
     level:      wineData.winelevel };
 
@@ -86,6 +87,21 @@ function Wine(wineData){
 
     detailAreaElement.select(".year").select("span")
       .text(that.year);
+
+    if( ( that.user.id == 1 )||( that.user.id == userData.id ) ){
+      detailAreaElement.select(".wineEditLinkArea")
+        .attr("action", "wines/"+that.id)
+        .style("display","block");
+
+      detailAreaElement.select(".wineEditLink")
+        .attr("href","wines/"+that.id+"/edit");
+
+      detailAreaElement.select(".wineDeleteLink")
+        .attr("href","wines/"+that.id);
+    }else{
+      detailAreaElement.select(".wineEditLinkArea")
+        .style("display","none");
+    }
   }
 }
 
