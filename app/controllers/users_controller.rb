@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :follow, :remove]
   before_action :set_prefectureregions, only: [:new, :edit, :create, :update]
-  before_action :set_current_user
+  
   # GET /users
   # GET /users.json
   def index
@@ -101,12 +101,6 @@ class UsersController < ApplicationController
 
     def set_prefectureregions
       @prefectureregions = Prefectureregion.all
-    end
-
-    def set_current_user
-      if logininfo_signed_in?
-        @current_user = current_logininfo.user
-      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
