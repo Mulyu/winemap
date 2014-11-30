@@ -3,7 +3,8 @@
 class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
   before_action :set_winetypes, :set_winevarieties, :set_situations, only: [:new, :edit, :create, :update]
-  before_action :set_current_user
+  before_action :set_current_user, only: [:index, :show, :new, :edit, :update, :destroy]
+  protect_from_forgery :except => [:create]
   UNKNOWN_COUNTRY_OR_LOCALREGION_ID = 1
   UNKNOWN_LAT_OR_LNG = 100.12345
 
@@ -63,14 +64,15 @@ class WinesController < ApplicationController
     @wine = Wine.new(wine_params)
 
     normalize_wine_data
-
-    respond_to do |format|
-      if @wine.save
-        format.html { redirect_to @wine, notice: 'Wine was successfully created.' }
-        format.json { render :show, status: :created, location: @wine }
+    if mobile_check.nil? then
+      respond_to do |format|
+        if @wine.save
+          format.html { render json: @wine, notice: 'Wine was successfully created.' }
+          format.json { render :show, status: :created, location: @wine }
       else
-        format.html { render :new }
-        format.json { render json: @wine.errors, status: :unprocessable_entity }
+          format.html { render json: {wine: @wine, error: @wine.errors} }
+          format.json { render json: @wine.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -85,10 +87,10 @@ class WinesController < ApplicationController
 
     respond_to do |format|
       if @wine.update(wine_params)
-        format.html { redirect_to @wine, notice: 'Wine was successfully updated.' }
+        format.html { render json: @wine, notice: 'Wine was successfully created.' }
         format.json { render :show, status: :ok, location: @wine }
       else
-        format.html { render :edit }
+        format.html { render json: {wine: @wine, error: @wine.errors} }
         format.json { render json: @wine.errors, status: :unprocessable_entity }
       end
     end
@@ -215,4 +217,12 @@ class WinesController < ApplicationController
         redirect_to @wine, notice: 'あなたはワインを登録したユーザーではありません'
       end
     end
+    def mobile_check
+      if params[:mobile] and (params[:mobile_token] != Logininfo.where(:id => @wine.user_id)[0].mobile_token)
+        respond_to do |format|
+          format.json {render :json =>{"message"=>"mobile token error"}.to_json}
+        end
+      end
+    end
+
 end

@@ -4,14 +4,14 @@ Rails.application.routes.draw do
     registrations: 'logininfos/registrations',
     sessions: 'logininfos/sessions'
   }
+
   resources :users ,except: [:new,:index] do
     member do
       get :following,:followed
       post :follow,:remove
     end
   end
-
-  resources :wines, except: [:index]
+    resources :wines, except: [:index]
 
   root 'wines#index'
 
