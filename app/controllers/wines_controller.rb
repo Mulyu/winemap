@@ -63,8 +63,8 @@ class WinesController < ApplicationController
 
     @wine = Wine.new(wine_params)
 
-    normalize_wine_data
     if mobile_check.nil? then
+      normalize_wine_data
       respond_to do |format|
         if @wine.save
           format.html { render json: @wine, notice: 'Wine was successfully created.' }
@@ -169,8 +169,13 @@ class WinesController < ApplicationController
       ### usersテーブルから取得
       ### 未ログイン時はid=1,winelevel=0に設定
       if current_logininfo == nil
-        @wine.user_id = 1
-        @wine.winelevel = 0.0
+        if params[:mobile] then
+          @wine.user_id = params[:user_id]
+          @wine.winelevel = User.where(:id => params[:user_id])[0].winelevel
+        else
+          @wine.user_id = 1
+          @wine.winelevel = 0.0
+        end
       else
         @wine.user_id = current_logininfo.user.id
         @wine.winelevel = current_logininfo.user.winelevel
@@ -213,7 +218,7 @@ class WinesController < ApplicationController
       end
     end
     def mobile_check
-      if params[:mobile] and (params[:mobile_token] != Logininfo.where(:id => @wine.user_id)[0].mobile_token)
+      if params[:mobile] and (params[:mobile_token] != Logininfo.where(:id => params[:user_id])[0].mobile_token)
         respond_to do |format|
           format.json {render :json =>{"message"=>"mobile token error"}.to_json}
         end
