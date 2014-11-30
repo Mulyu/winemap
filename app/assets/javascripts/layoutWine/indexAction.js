@@ -3,7 +3,6 @@ function setUserData( user ){
 		d3.select("#userInfoArea").select("label")
 			.text( user.name );
 	}else{
-		console.log("test");
 		userData = {
 			id: 1
 		};

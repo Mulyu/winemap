@@ -11,7 +11,7 @@ function Wine(wineData){
     name:       wineData.winetype_name };
   this.year = wineData.year;
   this.productionDistrict = {
-    names:      wineData.regions,
+    names:      [].concat(wineData.regions),
     winery:     wineData.winery,
     latitude:   wineData.latitude,
     longitude:  wineData.longitude };
@@ -28,7 +28,6 @@ function Wine(wineData){
   this.detailHtml = getDetailHtml();
 
   this.getIconImagePath = function(){
-    // todo : ワインのscore(this.review.score)に合わせてreturnの内容を変える
     switch(this.type.id){
       case 1:
         return "/assets/wine/red"+this.review.score.toString()+"_wide.png";
@@ -69,7 +68,7 @@ function Wine(wineData){
       .text(that.name);
 
     var names = that.productionDistrict.names;
-    if( names.length >3 )
+    if( names.length > 3 )
       names = names.slice(0, 4);
 
     detailAreaElement.select(".region").select("span")
