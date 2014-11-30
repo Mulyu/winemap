@@ -1,7 +1,6 @@
 <div class = 'navbar'>
   <ul class = 'nav'>
   <li><%= link_to "Home" , root_path , :style => "ref" %></li>
-  <li onClick="showCreateArea();"><a>New Wine</a></li>
   <li><%= link_to 'Ranking', ranking_path %></li>
   <li><%= link_to 'Contact', inquiry_path %></li>  
 
@@ -23,3 +22,9 @@
     </div>
   </ul>
 </div>
+
+<script>
+  var userData = <%= raw @current_user.to_json %>;
+  
+  setUserData( userData );
+</script>
