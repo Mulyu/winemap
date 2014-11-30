@@ -67,10 +67,10 @@ class WinesController < ApplicationController
     if mobile_check.nil? then
       respond_to do |format|
         if @wine.save
-          format.html { redirect_to @wine, notice: 'Wine was successfully created.' }
+          format.html { render json: @wine, notice: 'Wine was successfully created.' }
           format.json { render :show, status: :created, location: @wine }
-        else
-          format.html { render :new }
+      else
+          format.html { render json: {wine: @wine, error: @wine.errors} }
           format.json { render json: @wine.errors, status: :unprocessable_entity }
         end
       end
@@ -87,10 +87,10 @@ class WinesController < ApplicationController
 
     respond_to do |format|
       if @wine.update(wine_params)
-        format.html { redirect_to @wine, notice: 'Wine was successfully updated.' }
+        format.html { render json: @wine, notice: 'Wine was successfully created.' }
         format.json { render :show, status: :ok, location: @wine }
       else
-        format.html { render :edit }
+        format.html { render json: {wine: @wine, error: @wine.errors} }
         format.json { render json: @wine.errors, status: :unprocessable_entity }
       end
     end
