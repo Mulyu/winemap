@@ -14,7 +14,7 @@ class Wine < ActiveRecord::Base
     presence: { message: 'Regionを入力して下さい' },
     length: { maximum: 100, message: 'Regionは100文字以内で入力してください' }
   validates :localregion_id,
-    format: { with: /[^1]/, if: 'input_region.present?' , message: 'Regionが不明です' }
+    format: { with: /[^1]/, if: 'input_region.present? && country_id == 1' , message: 'Regionが不明です' }
   validates :winetype_id,
     presence: { message: 'Typeを選択してください' }
   validates :winery,
