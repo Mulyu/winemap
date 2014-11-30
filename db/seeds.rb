@@ -29,6 +29,14 @@ CSV.foreach('db/seed_csv/countries.csv') do |row|
     )
 end
 
+# countrycodes
+CSV.foreach('db/seed_csv/countrycodes.csv') do |row|
+  Countrycode.create(
+    code: row[0],
+    country_id: row[1]
+    )
+end
+
 # localregions
 Localregion.create(name: '不明', ranking: 0, country_id: 1)
 CSV.foreach('db/seed_csv/localregions_heroku.csv') do |row|
