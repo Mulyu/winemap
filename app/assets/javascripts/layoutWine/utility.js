@@ -93,7 +93,9 @@ function showValidationMessage( messageJson ){
   }
 }
 
-function dropPin( wineData ) {
+function dropPin( result ) {
+  wineData = result.wine;
+  wineData.regions = result.regions;
 
   var wine = new Wine( wineData );
   wines.push( wine );
