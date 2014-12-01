@@ -50,14 +50,15 @@ function useAjax( domId ){
       $(function($){
         $("#new_wine")
         .bind("ajax:success", function(status, data){
-          console.log("status :" + status);
-          console.log(data);
+          var result = JSON.parse(data);
 
-          dropPin();
+          if( "error" in result ){
+            showValidationMessage( result.error );
+          }else{
+            dropPin( result );
 
-          hiddenArea("createWineArea");
-          // todo : ピンを落とす処理を書く
-          //       入力したwineの情報が欲しいでござる
+            hiddenArea("createWineArea");
+          }
         });
       });
       
@@ -80,7 +81,31 @@ function useAjax( domId ){
   });
 }
 
-function dropPin() {
+function showValidationMessage( messageJson ){
+  var massageHtml="";
+  var massageDiv = d3.select(".errorArea");
+
+  massageDiv.selectAll("div").remove();
+
+  for( var key in messageJson ){
+    massageDiv.append("div")
+              .text(messageJson[key][0]);
+  }
+}
+
+function dropPin( result ) {
+  wineData = result.wine;
+  wineData.regions = result.regions;
+
+  var wine = new Wine( wineData );
+  wines.push( wine );
+
+  setMarker( googleMap, wine );
+      
+  d3.select("#new_wine").remove();
+
+  /* jsで緯度経度を取得したくなったら使う
+
   var geocoder = new google.maps.Geocoder();
 
   var address = d3.select("#wine_input_region").node().value;
@@ -90,32 +115,6 @@ function dropPin() {
     if (status == google.maps.GeocoderStatus.OK) {
       var latlng = results[0].geometry.location;
 
-      wineData = {
-        body:            3,
-        latitude:        latlng.lat(),
-        longitude:       latlng.lng(),
-        name:            d3.select("#wine_name").node().value,
-        price:           d3.select("#wine_price").node().value,
-        regions:         [ d3.select("#wine_input_region").node().value ],
-        score:           $("input[name='wine[score]']:checked").val(),
-        sweetness:       3,
-        user:            "guest",
-        wine_id:         null,
-        winelevel:       null,
-        winery:          d3.select("#wine_winery").node().value,
-        winetype_id:     d3.select("#wine_winetype_id").node().selectedIndex,
-        winetype_name:   d3.select("#wine_winetype_id").selectAll("option")[0][d3.select("#wine_winetype_id").node().selectedIndex].text,
-        winevarieties:   [],
-        year:            d3.select("#wine_year").node().value
-      };
-
-      var wine = new Wine(wineData);
-      wines.push( wine );
-
-      setMarker( googleMap, wine );
-      
-      d3.select("#new_wine").remove();
-
 
     // ジオコーディングが成功しなかった場合
     } else {
@@ -124,6 +123,8 @@ function dropPin() {
     }
     
   });
+
+  */
 
 }
 
