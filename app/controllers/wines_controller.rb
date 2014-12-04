@@ -36,6 +36,7 @@ class WinesController < ApplicationController
         user_id: wine.user.id,
         winelevel: wine.winelevel,
         worldregion_id: wine.country.worldregion_id,
+        photo: wine.photo.thumb.url,
         regions: regions
       }
     }
