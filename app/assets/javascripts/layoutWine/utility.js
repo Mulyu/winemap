@@ -40,16 +40,24 @@ function hiddenArea( domId ){
 }
 
 function useAjax( domId ){
+  appendArea("loadingArea");
   $.ajax({
     url: "wines/new",
     dataType: "html",
     cache: false,
     success: function(data, textStatus){
+      hiddenArea("loadingArea");
       $("#"+domId).html(data);
 
       $(function($){
         $("#new_wine")
+        .bind("ajax:before", function(){
+          appendArea("loadingArea");
+        });
+
+        $("#new_wine")
         .bind("ajax:success", function(status, data){
+          hiddenArea("loadingArea");
           var result = JSON.parse(data);
 
           if( "error" in result ){
@@ -59,6 +67,11 @@ function useAjax( domId ){
 
             hiddenArea("createWineArea");
           }
+        });
+
+        $("#new_wine")
+        .bind("ajax:error", function(status, data){
+          showValidationMessage( {error: ["通信に失敗しました"] } );
         });
       });
       
@@ -76,7 +89,7 @@ function useAjax( domId ){
       });
     },
     error: function(xhr, textStatus, errorThrown){
-      // エラー処理
+      hiddenArea("loadingArea");
     }
   });
 }
