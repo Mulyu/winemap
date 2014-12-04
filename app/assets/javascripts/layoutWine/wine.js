@@ -72,11 +72,10 @@ function Wine(wineData){
       names = names.slice(0, 4);
 
     detailAreaElement.select(".region").select("span")
-      .text( names );
+      .text( names.join(" ") );
 
     detailAreaElement.select(".type").select("span")
-      .text(that.type.name)
-      .attr("onclick","wineFilterByType('"+that.type.name+"');");
+      .text(that.type.name);
 
     detailAreaElement.select(".price").select("span")
       .text(that.price);
@@ -90,11 +89,15 @@ function Wine(wineData){
     if( that.user.id == 1 ){
       detailAreaElement.select(".user").select("a")
         .text(that.user.name)
+        .classed("entryUser",false)
         .attr("href","javascript:void(0)");
     }else{
       detailAreaElement.select(".user").select("a")
         .text(that.user.name)
-        .attr("href","/users/"+that.user.id);
+        .classed("entryUser",true)
+        .attr("href","/users/"+that.user.id)
+        .append("span")
+        .text("ユーザーページへ");
     }
 
     if( ( that.user.id == 1 )||( that.user.id == userData.id ) ){

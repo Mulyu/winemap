@@ -36,15 +36,21 @@
   <div id="detailTemplateArea" style="display:none">
     <div id="detailArea">
       <div class="name"><span/></div>
-      <div class="region">Region : <span/></div>
+      <div class="region">
+        <div>Region : </div>
+        <span/>
+      </div>
       <div class="type">Type : <span/></div>
       <div class="price">Price : <span/></div>
       <div class="score">Score : <span/></div>
       <div class="year">Year : <span/></div>
-      <div class="user">User : <a/></div>
+      <div class="user">User : <a></a>
+      </div>
       <div class="wineEditLinkArea">
-        <a class="wineEditLink">編集</a>
-        <a class="wineDeleteLink" data-method="delete">削除</a>
+        <a class="wineEditLink">Edit</a>
+        <a class="wineDeleteLink"
+           data-method="delete"
+           data-confirm="本当に消しますか?">Delete</a>
       </div>
     </div>
   </div>
