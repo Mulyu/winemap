@@ -18,7 +18,7 @@ class WinesController < ApplicationController
     @array_wines = wines.map{ |wine|
       regions = get_regions(wine)
       {
-        wine_id: wine.id,
+        id: wine.id,
         winetype_id: wine.winetype_id,
         name: wine.name,
         country_name: wine.country.name,
