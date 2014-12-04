@@ -1,31 +1,35 @@
-<div>
-  <h1>お問い合わせ</h1>
-</div>
+<div id="allowBootstrap">
+  <div>
+    <h1>お問い合わせ</h1>
+  </div>
 
-<%= form_for @inquiry, url: inquiry_thanks_path do |f| %>
-  <table>
-    <tr>
-      <th>名前：</th>
-      <td>
-        <%= f.hidden_field :name %>
-        <%= @inquiry.name %>
-      </td>
-    </tr>
-    <tr>
-      <th>メールアドレス：</th>
-      <td>
-        <%= f.hidden_field :email %>
-        <%= @inquiry.email %>
-      </td>
-    </tr>
-    <tr>
-      <th>お問い合わせ内容：</th>
-      <td>
-        <%= f.hidden_field :message %>
-        <%= simple_format(@inquiry.message) %>
-      </td>
-    </tr>
-  </table>
-  <%= f.submit '送信' %>
-  <%= f.submit '修正', name: 'edit' %>
-<% end %>
+  <%= form_for @inquiry, url: inquiry_thanks_path do |f| %>
+    <div class="col-sm-12">
+      <dl>
+        <div class="field form-group clearfix">
+          <dt><%= f.label :name %></dt>
+          <dd>
+            <%= f.hidden_field :name %>
+            <%= @inquiry.name %>
+          </dd>
+        </div>
+        <div class="field form-group clearfix">
+          <dt><%= f.label :email %></dt>
+          <dd>
+            <%= f.hidden_field :email %>
+            <%= @inquiry.email %>
+          </dd>
+        </div>
+        <div class="field form-group clearfix">
+          <dt><%= f.label :message %>(必須)</dt>
+          <dd>
+            <%= f.hidden_field :message %>
+            <%= simple_format(@inquiry.message) %>
+          </dd>
+        </div>
+      </dl>
+      <%= f.submit '送信', class: 'btn btn-default btn-sm' %> |
+      <%= f.submit '修正', name: 'edit', class: 'btn btn-default btn-sm' %>
+    </div>
+  <% end %>
+</div>
