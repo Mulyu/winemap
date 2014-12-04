@@ -159,10 +159,12 @@ function showCreateArea(){
 
 function changeMoreInfoArea(){
   if( d3.select("#moreInfoInput").property("checked") ){
-    appendArea("moreField", 1);
-    d3.select("#moreField").style("display","block");
+    d3.select("#moreField")
+      .transition()
+      .style("height","400px");
   }else{
-    hiddenArea("moreField");
-    d3.select("#moreField").style("display","none");
+    d3.select("#moreField")
+      .transition()
+      .style("height","0px");
   }
 }

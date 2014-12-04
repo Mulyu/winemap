@@ -104,21 +104,23 @@
     }
 
     .checkField{
-      width:        560px;
+      width:        540px;
       height:       auto;
       text-align:   left;
+      padding:      10px;
 
       label{
         float:        left;
         display:      block;
         border:       solid 2px gray;
         border-radius: 30px;
-        margin:        5px;
-        padding:        4px;
+        margin:        5px; 
+        padding:       7px;
+        font-size:     13px;
       }
 
       label:first-child{
-        float:        none;
+        font-size:     15px;
         border:       none;
         pointer-events: none;
       }
@@ -158,7 +160,7 @@
 
       input:hover{
         background-color: #E9872E;
-      }
+      } 
 
       input:active{
         background-color: #E9872E;
@@ -195,6 +197,10 @@
         input:checked + label{
           border-bottom:  solid 2px white;
         }
+    }
+
+    #moreField{
+      overflow:     scroll;
     }
 
     #nameField{

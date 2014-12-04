@@ -24,7 +24,7 @@
     <label for="moreInfoInput">More</label>
   </div>
 
-  <div id="moreField" style="display: none;">
+  <div id="moreField" style="height: 0;">
     <div class="field textField" id="wineryField">
       <%= f.label :winery  ,"Winery"%>
       <%= f.text_field :winery %>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="field sliderField" id="scoreField">
-      <%= f.label :score ,"好み" %>
+      <%= f.label :score ,"Score" %>
       <%= f.radio_button :score, 1 %>
       <label for="wine_score_1">1</label>
       <%= f.radio_button :score, 2 %>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="field sliderField" id="bodyField">
-      <%= f.label :body  ,"重さ"%>
+      <%= f.label :body  ,"Body"%>
       <%= f.radio_button :body, 1 %>
       <label for="wine_body_1">1</label>
       <%= f.radio_button :body, 2 %>
@@ -69,7 +69,7 @@
     </div>
 
     <div class="field sliderField" id="sweetField">
-      <%= f.label :sweetness ,"甘み" %>
+      <%= f.label :sweetness ,"Sweet" %>
       <%= f.radio_button :sweetness, 1 %>
       <label for="wine_sweetness_1">1</label>
       <%= f.radio_button :sweetness, 2 %>
@@ -83,7 +83,7 @@
     </div>
 
     <div class="field sliderField" id="sournField">
-      <%= f.label :sourness  ,"酸味"%>
+      <%= f.label :sourness  ,"Sour"%>
       <%= f.radio_button :sourness, 1 %>
       <label for="wine_sourness_1">1</label>
       <%= f.radio_button :sourness, 2 %>
@@ -96,17 +96,6 @@
       <label for="wine_sourness_5">5</label>
     </div>
 
-<% if false %>
-    フォームの中に入れるのつらいんだ、ごめんね (ﾟ □ ﾟ )
-
-    <div class="field checkField" id="varietyField">
-      <%= f.label :winevariety %>
-      <%= collection_check_boxes(:wine, :winevariety_ids, @winevarieties, :id, :name) do |b| %>
-        <%= b.check_box %>
-        <%= b.label { b.text } %>
-      <% end %>
-    </div>
-
     <div class="field checkField" id="situationField">
       <%= f.label :situation %>
       <%= collection_check_boxes(:wine, :situation_ids, @situations, :id, :name) do |b| %>
@@ -114,6 +103,18 @@
         <%= b.label { b.text } %>
       <% end %>
     </div>
+
+    <div class="field checkField" id="varietyField">
+      <%= f.label :winevariety %>
+      <div class="varieties">
+        <%= collection_check_boxes(:wine, :winevariety_ids, @winevarieties, :id, :name) do |b| %>
+          <%= b.check_box %>
+          <%= b.label { b.text } %>
+        <% end %>
+      </div>
+    </div>
+
+<% if false %>
 
     <div class="field" id="photoField">
       <%= f.label :photo %>
