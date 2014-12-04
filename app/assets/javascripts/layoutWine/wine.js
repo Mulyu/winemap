@@ -75,7 +75,10 @@ function Wine(wineData){
       .text( names.join(" ") );
 
     detailAreaElement.select(".type").select("span")
-      .text(that.type.name);
+      .attr("onClick","wineFilterByType('"+that.type.name+"');")
+      .text(that.type.name)
+      .append("span")
+      .text("タイプでフィルターする");
 
     detailAreaElement.select(".price").select("span")
       .text(that.price);
@@ -126,11 +129,47 @@ function hiddenWineDetail(){
 }
 
 function wineFilterByType( type ){
-  wines.forEach(function(wine){
-    if(wine.type.name != type){
-      wine.marker.setVisible(false);
-    }
-  });
+  d3.select("#filterShowInput")
+    .property("checked",true);
+  changeVisFilterArea();
+
+  d3.select("#typeFilter").selectAll("input")
+    .property("checked",false);
+
+  filterMap.red = false;
+  filterMap.white = false;
+  filterMap.rose = false;
+  filterMap.sparkling = false;
+  filterMap.dessert = false;
+
+  switch(type){
+    case "赤":
+      d3.select("#typeRed")
+        .property("checked",true);
+      filterMap.red = true;
+      break;
+    case "白":
+      d3.select("#typeWhite")
+        .property("checked",true);
+      filterMap.white = true;
+      break;
+    case "ロゼ":
+      d3.select("#typeRose")
+        .property("checked",true);
+      filterMap.rose = true;
+      break;
+    case "スパークリング":
+      d3.select("#typeSpark")
+        .property("checked",true);
+      filterMap.sparkling = true;
+      break;
+    case "デザート":
+      d3.select("#typeDesart")
+        .property("checked",true);
+      filterMap.dessert = true;
+      break;
+  }
+  wineFilter();
 }
 
 function wineFilter(){
