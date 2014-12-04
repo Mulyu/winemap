@@ -4,12 +4,14 @@
 
   <div class="field textField must" id="nameField">
     <%= f.label :name ,"Name"%>
-    <%= f.text_field :name%>
+    <%= f.text_field :name,
+      :placeholder => "おいしいワイン" %>
   </div>
 
   <div class="field textField must" id="regionField">
     <%= f.label :country_or_region ,"Region"%>
-    <%= f.text_field :input_region %>
+    <%= f.text_field :input_region,
+      :placeholder => "茨城 つくば" %>
   </div>
 
   <div class="field textField must" id="winetypeField">
@@ -27,17 +29,20 @@
   <div id="moreField" style="height: 0;">
     <div class="field textField" id="wineryField">
       <%= f.label :winery  ,"Winery"%>
-      <%= f.text_field :winery %>
+      <%= f.text_field :winery,
+      :placeholder => "筑波大学" %>
     </div>
 
     <div class="field textField" id="yearField">
       <%= f.label :year  ,"Year"%>
-      <%= f.number_field :year %>
+      <%= f.number_field :year,
+      :placeholder => "1991" %>
     </div>
 
     <div class="field textField" id="priceField">
       <%= f.label :price ,"Price"%>
-      <%= f.number_field :price %>
+      <%= f.number_field :price,
+      :placeholder => "298" %>
     </div>
 
     <div class="field sliderField" id="scoreField">
