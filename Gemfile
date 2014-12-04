@@ -43,6 +43,8 @@ gem 'addressable', require: 'addressable/uri'
 # Manage and deploy cron jobs
 gem 'whenever', :require => false
 
+gem 'remotipart'
+
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'

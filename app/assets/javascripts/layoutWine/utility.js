@@ -68,9 +68,10 @@ function useAjax( domId ){
             hiddenArea("createWineArea");
           }
         });
-
+        
         $("#new_wine")
         .bind("ajax:error", function(status, data){
+          hiddenArea("loadingArea");
           showValidationMessage( {error: ["通信に失敗しました"] } );
         });
       });
