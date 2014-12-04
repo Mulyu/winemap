@@ -31,6 +31,8 @@ class Crons::Ranking
 
         # 登録されていないcountryのrankingを調整
         country_ids.reject { |id| rank_countries.include?(id) }.each { |country_id| Country.update(country_id, ranking: 9_999_999) }
+
+        Country.find(1).update(ranking: -1)
       end
 
       def update_localregion
@@ -42,6 +44,8 @@ class Crons::Ranking
 
         # 登録されていないlocalregionのrankingを調整
         localregion_ids.reject { |id| rank_localregions.include?(id) }.each { |localregion_id| Localregion.update(localregion_id, ranking: 9_999_999) }
+
+        Localregion.find(1).update(ranking: -1)
       end
   end
 end
