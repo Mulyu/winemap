@@ -3,7 +3,7 @@ function Wine(wineData){
   var that = this;
 
   // ワインデータの格納
-  this.id = wineData.wine_id;
+  this.id = wineData.id;
   this.name = wineData.name;
   this.price = wineData.price;
   this.type = {
