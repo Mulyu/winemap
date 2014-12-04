@@ -158,6 +158,16 @@ function wineFilter(){
       return;
     }
 
+    if( filterMap.mine && ( wine.user.id !== userData.id ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( (filterMap.name!=="") && ( wine.user.name.search(filterMap.name)===(-1) ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
 
     if( ( wine.review.score < scoreSlider.getLeftHandleValue() ) ||
         ( wine.review.score > scoreSlider.getRightHandleValue() ) ){

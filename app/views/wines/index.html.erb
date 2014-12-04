@@ -45,6 +45,21 @@
                  onClick="filterMap.year = !filterMap.year;wineFilter();"></input>
           <label for="unYear">Year</label>
         </form>
+        <form id="userFilter" onsubmit="filterMap.name = d3.select('#searchUser').node().value;wineFilter();return false;">
+          <input type="checkbox"
+                 id="mine"
+                 onClick="filterMap.mine = !filterMap.mine;wineFilter();"></input>
+          <label for="mine">Mine</label>
+
+          <label for="searchUser">User</label>
+          <input type="textField"
+                 id="searchUser"></input>
+          <input type="button"
+                 id="searchUserButton"
+                 onClick="filterMap.name = d3.select('#searchUser').node().value;wineFilter();"></input>
+          <label for="searchUserButton">検索</label>
+
+        </form>
       </div>
       <div id="scoreFilter" class="filter">
         <div class="filterName">Score</div>
@@ -183,6 +198,8 @@
 
   d3.select("#onOffFiler").selectAll("input")
     .property("checked",true);
+  d3.select("#mine")
+    .property("checked",false);
 
   var filterMap = {
     red:        true,
@@ -192,5 +209,7 @@
     dessert:    true,
     price:      true,
     year:       true,
+    mine:       false,
+    name:       ""
   }
 </script>
