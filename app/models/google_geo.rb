@@ -9,7 +9,7 @@ class GoogleGeo < ActiveRecord::Base
       'http://maps.googleapis.com',
       '/maps/api/geocode/json',
       {
-        address: address,
+        address: address.gsub(/\s/, '%20'),
         sensor: 'false',
         language: 'ja'
       }
