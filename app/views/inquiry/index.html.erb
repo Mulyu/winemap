@@ -1,3 +1,5 @@
+<%= render partial: 'layouts/topbar' %>
+
 <div id="allowBootstrap" role="form">
   <%= form_for @inquiry, url: inquiry_confirm_path do |f| %>
     <h1>お問い合わせ</h1>
@@ -38,8 +40,4 @@
       <%= f.submit '確認', class: 'btn btn-default btn-sm' %>
     </div>
   <% end %>
-
-  <div class="col-sm-12 underlinks">
-    <%= link_to 'Back', root_path %>
-  </div>
 </div>
