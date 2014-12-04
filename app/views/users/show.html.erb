@@ -50,11 +50,11 @@
 <% end %>
 <!-- ログインしており、ユーザーがFollowしていない場合にFollowリンク表示 Follow済の場合はRemoveリンク表示 -->
 <% if logininfo_signed_in? %>
-  <% if @user.followed.exists?(@current_user.id) == false %>
+  <% if !(@user.followed.exists?(@current_user.id)) and (@user != @current_user) %>
     <%= form_for User.new ,:url => follow_user_path do |f| %>
       <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
     <% end %>
-  <% else %>
+  <% elsif @user.followed.exists?(@current_user.id) %>
     <%= form_for User.new ,:url => remove_user_path do |f| %>
       <%= f.submit "Remove", class: "btn btn-large btn-primary" %>
     <% end %>
