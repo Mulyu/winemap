@@ -24,7 +24,9 @@ function Wine(wineData){
     id:         wineData.user_id,
     name:       wineData.user,
     level:      wineData.winelevel };
+  this.photo = wineData.photo;
 
+  
   this.detailHtml = getDetailHtml();
 
   this.getIconImagePath = function(){
@@ -88,6 +90,9 @@ function Wine(wineData){
 
     detailAreaElement.select(".year").select("span")
       .text(that.year);
+
+    detailAreaElement.select(".photo").select("img")
+      .attr("src",that.photo);
 
     if( that.user.id == 1 ){
       detailAreaElement.select(".user").select("a")

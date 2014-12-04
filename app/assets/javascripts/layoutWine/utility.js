@@ -59,19 +59,26 @@ function useAjax( domId ){
         .bind("ajax:success", function(status, data){
           hiddenArea("loadingArea");
           var result = JSON.parse(data);
-
           if( "error" in result ){
             showValidationMessage( result.error );
           }else{
             dropPin( result );
-
             hiddenArea("createWineArea");
           }
         });
-
         $("#new_wine")
         .bind("ajax:error", function(status, data){
-          showValidationMessage( {error: ["通信に失敗しました"] } );
+          hiddenArea("loadingArea");
+          var result = JSON.parse(data.responseText);
+          if( "error" in result ){
+            showValidationMessage( {error: ["通信に失敗しました"] } );
+          }else{
+            /* fix photo url */
+            result.wine.photo = result.wine.photo.thumb.url; 
+            
+            dropPin( result );
+            hiddenArea("createWineArea");
+          }
         });
       });
       

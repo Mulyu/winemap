@@ -29,7 +29,7 @@ gem 'spring',        group: :development
 gem 'devise'
 # for upload photo
 gem 'carrierwave'
-# gem 'rmagick' , :require => 'RMagick'
+gem 'rmagick' , :require => 'RMagick'
 
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
@@ -42,6 +42,8 @@ gem 'addressable', require: 'addressable/uri'
 
 # Manage and deploy cron jobs
 gem 'whenever', :require => false
+
+gem 'remotipart'
 
 group :test do
   gem 'capybara'
