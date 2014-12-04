@@ -128,15 +128,29 @@
 
 		.name{
 			font-size: 		20px;
-			padding-bottom: 15px;
+			padding-top: 	10px;
+			padding-bottom: 20px;
 		}
 
 		.region{
 			padding-bottom: 5px;
+
+			div{
+				float:		left;
+			}
+
+			span{
+				display:	block;
+				float:		left;
+				top:		0;
+				right:		0;
+				width:		230px;
+			}
 		}
 
 		.type{
-			cursor: 		pointer;
+			clear:			both;
+			padding-top: 	5px;
 			padding-bottom: 5px;
 		}
 
@@ -152,6 +166,69 @@
 		.year{
 			float:			left;
 			margin-left: 	15px;
+		}
+
+		.user{
+			clear:			both;
+			padding-top: 	5px;
+			padding-bottom: 5px;
+
+			a{
+				padding-left:	5px;
+				border-bottom:	solid 2px white;
+				transition:		0.2s;
+				cursor:			default;
+			}
+
+			a:hover{
+				background-color: white;
+			}
+
+			.entryUser{
+				cursor:			pointer;
+			}
+
+			.entryUser:hover{
+				background-color: white;
+				border-bottom:	solid 2px #00b8fd;
+				
+				span{
+					background-color: #00b8fd;
+				}
+			}
+
+			span{
+				transition:		0.2s;
+				margin-left: 	10px;
+				padding:	 	0 3px;
+				background-color: white;
+				color:			white;
+			}
+		}
+
+		.wineEditLinkArea{
+			width:			100%;
+			text-align: 	right;
+
+			a{
+				padding:		5px 10px;
+				transition:		0.2s;
+				border-radius: 	20px;
+			}
+
+			.wineEditLink:hover{
+				background-color: 	#00b8fd;
+				color:				white;
+			}
+
+			.wineDeleteLink{
+				margin-left: 	5px;
+			}
+
+			.wineDeleteLink:hover{
+				background-color: 	red;
+				color:				white;
+			}
 		}
 	}
 
