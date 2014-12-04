@@ -1,3 +1,289 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Less here: http://lesscss.org/
+
+.main{
+  margin:       0 auto;
+  background-color:   black;
+  color:        white;
+}
+#editUserForm{
+  background-color: black;
+}
+#editUserForm .main{
+  border:           solid 2px white;
+  border-radius:    30px;
+  background-color: #353535;
+  width: 50%;  h1{
+    margin:         0 auto;
+    margin-bottom:  10px;
+    font-size:      20px;
+    padding:        20px;
+    padding-bottom: 0;
+  }
+
+  form{
+    margin-right:   auto;
+    margin-left:    auto;
+    width:          600px;
+    
+    .field{
+      margin-top:       20px;
+      margin-left:      20px;
+      background-color: #0C555D;
+      border:           solid 3px #0C555D;
+      height:           30px;
+      text-align:       right;
+      font-size:        14px;
+
+      label{
+        margin-right:   5px;
+      }
+
+      input{
+        height:       30px;
+        width:        80px;
+        border:       none;
+      }
+      input.top{
+      	height:       30px;
+        width:        150px;
+        border:       none;
+      }
+
+      select{
+        height:       30px;
+        width:        80px;
+        border:       none;
+        border-radius: 0px !important;
+        color:        black !important;
+      }
+    }
+
+    .textField{
+      width:        170px;
+      label{
+      	float:          left;
+        display:        block;
+        height:         26px;
+        width:          80px;
+        line-height:    26px;
+      	text-align: 		center;
+      }
+    }
+    .textboxField{
+      width:        440px;
+      height: 			100px;
+      label{
+      	float:          left;
+        display:        block;
+        height:         26px;
+        width:          80px;
+        line-height:    26px;
+      	text-align: 		center;
+      }
+    }
+    .longtextField{
+    	width:				270px;
+    	label{
+        float:          left;
+        display:        block;
+        height:         26px;
+        width:          150px;
+        line-height:    26px;
+        text-align:     center;
+        border:         solid 2px #0C555D;
+        margin:         0;
+      }
+      label.top{
+      	float:          left;
+        display:        block;
+        height:         26px;
+        width:          100px;
+        line-height:    26px;
+      	text-align: 		center;
+      }
+    }
+
+    .sliderField{
+      width:        170px;
+
+      label{
+        float:          left;
+        display:        block;
+        height:         26px;
+        width:          20px;
+        line-height:    26px;
+        text-align:     center;
+        border:         solid 2px #0C555D;
+        margin:         0;
+      }
+
+      label:first-child{
+        width:          116px;
+        border:         none;
+        pointer-events: none;
+      }
+
+      input{
+        display:        none;
+      }
+
+      label:hover{
+        transition:     0.2s;
+        border:         solid 2px white;
+      }
+
+      input[type="radio"]:checked+label{
+        transition:     0.2s;
+        background-color: white;
+        color:          #0C555D;
+        border:         solid 2px white;
+      }
+    }
+
+    .checkField{
+      width:        540px;
+      height:       auto;
+      text-align:   left;
+      padding:      10px;
+
+      label{
+        float:        left;
+        display:      block;
+        border:       solid 2px gray;
+        margin:        5px; 
+        padding:       7px;
+        font-size:     13px;
+      }
+
+      label:first-child{
+        font-size:     15px;
+        border:       none;
+        pointer-events: none;
+      }
+
+      input{
+        display:      none;
+      }
+
+      label:hover{
+        transition:    0.2s;
+        border:       solid 2px white; 
+      }
+
+      input[type="checkbox"]:checked+label{
+        transition:   0.2s;
+        background-color: white;
+        color:        #0C555D;
+        border:       solid 2px white;
+      }
+    }
+
+    .actions{
+      clear:        both;
+      text-align:   right;
+      margin:       10px;
+
+      input{
+        diaplay:          block;
+        cursor:           pointer;
+        color:            white;
+        font-size:        15px;
+        padding:          3px;
+        border:           solid 3px #E9872E;
+        background-color: #E9872E;
+      }
+
+      input:hover{
+        background-color: #E9872E;
+      } 
+
+      input:active{
+        background-color: #E9872E;
+      }
+    }
+
+    .must{
+      border:        solid 3px #E9872E;
+      background-color: #E9872E;
+    }
+
+    #moreInfoArea{
+      clear:        both;
+      text-align:   center;
+      width:        60px;
+      margin:       0 auto;
+
+        input{
+          display:  none;
+        }
+
+        label{
+          display:        block;
+          cursor:         pointer;
+          font-size:      15px;
+          padding:        2px 5px;
+          border-bottom:  dotted 2px white;
+        }
+
+        label:hover{
+          border-bottom:  solid 2px white;
+        }
+
+        input:checked + label{
+          border-bottom:  solid 2px white;
+        }
+    }
+
+    #moreField{
+      overflow:     scroll;
+    }
+
+    #nameField{
+      float:        left;
+    }
+
+    #birthField{
+      float:        left;
+    }
+
+    #genderField{
+      float:        left;
+    }
+
+    #prefectureField{
+      clear:        both;
+      float:        left;
+    }
+
+    #homeprefectureField{
+      float:        left;
+    }
+
+    #jobField{
+    	clear:				both;
+      float:        left;
+    }
+
+    #marriedField{
+      float:        left;
+    }
+
+    #introductionField{
+    	clear: 				both;
+      float:        left;
+    }
+
+    #photoField{
+      clear:        both;
+      float:        left;
+      width:        200px;
+      text-align:   left;
+    }
+
+    #photoField input{
+      width:        100px;
+    }
+  }
+}

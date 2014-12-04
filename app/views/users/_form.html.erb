@@ -11,38 +11,41 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="field longtextField " id="nameField">
+    <%= f.label :name ,:class => "top"%>
+    <%= f.text_field :name ,:class => "top"%>
   </div>
-  <div class="field">
-    <%= f.label :birth %><br>
-    <%= f.date_field :birth %>
+  <div class="field longtextField " id="birthField">
+    <%= f.label :birth ,:class => "top"%>
+    <%= f.date_field :birth ,:class => "top" %>
   </div>
-  <div class="field">
-    <%= f.label :gender %><br>
-    男:<%= f.radio_button :gender, 1, {:checked=>true} %>
-    女:<%= f.radio_button :gender, 2 %>
-  </div>
-  <div class="field">
-    <%= f.label :prefecture_id %><br>
+  
+  <div class="field longtextField " id="prefectureField">
+    <%= f.label :prefecture_id %>
     <%= f.grouped_collection_select :prefecture_id, @prefectureregions, :prefectures, :name, :id, :name, :include_blank => true %>
   </div>
-  <div class="field">
-    <%= f.label :home_prefecture_id %><br>
+  <div class="field longtextField " id="homeprefectureField">
+    <%= f.label :home_prefecture_id %>
     <%= f.grouped_collection_select :home_prefecture_id, @prefectureregions, :prefectures, :name, :id, :name, :include_blank => true %>
   </div>
-  <div class="field">
-    <%= f.label :job %><br>
+  <div class="field textField " id="jobField">
+    <%= f.label :job %>
     <%= f.text_field :job %>
   </div>
-  <div class="field">
-    <%= f.label :married %><br>
+  <div class="field sliderField " id="genderField">
+    <%= f.label :gender %>
+    <%= f.radio_button :gender, 1, {:checked=>true} %>
+    <%= f.label :gender_1 , "M"%>
+    <%= f.radio_button :gender, 2 %>
+    <%= f.label :gender_2 , "W"%>
+  </div>
+  <div class="field textField " id="marriedField">
+    <%= f.label :married %>
     <%= f.select :married, { '既婚' => 1, '未婚' => 2 }, :include_blank => true %>
   </div>
-  <div class="field">
-    <%= f.label :introduction %><br>
-    <%= f.text_area :introduction, cols: 40, rows: 10 %>
+  <div class="field textboxField " id="introductionField">
+    <%= f.label :introduction %>
+    <%= f.text_area :introduction, cols: 60, rows: 5 %>
   </div>
   <div class="actions">
     <%= f.submit %>
