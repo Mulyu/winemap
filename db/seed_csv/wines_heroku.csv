@@ -1,94 +1,104 @@
-Bordeaux,168,1,123.45678,123.45678,4,3,3,1,2012,,3,,Ch. Moulinat,1,0.99,testregion
-Riserva Dosaggio Zero,21,1,123.45678,123.45678,3,3,4,4,2004,,3,8000,Villa Crespia Franciacorta,1,0.99,testregion
-完熟ぶどうのおいしいワイン,233,1,123.45678,123.45678,1,3,1,1,2014,,3,999,メルシャン,1,0.99,testregion
-Soave,21,1,123.45678,123.45678,2,3,4,2,2013,,3,999,Poggio al Sale,1,0.99,testregion
-完熟ぶどうのおいしいワイン ブラン,233,1,123.45678,123.45678,1,3,1,2,2014,,3,999,メルシャン,1,0.99,testregion
-Brut,21,1,123.45678,123.45678,3,3,3,4,,,3,1250,Martini,1,0.99,testregion
-Sauvignon Blanc,38,1,123.45678,123.45678,2,3,2,2,2013,,4,999,McGuigan Estate,1,0.99,testregion
-Merlot,38,1,123.45678,123.45678,3,3,3,1,2013,,4,999,McGuigan Estate,1,0.99,testregion
-Sauvignon Blanc,140,1,123.45678,123.45678,2,3,4,2,2013,,3,1250,kapuka,1,0.99,testregion
-Madonna della scoperta,21,1,123.45678,123.45678,3,3,4,2,2009,,4,6000,Perla del Garda,1,0.99,testregion
-Ombrone Sant' Antimo,21,1,123.45678,123.45678,4,3,3,1,2010,,3,8000,Cupano,1,0.99,testregion
-Cabernet Sauvignon Reserva,89,1,123.45678,123.45678,2,3,4,1,2011,,2,1250,J. Joostenberg,1,0.99,testregion
-Malbec,10,1,123.45678,123.45678,4,3,2,1,2013,,3,999,Altosur,1,0.99,testregion
-Chardonney,10,1,123.45678,123.45678,2,3,2,2,2013,,2,999,Altosur,1,0.99,testregion
-Malbec,10,1,123.45678,123.45678,3,3,2,1,2013,,3,999,Santa Ana,1,0.99,testregion
-Tempranillo Crianza,120,1,123.45678,123.45678,5,3,1,1,,,3,1750,Gladium,1,0.99,testregion
-Neo Vivir Vivir,120,1,123.45678,123.45678,3,3,4,1,,,3,1250,Bodegas Conde,1,0.99,testregion
-Donpa Aglianico del Vulture,21,1,123.45678,123.45678,4,3,4,1,2009,,3,1250,Regio Cantina,1,0.99,testregion
-Mia Tinto,120,1,123.45678,123.45678,3,3,2,1,2012,,2,1250,Freixenet,1,0.99,testregion
-Pink Moscato,38,1,123.45678,123.45678,2,3,2,3,,,3,999,Yellow Tail,1,0.99,testregion
-Carmenere,121,1,123.45678,123.45678,4,3,2,1,2012,,2,1250,Root: 1,1,0.99,testregion
-Kozana,146,1,123.45678,123.45678,4,3,3,2,2009,,4,8000,Edi Simcic,1,0.99,testregion
-Cabernet Sauvignon,153,1,123.45678,123.45678,3,3,3,1,,,4,1250,Carlo Rossi,1,0.99,testregion
-Syrah,120,1,123.45678,123.45678,3,3,3,1,2011,,3,1250,Penascal Estate,1,0.99,testregion
-Sauvignon Blanc,120,1,123.45678,123.45678,3,3,3,2,2011,,3,1250,Penascal Estate,1,0.99,testregion
-California Chardonnay,153,1,123.45678,123.45678,2,3,3,2,,,3,1250,Carlo Rossi,1,0.99,testregion
-Vaucluse,168,1,123.45678,123.45678,3,3,3,1,,,2,999,Cuvee des Lanciers,1,0.99,testregion
-Cotes da Gascogne,168,1,123.45678,123.45678,2,3,4,2,,,2,999,Cuvee des Lanciers,1,0.99,testregion
-Pinot Noir,121,1,123.45678,123.45678,3,3,3,1,2011,,3,1250,Llai Llai,1,0.99,testregion
-Bolgheri Superiore,21,1,123.45678,123.45678,3,3,3,1,2009,,3,20000,I Luoghi Campo al Fico,1,0.99,testregion
-酸化防止剤無添加 おいしい赤ワイン まろやかテイスト,233,1,123.45678,123.45678,2,3,2,1,2014,,2,999,メルシャン,1,0.99,testregion
-酸化防止剤無添加 おいしい白ワイン すっきり,233,1,123.45678,123.45678,3,3,1,2,2014,,2,999,メルシャン,1,0.99,testregion
-Carmenere Reserva,121,1,123.45678,123.45678,4,3,2,1,2012,,3,1250,Explorer,1,0.99,testregion
-Chapeau Bleu Rouge,168,1,123.45678,123.45678,2,3,4,1,,,3,999,Aujoux,1,0.99,testregion
-Yosemite Road Cabernet Sauvignon,153,1,123.45678,123.45678,2,3,2,1,,,3,999,Seven Eleven,1,0.99,testregion
-Yosemite Road Chardonnay,153,1,123.45678,123.45678,2,3,5,2,,,2,999,Seven Eleven,1,0.99,testregion
-Premium,168,1,123.45678,123.45678,3,3,3,1,2011,,2,1250,Beau Rivage,1,0.99,testregion
-Vinga da Solagna,21,1,123.45678,123.45678,3,3,3,1,2006,,3,6000,Lucesole,1,0.99,testregion
-Brut Rose,168,1,123.45678,123.45678,2,3,2,4,,,3,4000,Paul Goerg,1,0.99,testregion
-Sonoma County Old Vine Zinfandel,153,1,123.45678,123.45678,4,3,2,1,2010,,3,,Ravenswood,1,0.99,testregion
-Angelo Moscato Spumante,21,1,123.45678,123.45678,2,3,2,4,,,3,999,Perlino,1,0.99,testregion
-Corralillo Chardonnay,121,1,123.45678,123.45678,2,3,2,2,2012,,3,999,Matetic Vineyards,1,0.99,testregion
-Corralillo Syrah,121,1,123.45678,123.45678,4,3,3,1,2011,,4,999,Matetic Vineyards,1,0.99,testregion
-Vinho Verde,49,1,123.45678,123.45678,2,3,2,4,,,3,999,Gatao,1,0.99,testregion
-White Chardonnay,168,1,123.45678,123.45678,3,3,4,2,2011,,3,999,Bree,1,0.99,testregion
-Red Merlot,168,1,123.45678,123.45678,2,3,2,1,2011,,3,999,Bree,1,0.99,testregion
-Beaujolais Villages Nouveau Vieilles Vignes,168,1,123.45678,123.45678,2,3,3,1,2013,,2,1250,Charles Drapier,1,0.99,testregion
-Winemakers Collection Chardonnay,89,1,123.45678,123.45678,2,3,1,2,2012,,3,999,Drostdy Hof,1,0.99,testregion
-Maipe Torrontes,10,1,123.45678,123.45678,2,3,4,2,,,3,999,Chakana,1,0.99,testregion
-Sauvignon Blanc,121,1,123.45678,123.45678,1,3,4,2,,,3,999,Alegremente,1,0.99,testregion
-Cabernet Sauvignon,121,1,123.45678,123.45678,2,3,2,1,,,3,999,Alegremente,1,0.99,testregion
-Rouge,168,1,123.45678,123.45678,4,3,2,1,2009,,3,,Ch. Moulin de Bernat,1,0.99,testregion
-La Escondida Malbec,10,1,123.45678,123.45678,3,3,2,1,2012,,2,999,Finca,1,0.99,testregion
-Bollicine Brut Rose,21,1,123.45678,123.45678,3,3,3,4,,,3,1250,Perlino,1,0.99,testregion
-Kakovostno Anfora,146,1,123.45678,123.45678,3,3,3,2,2006,,5,20000,Kabaj,1,0.99,testregion
-Nero d'Avola Syrah,21,1,123.45678,123.45678,4,3,4,1,2011,,2,999,Feudo Zirtari,1,0.99,testregion
-Cabernet Sauvignon delle Venezie,21,1,123.45678,123.45678,3,3,3,1,2010,,2,999,oneglass wine,1,0.99,testregion
-Vermentino Toscana,21,1,123.45678,123.45678,3,3,3,2,2011,,2,999,oneglass wine,1,0.99,testregion
-Reserva Cabernet Sauvignon,121,1,123.45678,123.45678,4,3,2,1,,,2,1250,Caliterra,1,0.99,testregion
-Reserva Chardonnay,121,1,123.45678,123.45678,2,3,2,2,2012,,2,1250,Caliterra,1,0.99,testregion
-Las Casillas Tinto,99,1,39.26367,-3.74922,3,3,3,1,,,2,800,"",1,0,スペイン
-Las Casillas Branco,99,1,39.26367,-3.64922,3,3,3,2,,,2,800,"",1,0,スペイン
-Fontanafredda Asti Spumante,21,12,45.05224,7.51539,3,3,3,4,,,5,1200,"",1,0,ピエモンテ
-Guido Porro Barolo,21,12,45.05224,7.61539,3,3,3,1,2010,,3,7000,"",1,0,ピエモンテ
-ツヴァイゲルトレーベ,233,13,43.06461,141.34681,3,3,3,1,,,3,,"",1,0,北海道
-ツヴァイゲルトレーベ,233,13,43.06461,141.44681,3,3,3,1,,,3,,"",1,0,北海道
-かみのやまメルロ,233,14,38.14956,140.26783,3,3,3,1,,,3,,"",1,0,山形県上山
-ソラリス　メルロー,233,15,36.65130,138.18096,3,3,3,1,,,3,,"",1,0,長野県
-Brenntal Gewurtztraminer Riserva,21,16,46.43367,11.16933,3,3,3,2,2009,,4,5000,"",1,0,trentino-alto
-城の平カベルネソーヴィニヨン,233,17,35.66416,138.56845,3,3,3,1,,,3,,"",1,0,山梨
-Ch. Fabre Cuvee Des Jumelles,168,18,42.74047,2.89181,3,3,3,1,2012,,4,1500,"",1,0,Languedoc
-Dearth d Bordeaux Rouge,168,19,44.83779,-0.57918,3,3,3,1,2006,,2,,"",1,0,Bordeaux
-はこだてワイン 年輪,233,20,41.76879,140.72881,3,3,3,2,,,3,700,"",1,0,函館
-はこだてワイン 函館の鮨,233,20,41.76879,140.82881,3,3,3,2,,,4,800,"",1,0,函館
-Burgerspital Wurzburger Silvaner Trocken,168,21,47.60326,7.35492,3,3,3,2,2013,,3,,"",1,0,Franken
-Villa Crespia Franciacorta Riserva Dosaggio Zero,21,22,45.47907,9.84524,3,3,3,4,2004,,4,8000,"",1,0,Lombardia
-McGuigan Estate Sauvignon Blanc,38,1,-26.47440,133.97514,3,3,3,2,2013,,5,800,"",1,0,Australia
-Kapuka Sauvignon Blanc,68,23,51.42007,-1.72706,3,3,3,2,2013,,3,1200,"",1,0,marlborough
-J. Joostenberg Cabernet Sauvignon Reserva,230,1,-31.75948,23.23751,3,3,3,1,2011,,2,1200,"",1,0,SouthAfrica
-El Paso Tempranillo Shiraz,6,24,40.59574,-98.22393,3,3,3,1,2012,,3,800,"",1,0,inland
-Edi Simcic Kozana,103,1,44.95124,15.39546,3,3,3,2,2009,,5,8000,"",1,0,Slovenia
-Carlo Rossei Cabernet Sauvignon,6,25,36.77826,-119.41793,3,3,3,1,,,3,1300,"",1,0,California
-Carlo Rossi California Chardonnay,6,25,36.77826,-119.31793,3,3,3,2,,,3,1200,"",1,0,California
-Llai Llai Pinot Noir,121,1,-36.97515,-71.54297,3,3,3,1,2011,,3,1300,"",1,0,chile
-Gatao Vinho Verde,187,1,38.09987,-8.12445,3,3,3,4,,,4,800,"",1,0,Portugal
-Yellow Tail Pink Moscato,38,1,-26.57440,133.97514,3,3,3,3,,,2,700,"",1,0,Australia
-いちごワイン,233,26,36.56573,139.88357,3,3,3,5,,,1,,"",1,0,栃木
-ARRAYAN ROSADO,99,1,39.16367,-3.44922,3,3,3,3,,,3,,"",1,0,スペイン
-モスクワワイン,222,27,55.75583,37.61730,3,2,2,1,2014,,5,1980,"",1,0,モスクワ
-モスクワワイン,222,27,55.75583,37.71730,3,2,2,1,2014,,5,1980,"",1,0,モスクワ
-アユート,21,12,45.05224,7.71539,4,4,2,2,2005,,4,,トリンケーロ,1,0,イタリア　ピエモンテ
-Schloss Johannisberg,124,28,50.07527,8.43738,3,3,3,2,,,3,,"",1,0,Rheingau
-Tokaji,157,29,48.11721,21.40890,3,5,3,5,,,5,,"",1,0,Tokaj
-dynasty,226,30,39.08416,117.20098,3,3,3,1,,,3,,"",1,0,tianjin
+Las Casillas Tinto,99,1,39.26367,-3.74922,3,3,3,1,,,2,800,"",5,0,スペイン
+Las Casillas Branco,99,1,39.26367,-3.64922,3,3,3,2,,,2,800,"",5,0,スペイン
+Fontanafredda Asti Spumante,21,2,45.05224,7.51539,3,3,3,4,,,5,1200,"",5,0,ピエモンテ
+Guido Porro Barolo,21,2,45.05224,7.61539,3,3,3,1,2010,,3,7000,"",5,0,ピエモンテ
+ツヴァイゲルトレーベ,233,3,43.06461,141.34681,3,3,3,1,,,3,,"",5,0,北海道
+ツヴァイゲルトレーベ,233,3,43.06461,141.44681,3,3,3,1,,,3,,"",5,0,北海道
+かみのやまメルロ,233,4,38.14956,140.26783,3,3,3,1,,,3,,"",5,0,山形県上山
+ソラリス　メルロー,233,5,36.65130,138.18096,3,3,3,1,,,3,,"",5,0,長野県
+Brenntal Gewurtztraminer Riserva,21,6,46.43367,11.16933,3,3,3,2,2009,,4,5000,"",5,0,trentino-alto
+城の平カベルネソーヴィニヨン,233,7,35.66416,138.56845,3,3,3,1,,,3,,"",5,0,山梨
+Ch. Fabre Cuvee Des Jumelles,168,8,42.74047,2.89181,3,3,3,1,2012,,4,1500,"",5,0,Languedoc
+Dearth d Bordeaux Rouge,168,9,44.83779,-0.57918,3,3,3,1,2006,,2,,"",5,0,Bordeaux
+はこだてワイン 年輪,233,10,41.76879,140.72881,3,3,3,2,,,3,700,"",5,0,函館
+はこだてワイン 函館の鮨,233,10,41.76879,140.82881,3,3,3,2,,,4,800,"",5,0,函館
+Burgerspital Wurzburger Silvaner Trocken,168,11,47.60326,7.35492,3,3,3,2,2013,,3,,"",5,0,Franken
+Villa Crespia Franciacorta Riserva Dosaggio Zero,21,12,45.47907,9.84524,3,3,3,4,2004,,4,8000,"",5,0,Lombardia
+McGuigan Estate Sauvignon Blanc,38,1,-26.47440,133.97514,3,3,3,2,2013,,5,800,"",5,0,Australia
+Kapuka Sauvignon Blanc,68,13,51.42007,-1.72706,3,3,3,2,2013,,3,1200,"",5,0,marlborough
+J. Joostenberg Cabernet Sauvignon Reserva,230,1,-31.75948,23.23751,3,3,3,1,2011,,2,1200,"",5,0,SouthAfrica
+El Paso Tempranillo Shiraz,6,14,40.59574,-98.22393,3,3,3,1,2012,,3,800,"",5,0,inland
+Edi Simcic Kozana,103,1,44.95124,15.39546,3,3,3,2,2009,,5,8000,"",5,0,Slovenia
+Carlo Rossei Cabernet Sauvignon,6,15,36.77826,-119.41793,3,3,3,1,,,3,1300,"",5,0,California
+Carlo Rossi California Chardonnay,6,15,36.77826,-119.31793,3,3,3,2,,,3,1200,"",5,0,California
+Llai Llai Pinot Noir,121,1,-36.97515,-71.54297,3,3,3,1,2011,,3,1300,"",5,0,chile
+Gatao Vinho Verde,187,1,38.09987,-8.12445,3,3,3,4,,,4,800,"",5,0,Portugal
+Yellow Tail Pink Moscato,38,1,-26.57440,133.97514,3,3,3,3,,,2,700,"",5,0,Australia
+いちごワイン,233,16,36.56573,139.88357,3,3,3,5,,,1,,"",5,0,栃木
+ARRAYAN ROSADO,99,1,39.16367,-3.44922,3,3,3,3,,,3,,"",5,0,スペイン
+モスクワワイン,222,17,55.75583,37.61730,3,2,2,1,2014,,5,1980,"",1,0,モスクワ
+アユート,21,2,45.05224,7.71539,4,4,2,2,2005,,4,,トリンケーロ,1,0,イタリア　ピエモンテ
+Schloss Johannisberg,124,18,50.07527,8.43738,3,3,3,2,,,3,,"",1,0,Rheingau
+Tokaji,157,19,48.11721,21.40890,3,5,3,5,,,5,,"",1,0,Tokaj
+dynasty,226,20,39.08416,117.20098,3,3,3,1,,,3,,"",1,0,tianjin
+Arbis Blanc,21,22,46.2259177,13.1033646,,,,2,2011,,4,6000,Borgo San Daniele,5,0.0,Friuli-Venezia Giulia
+感謝,233,23,35.6933937,138.6869138,,,,1,,,3,,シャトー勝沼,5,0.0,Yamanashi
+Baralo Gabutti Bussia,21,2,44.9522366,7.9153885,,,,1,2009,,3,20000,Stroppiana,5,0.0,Piemonte
+Bordeaux,168,9,44.737789,-0.37918,4,3,3,1,2012,,3,,Ch. Moulinat,5,0.0,Bordeaux
+Riserva Dosaggio Zero,21,12,45.3790671,9.8452433,3,3,4,4,2004,,3,8000,Villa Crespia Franciacorta,5,0.0,Lombardia
+完熟ぶどうのおいしいワイン,233,1,35.404824,138.552924,1,3,1,1,2014,,3,999,メルシャン,5,0.0,Japan
+Soave,21,24,45.7623333,11.890976,2,3,4,2,2013,,3,999,Poggio al Sale,5,0.0,Veneto
+完熟ぶどうのおいしいワイン ブラン,233,1,35.404824,138.552924,1,3,1,2,2014,,3,999,メルシャン,5,0.0,Japan
+Brut,21,2,44.9522366,7.9153885,3,3,3,4,,,3,1250,Martini,5,0.0,Piemonte
+Sauvignon Blanc,38,1,-26.074398,134.075136,2,3,2,2,2013,,4,999,McGuigan Estate,5,0.0,Australia
+Merlot,38,1,-26.074398,134.075136,3,3,3,1,2013,,4,999,McGuigan Estate,5,0.0,Australia
+Sauvignon Blanc,68,13,51.420073,-1.427062,2,3,4,2,2013,,3,1250,kapuka,5,0.0,Marlborough
+Madonna della scoperta,21,12,45.3790671,9.8452433,3,3,4,2,2009,,4,6000,Perla del Garda,5,0.0,Lombardia
+Ombrone Sant' Antimo,21,25,43.6710513,11.5486208,4,3,3,1,2010,,3,8000,Cupano,5,0.0,Toscana
+Cabernet Sauvignon Reserva,230,1,-31.359482,23.237506,2,3,4,1,2011,,2,1250,J. Joostenberg,5,0.0,South Africa
+Malbec,10,26,-32.990183,-68.8440498,4,3,2,1,2013,,3,999,Altosur,5,0.0,Mendoza
+Chardonney,10,26,-32.990183,-68.8440498,2,3,2,2,2013,,2,999,Altosur,5,0.0,Mendoza
+Malbec,10,26,-32.990183,-68.8440498,3,3,2,1,2013,,3,999,Santa Ana,5,0.0,Mendoza
+Tempranillo Crianza,6,27,33.5756313,-117.5628419,5,3,1,1,,,3,1750,Gladium,5,0.0,La Mancha
+Neo Vivir Vivir,99,28,41.7820044,-3.3623239,3,3,4,1,,,3,1250,Bodegas Conde,5,0.0,Ribera del Duero
+Schioppettino,21,22,46.2259177,13.1033646,5,3,4,1,200167,,4,6000,Moschioni Colli Orientali del Friuli,5,0.0,Friuli-Venezia Giulia
+Donpa Aglianico del Vulture,21,29,40.6430766,16.1699878,4,3,4,1,2009,,3,1250,Regio Cantina,5,0.0,Basilicata
+Mia Tinto,99,1,39.663667,-3.44922,3,3,2,1,2012,,2,1250,Freixenet,5,0.0,Spain
+Pink Moscato,38,1,-26.074398,134.075136,2,3,2,3,,,3,999,Yellow Tail,5,0.0,Australia
+Carmenere,6,30,41.3317251,-73.9213172,4,3,2,1,2012,,2,1250,Root: 1,5,0.0,Central Valley
+Kozana,103,1,45.351241,15.295463,4,3,3,2,2009,,4,8000,Edi Simcic,5,0.0,Slovenia
+Cabernet Sauvignon,6,15,36.578261,-119.4179324,3,3,3,1,,,4,1250,Carlo Rossi,5,0.0,California
+Syrah,99,31,41.8356821,-4.1976357,3,3,3,1,2011,,3,1250,Penascal Estate,5,0.0,Castilla y Leon
+Sauvignon Blanc,99,31,41.8356821,-4.1976357,3,3,3,2,2011,,3,1250,Penascal Estate,5,0.0,Castilla y Leon
+California Chardonnay,6,15,36.578261,-119.4179324,2,3,3,2,,,3,1250,Carlo Rossi,5,0.0,California
+Vaucluse,51,32,5.1573493,9.7673084,3,3,3,1,,,2,999,Cuvee des Lanciers,5,0.0,Sud Ouest
+Cotes da Gascogne,51,32,5.1573493,9.7673084,2,3,4,2,,,2,999,Cuvee des Lanciers,5,0.0,Sud Ouest
+Pinot Noir,6,33,44.9204669,-115.6926381,3,3,3,1,2011,,3,1250,Llai Llai,5,0.0,Bio Bio Valley
+Bolgheri Superiore,21,25,43.6710513,11.5486208,3,3,3,1,2009,,3,20000,I Luoghi Campo al Fico,5,0.0,Toscana
+酸化防止剤無添加 おいしい赤ワイン まろやかテイスト,233,1,35.404824,138.552924,2,3,2,1,2014,,2,999,メルシャン,5,0.0,Japan
+酸化防止剤無添加 おいしい白ワイン すっきり,233,1,35.404824,138.552924,3,3,1,2,2014,,2,999,メルシャン,5,0.0,Japan
+Carmenere Reserva,6,30,41.3317251,-73.9213172,4,3,2,1,2012,,3,1250,Explorer,5,0.0,Central Valley
+Chapeau Bleu Rouge,168,1,45.427638,2.513749,2,3,4,1,,,3,999,Aujoux,5,0.0,France
+Yosemite Road Cabernet Sauvignon,6,15,36.578261,-119.4179324,2,3,2,1,,,3,999,Seven Eleven,5,0.0,California
+Yosemite Road Chardonnay,6,15,36.578261,-119.4179324,2,3,5,2,,,2,999,Seven Eleven,5,0.0,California
+Premium,168,9,44.737789,-0.37918,3,3,3,1,2011,,2,1250,Beau Rivage,5,0.0,Bordeaux
+Vinga da Solagna,21,34,43.5058744,13.189615,3,3,3,1,2006,,3,6000,Lucesole,5,0.0,Marche
+Brut Rose,168,35,48.026628,0.433235,2,3,2,4,,,3,4000,Paul Goerg,5,0.0,Champagne
+Sonoma County Old Vine Zinfandel,6,36,38.291859,-122.3580356,4,3,2,1,2010,,3,,Ravenswood,5,0.0,Sonoma
+Angelo Moscato Spumante,21,2,44.9522366,7.9153885,2,3,2,4,,,3,999,Perlino,5,0.0,Piemonte
+Corralillo Chardonnay,6,37,37.3547253,-121.3519589,2,3,2,2,2012,,3,999,Matetic Vineyards,5,0.0,San Antonio Valley
+Corralillo Syrah,6,37,37.3547253,-121.3519589,4,3,3,1,2011,,4,999,Matetic Vineyards,5,0.0,San Antonio Valley
+Vinho Verde,187,1,38.599872,-7.924454,2,3,2,4,,,3,999,Gatao,5,0.0,Portugal
+White Chardonnay,168,1,45.427638,2.513749,3,3,4,2,2011,,3,999,Bree,5,0.0,France
+Red Merlot,168,1,45.427638,2.513749,2,3,2,1,2011,,3,999,Bree,5,0.0,France
+Beaujolais Villages Nouveau Vieilles Vignes,168,38,46.083333,4.766667,2,3,3,1,2013,,2,1250,Charles Drapier,5,0.0,Beaujolais
+Winemakers Collection Chardonnay,230,39,-33.2277918,22.0568586,2,3,1,2,2012,,3,999,Drostdy Hof,5,0.0,Western Cape
+Maipe Torrontes,10,26,-32.990183,-68.8440498,2,3,4,2,,,3,999,Chakana,5,0.0,Mendoza
+Sauvignon Blanc,121,1,-36.475147,-71.242969,1,3,4,2,,,3,999,Alegremente,5,0.0,Chile
+Scpio,21,25,43.6710513,11.5486208,3,3,3,1,200167,,4,20000,Tenuta dei Sete Cieli,5,0.0,Toscana
+Cabernet Sauvignon,121,1,-36.475147,-71.242969,2,3,2,1,,,3,999,Alegremente,5,0.0,Chile
+Rouge,168,9,44.737789,-0.37918,4,3,2,1,2009,,3,,Ch. Moulin de Bernat,5,0.0,Bordeaux
+La Escondida Malbec,10,26,-32.990183,-68.8440498,3,3,2,1,2012,,2,999,Finca,5,0.0,Mendoza
+Bollicine Brut Rose,21,2,44.9522366,7.9153885,3,3,3,4,,,3,1250,Perlino,5,0.0,Piemonte
+Kakovostno Anfora,103,1,45.351241,15.295463,3,3,3,2,2006,,5,20000,Kabaj,5,0.0,Slovenia
+Nero d'Avola Syrah,21,40,37.5999938,14.2153557,4,3,4,1,2011,,2,999,Feudo Zirtari,5,0.0,Sicilia
+Cabernet Sauvignon delle Venezie,21,25,43.6710513,11.5486208,3,3,3,1,2010,,2,999,oneglass wine,5,0.0,Toscana
+Vermentino Toscana,21,25,43.6710513,11.5486208,3,3,3,2,2011,,2,999,oneglass wine,5,0.0,Toscana
+Reserva Cabernet Sauvignon,3,41,53.2748813,-5.9026699,4,3,2,1,,,2,1250,Caliterra,5,0.0,Casablanca Valley
+Reserva Chardonnay,3,41,53.2748813,-5.9026699,2,3,2,2,2012,,2,1250,Caliterra,5,0.0,Casablanca Valley
+Nero d'Avola Syrah,21,40,37.5999938,14.2153557,3,3,3,1,2011,,,,Feudo Zirtari,5,0.0,Sicilia
+Chardonney,21,40,37.5999938,14.2153557,3,3,3,2,2012,,,,Feudo Zirtari,5,0.0,Sicilia
+Cabernet Sauvignon delle Venezie,21,25,43.6710513,11.5486208,3,3,3,1,2010,,,,oneglass wine,5,0.0,Toscana
+Vermentino Toscana,21,25,43.6710513,11.5486208,3,3,3,2,2011,,,,oneglass wine,5,0.0,Toscana
+Reserva Cabernet Sauvignon,3,41,53.2748813,-5.9026699,3,3,3,1,,,,,Caliterra,5,0.0,Casablanca Valley
+Reserva Chardonnay,3,41,53.2748813,-5.9026699,3,3,3,2,,,,,Caliterra,5,0.0,Casablanca Valley

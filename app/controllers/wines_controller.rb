@@ -69,7 +69,7 @@ class WinesController < ApplicationController
         if @wine.save
           format.html { render json: {wine: @wine, regions: get_regions(@wine)}, notice: 'Wine was successfully created.' }
           format.json { render :show, status: :created, location: @wine }
-      else
+        else
           format.html { render json: {wine: @wine, regions: get_regions(@wine), error: @wine.errors} }
           format.json { render json: @wine.errors, status: :unprocessable_entity }
         end
@@ -142,8 +142,11 @@ class WinesController < ApplicationController
     def normalize_wine_data
       ### ユーザーの入力ワインデータを正規化
 
+      # Beaujolaisの場合のみ日本語に置き換える
+      input_region = params[:wine][:input_region] == 'Beaujolais' ? 'ボジョレー' : params[:wine][:input_region]
+
       # Google Geocoding APIから正しい住所と緯度経度を取得
-      response = GoogleGeo.request(params[:wine][:input_region])
+      response = GoogleGeo.request(input_region)
 
       ### 住所情報から必要な情報をセット
       if response['status'] == 'OK'
