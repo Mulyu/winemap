@@ -158,7 +158,7 @@ function wineFilter(){
       return;
     }
 
-    if( filterMap.mine && ( wine.user.id !== userData.id ) ){
+    if( !filterMap.mine && ( wine.user.id !== userData.id ) ){
       wine.marker.setVisible(false);
       return;
     }
