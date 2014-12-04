@@ -112,7 +112,6 @@ CSV.foreach('db/seed_csv/users_heroku.csv') do |row|
     married: row[8],
     introduction: row[9],
     winelevel: row[10],
-    winenum: row[11],
     follow: row[12],
     follower: row[13],
     ranking: row[14],

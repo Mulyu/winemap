@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204142502) do
+ActiveRecord::Schema.define(version: 20141204151644) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20141204142502) do
     t.integer  "married",                       default: 0
     t.string   "introduction"
     t.float    "winelevel",          limit: 24,             null: false
-    t.integer  "winenum",                                   null: false
     t.integer  "follow",                                    null: false
     t.integer  "follower",                                  null: false
     t.integer  "ranking",                                   null: false
