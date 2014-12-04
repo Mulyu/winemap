@@ -90,7 +90,7 @@ class WinesController < ApplicationController
         format.html { redirect_to root_path }
         format.json { render :show, status: :ok, location: @wine }
       else
-        format.html { redirect_to root_path }
+        format.html { render action: 'edit' }
         format.json { render json: @wine.errors, status: :unprocessable_entity }
       end
     end
