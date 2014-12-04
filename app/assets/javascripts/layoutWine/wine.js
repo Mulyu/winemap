@@ -87,6 +87,16 @@ function Wine(wineData){
     detailAreaElement.select(".year").select("span")
       .text(that.year);
 
+    if( that.user.id == 1 ){
+      detailAreaElement.select(".user").select("a")
+        .text(that.user.name)
+        .attr("href","javascript:void(0)");
+    }else{
+      detailAreaElement.select(".user").select("a")
+        .text(that.user.name)
+        .attr("href","/users/"+that.user.id);
+    }
+
     if( ( that.user.id == 1 )||( that.user.id == userData.id ) ){
       detailAreaElement.select(".wineEditLinkArea")
         .attr("action", "wines/"+that.id)
@@ -105,6 +115,7 @@ function Wine(wineData){
 }
 
 function hiddenWineDetail(){
+  console.log("どんどん");
   wines.forEach( function(wine){
     if("infoWindow" in wine)
       wine.infoWindow.close();
