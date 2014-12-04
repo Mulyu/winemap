@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127103951) do
+ActiveRecord::Schema.define(version: 20141204142502) do
 
   create_table "countries", force: true do |t|
     t.string  "name",           limit: 30,                         null: false
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20141127103951) do
     t.integer  "year"
     t.integer  "score"
     t.integer  "price"
-    t.string   "winery",         limit: 30
+    t.string   "winery",         limit: 100
     t.float    "winelevel",      limit: 24,                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
