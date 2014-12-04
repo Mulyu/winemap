@@ -1,8 +1,6 @@
 <div id="allowBootstrap" role="form">
   <%= form_for @inquiry, url: inquiry_confirm_path do |f| %>
-    <div>
-      <h1>お問い合わせ</h1>
-    </div>
+    <h1>お問い合わせ</h1>
 
     <% if @inquiry.errors.any? %>
       <div id="error_explanation">
@@ -36,8 +34,12 @@
       </div>
     </div>
 
-    <div class="col-sm-1">
+    <div class="col-sm-12">
       <%= f.submit '確認', class: 'btn btn-default btn-sm' %>
     </div>
   <% end %>
+
+  <div class="col-sm-12 underlinks">
+    <%= link_to 'Back', root_path %>
+  </div>
 </div>
