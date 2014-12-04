@@ -137,6 +137,52 @@ function wineFilter(){
   wines.forEach(function(wine){
     wine.marker.setVisible(true);
 
+    if( !filterMap.red && ( wine.type.id == 1 ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( !filterMap.white && ( wine.type.id == 2 ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( !filterMap.rose && ( wine.type.id == 3 ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( !filterMap.sparkling && ( wine.type.id == 4 ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( !filterMap.dessert && ( wine.type.id == 5 ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( !filterMap.price && ( wine.price === null ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( !filterMap.year && ( wine.year === null ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( !filterMap.mine && ( wine.user.id !== userData.id ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+    if( (filterMap.name!=="") && ( wine.user.name.search(filterMap.name)===(-1) ) ){
+      wine.marker.setVisible(false);
+      return;
+    }
+
+
     if( ( wine.review.score < scoreSlider.getLeftHandleValue() ) ||
         ( wine.review.score > scoreSlider.getRightHandleValue() ) ){
       wine.marker.setVisible(false);

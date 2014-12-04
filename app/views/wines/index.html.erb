@@ -7,7 +7,91 @@
 <div id="visArea">
   <div id="map"></div>
   <div id="filterArea" style="pointer-events:none; opacity:0">
-      <div id="scoreFilter" class="filter">
+      <div id="onOffFilter">
+        <form id="typeFilter">
+          <input type="checkbox"
+                 id="typeRed"
+                 class="switchFilter"
+                 onClick="filterMap.red = !filterMap.red;wineFilter();"></input>
+          <label for="typeRed">
+            <span>表示</span>
+            Red
+          </label>
+
+          <input type="checkbox"
+                 id="typeWhite"
+                 class="switchFilter"
+                 onClick="filterMap.white = !filterMap.white;wineFilter();"></input>
+          <label for="typeWhite">
+            <span>表示</span>
+            White
+          </label>
+
+          <input type="checkbox"
+                 id="typeRose"
+                 class="switchFilter"
+                 onClick="filterMap.rose = !filterMap.rose;wineFilter();"></input>
+          <label for="typeRose">
+            <span>表示</span>
+            Rose
+          </label>
+
+          <input type="checkbox"
+                 id="typeSpark"
+                 class="switchFilter"
+                 onClick="filterMap.sparkling = !filterMap.sparkling;wineFilter();"></input>
+          <label for="typeSpark">
+            <span>表示</span>
+            Sparkling
+          </label>
+
+          <input type="checkbox"
+                 id="typeDessert"
+                 class="switchFilter"
+                 onClick="filterMap.dessert = !filterMap.dessert;wineFilter();"></input>
+          <label for="typeDessert">
+            <span>表示</span>
+            Dessert
+          </label>
+        </form>
+        <form id="unresisterFilter">
+          <input type="checkbox"
+                 id="unPrice"
+                 class="switchFilter"
+                 onClick="filterMap.price = !filterMap.price;wineFilter();"></input>
+          <label for="unPrice">
+            <span>表示</span>
+            Price未登録
+          </label>
+
+          <input type="checkbox"
+                 id="unYear"
+                 class="switchFilter"
+                 onClick="filterMap.year = !filterMap.year;wineFilter();"></input>
+          <label for="unYear">
+            <span>表示</span>
+            Year未登録
+          </label>
+        </form>
+        <form id="userFilter" onsubmit="filterMap.name = d3.select('#searchUser').node().value;wineFilter();return false;">
+          <input type="checkbox"
+                 id="mine"
+                 class="switchFilter"
+                 onClick="filterMap.mine = !filterMap.mine;wineFilter();"></input>
+          <label for="mine">
+            <span>表示</span>
+            他人のワイン
+          </label>
+          
+          <input type="textField"
+                 id="searchUser"></input>
+          <input type="button"
+                 id="searchUserButton"
+                 onClick="filterMap.name = d3.select('#searchUser').node().value;wineFilter();"></input>
+          <label for="searchUserButton">検索</label>
+        </form>
+      </div>
+      <div id="scoreFilter" class="filter" style="clear:both;">
         <div class="filterName">Score</div>
       </div>
       <div id="priceFilter" class="filter">
@@ -148,4 +232,19 @@
     wineParams.maxYear,
     wineParams.minYear,
     wineParams.maxYear );
+
+  d3.select("#onOffFilter").selectAll("input")
+    .property("checked",true);
+
+  var filterMap = {
+    red:        true,
+    white:      true,
+    rose:       true,
+    sparkling:  true,
+    dessert:    true,
+    price:      true,
+    year:       true,
+    mine:       true,
+    name:       ""
+  }
 </script>
