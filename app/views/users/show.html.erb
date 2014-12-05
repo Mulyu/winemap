@@ -122,7 +122,11 @@
             <% @wines.each do |wine| %>
               <div class="media">
                 <span class="media-left" href="#">
-                  <img src="<%= wine.photo.thumb.url %>" alt="<%= wine.name %>">
+                  <% if wine.photo != "" %>
+                    <img src="<%= wine.photo.thumb.url %>">
+                  <% else %>
+                    <%= image_tag 'images/wine/default.png' %>
+                  <%end%>
                 </span>
                 <div class="media-body">
                   <p class="media-heading"><%= wine.name %></p>
