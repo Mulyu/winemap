@@ -57,6 +57,8 @@ function useAjax( domId ){
 
         $("#new_wine")
         .bind("ajax:success", function(status, data){
+          console.log("success");
+          console.log(JSON.parse(data));
           hiddenArea("loadingArea");
           var result = JSON.parse(data);
           if( "error" in result ){
@@ -68,14 +70,14 @@ function useAjax( domId ){
           }
         });
         $("#new_wine")
-        .bind("ajax:error", function(status, data){
-          hiddenArea("loadingArea");
+        .bind("ajax:error", function(status, data, test){
           var result = JSON.parse(data.responseText);
+          console.log(result);
+          hiddenArea("loadingArea");
           if( "error" in result ){
             showValidationMessage( {error: ["通信に失敗しました"] } );
           }else{
             /* fix photo url */
-            result.wine.photo = result.wine.photo.thumb["url"]; 
             dropPin( result );
             hiddenArea("createWineArea");
           }
