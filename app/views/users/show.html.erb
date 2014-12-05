@@ -3,112 +3,159 @@
   <p id="notice"><%= notice %></p>
   <%= javascript_include_tag "application" %>
 
-  <%= form_for @user do |f| %>
-    <div class="col-sm-12">
-      <dl>
-        <% if @user.name.present? %>
+  <div class="row">
+    <div class="col-sm-4">
+      <%= form_for @user do |f| %>
+      <div class="col-sm-12">
+        <dl>
+          <% if @user.name.present? %>
           <div class="field form-group clearfix">
             <dt><%= f.label :name %></dt>
             <dd>
               <%= @user.name %>
             </dd>
           </div>
-        <% end %>
-        <% if @user.birth.present? %>
+          <% end %>
+          <% if @user.birth.present? %>
           <div class="field form-group clearfix">
             <dt><%= f.label :birth %></dt>
             <dd>
               <%= @user.birth %>
             </dd>
           </div>
-        <% end %>
-        <% if @user.gender.present? %>
+          <% end %>
+          <% if @user.gender.present? %>
           <div class="field form-group clearfix">
             <dt><%= f.label :gender %></dt>
             <dd>
               <% case @user.gender %>
               <% when 0 then %>
-                <%= '男性' %>
+              <%= '男性' %>
               <% when 1 then %>
-                <%= '女性' %>
+              <%= '女性' %>
               <% end %>
             </dd>
           </div>
-        <% end %>
-        <% if @user.prefecture.present? %>
+          <% end %>
+          <% if @user.prefecture.present? %>
           <div class="field form-group clearfix">
             <dt><%= f.label :prefecture %></dt>
             <dd>
               <%= @user.prefecture.name %>
             </dd>
           </div>
-        <% end %>
-        <% if @user.home_prefecture.present? %>
+          <% end %>
+          <% if @user.home_prefecture.present? %>
           <div class="field form-group clearfix">
             <dt><%= f.label :home_prefecture %></dt>
             <dd>
               <%= @user.home_prefecture.name %>
             </dd>
           </div>
-        <% end %>
-        <% if @user.job.present? %>
+          <% end %>
+          <% if @user.job.present? %>
           <div class="field form-group clearfix">
             <dt><%= f.label :job %></dt>
             <dd>
               <%= @user.job %>
             </dd>
           </div>
-        <% end %>
-        <% if @user.married.present? %>
+          <% end %>
+          <% if @user.married.present? %>
           <div class="field form-group clearfix">
             <dt><%= f.label :married %></dt>
             <dd>
               <% case @user.married %>
               <% when 0 then %>
-                <%= '未婚' %>
+              <%= '未婚' %>
               <% when 1 then %>
-                <%= '既婚' %>
+              <%= '既婚' %>
               <% end %>
             </dd>
           </div>
-        <% end %>
-        <% if @user.introduction.present? %>
+          <% end %>
+          <% if @user.introduction.present? %>
           <div class="field form-group clearfix">
             <dt><%= f.label :introduction %></dt>
             <dd>
               <%= @user.introduction %>
             </dd>
           </div>
-        <% end %>
+          <% end %>
+        </dl>
+      </div>
+      <% end %>
+
+      <% if @user == @current_user %>
+      <div class="col-sm-12 underlinks">
+        <%= link_to 'Edit', edit_user_path(@user) %> |
+        <%= link_to 'Delete', @user , method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+      <% end %>
+
+      <!-- ログインしており、ユーザーがFollowしていない場合にFollowリンク表示 Follow済の場合はRemoveリンク表示 -->
+      <% if logininfo_signed_in? %>
+      <% if !(@user.followed.exists?(@current_user.id)) and (@user != @current_user) %>
+      <%= form_for User.new ,:url => follow_user_path do |f| %>
+      <div class="col-sm-12 underlinks">
+        <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+      </div>
+      <% end %>
+      <% elsif @user.followed.exists?(@current_user.id) %>
+      <%= form_for User.new ,:url => remove_user_path do |f| %>
+      <div class="col-sm-12 underlinks">
+        <%= f.submit "Remove", class: "btn btn-large btn-danger" %>
+      </div>
+      <% end %>
+      <% end %>
+      <% end %>
+
+      <div class="col-sm-12 underlinks">
+        <%= link_to 'Back', root_path %>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <dl>
+        <dt><label>Wines</label>(Scoreの高い順)</dt>
+        <dd>
+          <div class="scroll">
+            <% @wines.each do |wine| %>
+              <div class="media">
+                <span class="media-left" href="#">
+                  <img src="http://placehold.jp/140x140.png" alt="<%= wine.name %>">
+                </span>
+                <div class="media-body">
+                  <p class="media-heading"><%= wine.name %></p>
+                  <p>
+                    <dl class="dl-horizontal">
+                      <% if wine.country.present? && wine.country.name != '不明' %>
+                        <dt>Country:</dt>
+                        <dd>
+                          <%= wine.country.name %>
+                        </dd>
+                      <% end %>
+                      <% if wine.localregion.present? && wine.localregion.name != '不明' %>
+                        <dt>Localregions:</dt>
+                        <dd>
+                          <%= wine.localregion.name %>
+                        </dd>
+                      <% end %>
+                      <dt>Type:</dt>
+                      <dd>
+                        <%= wine.winetype.name %>
+                      </dd>
+                      <dt>Score:</dt>
+                      <dd>
+                        <%= wine.score %>
+                      </dd>
+                    </dl>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </dd>
       </dl>
     </div>
-  <% end %>
-
-  <% if @user == @current_user %>
-    <div class="col-sm-12 underlinks">
-      <%= link_to 'Edit', edit_user_path(@user) %> |
-      <%= link_to 'Delete', @user , method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
-  <% end %>
-
-  <!-- ログインしており、ユーザーがFollowしていない場合にFollowリンク表示 Follow済の場合はRemoveリンク表示 -->
-  <% if logininfo_signed_in? %>
-    <% if !(@user.followed.exists?(@current_user.id)) and (@user != @current_user) %>
-      <%= form_for User.new ,:url => follow_user_path do |f| %>
-        <div class="col-sm-12 underlinks">
-          <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
-        </div>
-      <% end %>
-    <% elsif @user.followed.exists?(@current_user.id) %>
-      <%= form_for User.new ,:url => remove_user_path do |f| %>
-        <div class="col-sm-12 underlinks">
-          <%= f.submit "Remove", class: "btn btn-large btn-danger" %>
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
-
-  <div class="col-sm-12 underlinks">
-    <%= link_to 'Back', root_path %>
-  </div>
+  </div> <!-- row -->
 </div>
