@@ -62,6 +62,7 @@ function useAjax( domId ){
           if( "error" in result ){
             showValidationMessage( result.error );
           }else{
+            result.wine.photo = result.wine.photo.thumb.url;
             dropPin( result );
             hiddenArea("createWineArea");
           }
