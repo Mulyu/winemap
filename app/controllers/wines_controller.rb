@@ -11,6 +11,7 @@ class WinesController < ApplicationController
   # GET /wines
   # GET /wines.json
   def index
+    # コミット用コメント
 
     wines = Wine.includes(:winetype , :winevarieties , :user , :localregion , country: :worldregion).all
 
