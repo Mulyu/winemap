@@ -12,7 +12,7 @@ class Logininfos::RegistrationsController < Devise::RegistrationsController
     super
     
     if resource.id != nil
-      @user.winelevel = @user.winenum = @user.follow = @user.follower = @user.ranking = 0
+      @user.winelevel =  @user.follow = @user.follower = @user.ranking = 0
       @user.logininfo_id=resource.id
       @user.save
     end
