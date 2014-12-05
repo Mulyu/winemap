@@ -62,6 +62,7 @@ function useAjax( domId ){
           if( "error" in result ){
             showValidationMessage( result.error );
           }else{
+            result.wine.photo = null;
             dropPin( result );
             hiddenArea("createWineArea");
           }
@@ -74,8 +75,7 @@ function useAjax( domId ){
             showValidationMessage( {error: ["通信に失敗しました"] } );
           }else{
             /* fix photo url */
-            result.wine.photo = result.wine.photo.thumb.url; 
-            
+            result.wine.photo = result.wine.photo.thumb["url"]; 
             dropPin( result );
             hiddenArea("createWineArea");
           }
