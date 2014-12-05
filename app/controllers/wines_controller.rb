@@ -68,7 +68,29 @@ class WinesController < ApplicationController
       normalize_wine_data
       respond_to do |format|
         if @wine.save
-          format.html { render json: {wine: @wine, regions: get_regions(@wine)}, notice: 'Wine was successfully created.' }
+          wine = {
+            id: @wine.id,
+            winetype_id: @wine.winetype_id,
+            name: @wine.name,
+            country_name: @wine.country.name,
+            latitude: @wine.latitude.to_f,
+            longitude: @wine.longitude.to_f,
+            body: @wine.body,
+            sweetness: @wine.sweetness,
+            winetype_name: @wine.winetype.name,
+            year: @wine.year,
+            winevarieties: @wine.winevarieties,
+            score: @wine.score,
+            price: @wine.price,
+            winery: @wine.winery,
+            user: @wine.user.name,
+            user_id: @wine.user.id,
+            winelevel: @wine.winelevel,
+            worldregion_id: @wine.country.worldregion_id,
+            photo: @wine.photo.thumb.url,
+            regions: get_regions(@wine)
+          }
+          format.html { render json: {wine: wine, regions: get_regions(@wine)}, notice: 'Wine was successfully created.' }
           format.json { render :show, status: :created, location: @wine }
         else
           format.html { render json: {wine: @wine, regions: get_regions(@wine), error: @wine.errors} }
