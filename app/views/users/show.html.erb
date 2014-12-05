@@ -122,7 +122,7 @@
             <% @wines.each do |wine| %>
               <div class="media">
                 <span class="media-left" href="#">
-                  <img src="http://placehold.jp/140x140.png" alt="<%= wine.name %>">
+                  <img src="<%= wine.photo.thumb.url %>" alt="<%= wine.name %>">
                 </span>
                 <div class="media-body">
                   <p class="media-heading"><%= wine.name %></p>
