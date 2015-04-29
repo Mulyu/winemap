@@ -51,11 +51,11 @@ group :test do
 end
 
 # deploy to heroku
-group :production do
-  gem 'rails_12factor'
-  gem 'pg'
-  gem 'newrelic_rpm'
-end
+#group :production do
+#  gem 'rails_12factor'
+#  gem 'pg'
+#  gem 'newrelic_rpm'
+#end
 
 # deploy on capistrano
 group :development do
