@@ -31,3 +31,6 @@ config/apikey.yml
 
 # mac
 .DS_Store
+
+# environment variables
+.env
