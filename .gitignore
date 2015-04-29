@@ -34,3 +34,8 @@ config/apikey.yml
 
 # environment variables
 .env
+
+# swap files
+*.swp
+*.swo
+*~
