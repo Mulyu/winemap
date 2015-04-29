@@ -4,12 +4,13 @@ ruby '2.1.2'
 gem 'rails'
 
 group :development do
-  gem 'mysql2'
   gem 'rspec-rails'
   # debug tool
   gem 'better_errors'
   gem 'binding_of_caller'
 end
+
+gem 'mysql2'
 
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
