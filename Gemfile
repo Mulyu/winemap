@@ -64,4 +64,5 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-passenger'
+  gem 'dotenv-rails'
 end
