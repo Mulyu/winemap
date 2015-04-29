@@ -56,3 +56,12 @@ group :production do
   gem 'pg'
   gem 'newrelic_rpm'
 end
+
+# deploy on capistrano
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-passenger'
+end
